@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.eataewon.dao.BbsDao">
+
+    <select id="getBbsList" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        FROM EATAEWONBBS
+        ORDER BY READCNT DESC
+    </select>
+
+
+
+    <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
+        INSERT INTO EATAEWONBBS
+        (SEQ, ID, TITLE, CONTENT,HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT)
+        VALUES
+        (bbsseq.NEXTVAL, #{id}, #{title}, #{content},#{hashtag}, SYSDATE, #{shopname}, #{address}, #{latitude},#{longtitude},0)
+    </insert>
+
+
+    <!-- 글 상세페이지 보기 -->
+    <select id="getBbs" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        FROM EATAEWONBBS
+        WHERE SEQ=#{seq}
+    </select>
+
+    <!-- 조회수 업데이트 -->
+    <update id="readcount" parameterType="java.lang.Integer">
+        UPDATE EATAEWONBBS
+        SET READCNT=READCNT+1
+        WHERE SEQ=#{seq}
+    </update>
+
+
+    <!-- 검색 조건이 틀려도 에러가 안나오도록 where 1=1-->
+    <select id="getBbsListSearch" parameterType="com.proj.eataewon.dto.BbsParam" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT
+        FROM EATAEWONBBS
+        WHERE 1=1
+        <if test="choice !=null and choice !='' and search !=null and search !=''">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+        ORDER BY READCNT DESC
+    </select>
+
+
+    <!--ROW_NUMBER()OVER(ORDER BY REF DESC, STEP ASC)란 뜻은
+REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 ROW_NUMBER()을 통해서 순번을 차례로 매긴다.
+검색해서 나온 결과에 차례로 순번 매긴다고 생각하면 된다.  -->
+    <select id="getBbsListSearchPage" parameterType="com.proj.eataewon.dto.BbsParam"
+            resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT	ID, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
+        FROM
+            (SELECT ROW_NUMBER()OVER(ORDER BY READCNT DESC) AS RNUM,
+        	ID, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
+        FROM EATAEWONBBS
+        WHERE 1=1
+        <if test="choice !=null and choice !='' and search !=null and search !=''">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+        ORDER BY READCNT DESC)
+        WHERE RNUM BETWEEN ${start} AND ${end}
+    </select>
+
+
+    <!-- 글의 총수 -->
+    <select id="getBbsCount" parameterType="com.proj.eataewon.dto.BbsParam" resultType="java.lang.Integer">
+        SELECT NVL(COUNT(*),0) AS CNT
+        FROM EATAEWONBBS
+        WHERE 1=1
+        <if test="choice != null and choice != '' and search != null and search != '' ">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+    </select>
+
+    <!-- 글 수정 -->
+    <update id="updateBbs" parameterType="com.proj.eataewon.dto.BbsDto">
+        UPDATE EATAEWONBBS
+        SET TITLE=#{title}, CONTENT=#{content}, SHOPNAME=#{shopname}, HASHTAG=#{hashtag}, ADDRESS=#{address},
+            LATITUDE=#{latitude}, LONGTITUDE=#{longtitude}
+        WHERE SEQ=#{seq}
+    </update>
+
+    <!-- 글 삭제 -->
+    <update id="deleteBbs" parameterType="java.lang.Integer">
+        DELETE FROM EATAEWONBBS
+        WHERE SEQ=#{seq}
+    </update>
+
+
+    <!--게시물 스크랩하기-->
+    <insert id="scrapBbs" parameterType="com.proj.eataewon.dto.ScrapDto">
+        Insert into EATAEWONSCRAP
+        (id,BBSSEQ,SEQ)
+        values(#{id},#{bbsseq},scrapSeq.NEXTVAL)
+    </insert>
+
+
+    <!--스크랩된 게시물 리스트 반환-->
+    <select id = "scrapBbsList"  resultType="com.proj.eataewon.dto.ScrapDto">
+        SELECT s.seq, b.title, b.hashtag, b.shopname, b.address
+        FROM EATAEWONSCRAP s , EATAEWONBBS b
+        WHERE s.id = b.id
+    </select>
+
+
+    <!--좋아요된 게시물 리스트 반환-->
+    <select id = "bbsLike"  resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT l.seq , l.id, b.title, b.hashtag, b.shopname, b.address
+        FROM EATAEWONLIKE l ,EATAEWONBBS b
+        WHERE l.bbsseq = b.seq
+    </select>
+
+
+
+
+
+
+
+
+</mapper>
