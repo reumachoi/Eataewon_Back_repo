@@ -1,6 +1,8 @@
 package com.proj.eataewon.controller;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +14,11 @@ import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class BbsController {
@@ -39,6 +45,37 @@ public class BbsController {
         }
         return "NO";
     }
+
+    @RequestMapping(value="/bbswriteImgup", method=RequestMethod.POST)
+    public String bbswriteImgup(
+
+            HttpServletRequest req,
+            @RequestParam("id") String id,
+            @RequestParam("seq") int seq,
+            @RequestParam("title")String title,
+            @RequestParam("content")String content,
+            @RequestParam("picture") MultipartFile file,
+            @RequestParam("hashtag") String hashtag,
+            @RequestParam("wdate") String wdate,
+            @RequestParam("shopname") String shopname,
+            @RequestParam("address") String address,
+            @RequestParam("latitude") double latitude,
+            @RequestParam("longtitue") double longtitude,
+            @RequestParam("readcnt") int readcnt,
+            @RequestParam("likecnt") int likecnt
+
+           ) throws IllegalStateException, IOException {
+        String PATH = req.getSession().getServletContext().getRealPath("/") + "resources/";
+        if (!file.getOriginalFilename().isEmpty()) {
+            file.transferTo(new File(PATH + file.getOriginalFilename()));
+        }
+//        service.bbswriteImgup(new BbsDto(id,seq,title,content,file,hashtag,wdate,shopname,address,latitude,longtitude,
+//        readcnt,likecnt));
+        //s.addBoard(new Board(0, title, contents, file.getOriginalFilename()));
+        return "board";
+    }
+
+
 
 
     @RequestMapping(value = "/bbsdetail", method = {RequestMethod.GET, RequestMethod.POST} )
@@ -99,46 +136,24 @@ public class BbsController {
         return "NO";
     }
 
-    @RequestMapping(value="/bbsScrap", method = {RequestMethod.GET, RequestMethod.POST})
-    public String scrapBbs(ScrapDto dto){
-        System.out.println("ScrapDto bbsScrap " + new Date());
-
-        System.out.println(dto.toString());
-
-        boolean b =service.bbsScrap(dto);
-        if(b) {
-            return "YES";
-        }
-        return "NO";
-
-    }
 
 
     @RequestMapping(value="/likeBbs", method = {RequestMethod.GET, RequestMethod.POST})
     public String likeBbs(LikeDto dto){
         System.out.println("LikeDto likeBbs " + dto+ new Date());
-         boolean a = service.likebbsCnt(dto);
+        boolean a = service.likebbsCnt(dto);
         if(a) {
-            boolean b =service.likeBbs(dto);
+
+            boolean c = service.likecntUpdate(dto);
+            System.out.println("seq"+dto.getSeq());
+            boolean b = service.likeBbs(dto);
             if(b) {
                 return "YES";
             }
             return "NO";
         }
         return "DUP";
-//        System.out.println(dto.toString());
 
-
-
-    }
-
-    @RequestMapping(value = "/scrapBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
-    public List<BbsDto> scrapBbsList(String id){
-        System.out.println("BbsController scrapBbsList " + id + new Date());
-
-        List<BbsDto> list = service.scrapBbsList(id);
-        System.out.println("BbsController scrapBbsList output " + list);
-        return list;
     }
 
     @RequestMapping(value = "/likeBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
@@ -149,6 +164,47 @@ public class BbsController {
         System.out.println("BbsController likeBbsList output " + list.toString());
         return list;
     }
+
+
+
+    @RequestMapping(value = "/deleteLike", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String deleteLike(int seq) {
+        System.out.println("BbsController bbsdelete " + new Date());
+
+        boolean b = service.deleteLike(seq);
+        if(b) {
+            return "OK";
+        }
+        return "NO";
+    }
+
+
+    @RequestMapping(value="/bbsScrap", method = {RequestMethod.GET, RequestMethod.POST})
+    public String scrapBbs(ScrapDto dto){
+        System.out.println("ScrapDto bbsScrap " + new Date());
+        boolean a = service.scrapBbsCnt(dto);
+        if(a) {
+
+            boolean b =service.bbsScrap(dto);
+            if(b) {
+                return "YES";
+            }
+            return "NO";
+        }
+        return "DUP";
+
+    }
+
+
+    @RequestMapping(value = "/scrapBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
+    public List<BbsDto> scrapBbsList(String id){
+        System.out.println("BbsController scrapBbsList " + id + new Date());
+
+        List<BbsDto> list = service.scrapBbsList(id);
+        System.out.println("BbsController scrapBbsList output " + list);
+        return list;
+    }
+
 
     @RequestMapping(value = "/deleteScarp", method = {RequestMethod.GET, RequestMethod.POST} )
     public String deleteScarp(int seq) {

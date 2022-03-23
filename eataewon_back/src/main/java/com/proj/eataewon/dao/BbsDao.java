@@ -14,6 +14,8 @@ public interface BbsDao {
 
     public int writeBbs(BbsDto dto);
 
+    public boolean bbswriteImgup(BbsDto dto);
+
     public void readcount(int seq);
 
     public BbsDto getBbs(int seq);
@@ -39,6 +41,12 @@ public interface BbsDao {
     public List<BbsDto> likeBbsList(String id);
 
     public int deleteScarp(int seq);
+
+    public int scrapBbsCnt(ScrapDto dto);
+
+    public int deleteLike(int seq);
+
+    public int likecntUpdate(LikeDto dto);
 }
 
 

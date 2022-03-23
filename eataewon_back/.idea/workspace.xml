@@ -15,7 +15,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" afterDir="false" />
     </list>

@@ -160,6 +160,14 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
            AND s.ID = #{id}
     </select>
 
+
+    <select id = "scrapBbsCnt" parameterType="com.proj.eataewon.dto.ScrapDto"  resultType="java.lang.Integer">
+        SELECT COUNT(*) AS CNT
+        FROM EATAEWONSCRAP
+        WHERE bbsseq = #{bbsseq}
+        AND ID = #{id}
+    </select>
+
     <!--스크랩된 게시물 취소-->
     <update id="deleteScarp" parameterType="java.lang.Integer">
         DELETE FROM EATAEWONSCRAP
@@ -190,13 +198,17 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         AND ID = #{id}
     </select>
 
-    <!--좋아요 할때 likecnt 증가-->
-    <update id="likecntUp" parameterType="java.lang.Integer">
+    <!--좋아요 할때 likecnt 증가 / 중복 방지는 controller에서 -->
+    <update id="likecntUpdate" parameterType="com.proj.eataewon.dto.LikeDto" >
         update EATAEWONBBS
         SET likecnt = likecnt+1
-        WHERE (seq) in (select b.seq
-        from  EATAEWONlike l, EATAEWONBBS b
-        where l.bbsSeq = b.seq)
+        WHERE seq = #{bbsseq}
+    </update>
+
+    <!--좋아요된 게시물 취소-->
+    <update id="deleteLike" parameterType="java.lang.Integer">
+        DELETE FROM EATAEWONLike
+        WHERE BBSSEQ=#{bbsseq};
     </update>
 
 
