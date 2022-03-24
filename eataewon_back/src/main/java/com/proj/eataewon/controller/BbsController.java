@@ -27,6 +27,7 @@ public class BbsController {
         return list;
     }
 
+
     @RequestMapping(value = "/bbswrite", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbswrite(BbsDto dto) {
         System.out.println("BbsController bbswrite " + new Date());
@@ -38,7 +39,7 @@ public class BbsController {
         return "NO";
     }
 
-
+    //글 상세보기
     @RequestMapping(value = "/bbsdetail", method = {RequestMethod.GET, RequestMethod.POST} )
     public BbsDto bbsdetail(int seq) {
         System.out.println("BbsController BbsDto " + new Date());
@@ -96,8 +97,5 @@ public class BbsController {
         }
         return "NO";
     }
-
-
-
 
 }

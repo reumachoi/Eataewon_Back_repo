@@ -1,101 +1,31 @@
 package com.proj.eataewon.dto;
 
-public class MemberDto {
+ /*
+ 		id varchar(50) not null,
+		 name varchar(50) not null,
+		 pwd varchar(50) not null,
+		 email varchar(100) not null,
+		 nickName varchar(50) not null,
+		 profilPic int,
+		 likePoint int,
+		 profilMsg varchar(500),*/
 
-	private int seq;
-	private String name;
+import lombok.*;
+
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+@AllArgsConstructor
+public class MemberDto {
 	private String id;
+	private String name;
 	private String pwd;
 	private String email;
 	private String nickName;
-	private String profilPic;
+	private int profilPic;
 	private int likePoint;
 	private String profilMsg;
 	
-	public MemberDto() {
-	}
 
-	public MemberDto(int seq, String name, String id, String pwd, String email, String nickName, String profilPic, int likePoint, String profilMsg) {
-		this.seq = seq;
-		this.name = name;
-		this.id = id;
-		this.pwd = pwd;
-		this.email = email;
-		this.nickName = nickName;
-		this.profilPic = profilPic;
-		this.likePoint = likePoint;
-		this.profilMsg = profilMsg;
-	}
-
-	public int getSeq() {
-		return seq;
-	}
-
-	public void setSeq(int seq) {
-		this.seq = seq;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getPwd() {
-		return pwd;
-	}
-
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getNickName() {
-		return nickName;
-	}
-
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-
-	public String getProfilPic() {
-		return profilPic;
-	}
-
-	public void setProfilPic(String profilPic) {
-		this.profilPic = profilPic;
-	}
-
-	public int getLikePoint() {
-		return likePoint;
-	}
-
-	public void setLikePoint(int likePoint) {
-		this.likePoint = likePoint;
-	}
-
-	public String getProfilMsg() {
-		return profilMsg;
-	}
-
-	public void setProfilMsg(String profilMsg) {
-		this.profilMsg = profilMsg;
-	}
 }

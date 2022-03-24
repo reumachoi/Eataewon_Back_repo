@@ -23,6 +23,11 @@ public class MemberController {
 		return "base";
 	}
 
+	@RequestMapping(value="/test", method = RequestMethod.GET)
+	public String test(){
+		System.out.println("test~~~~~~~~~~~~~~~~~");
+		return "test success";
+	}
 
 	@RequestMapping(value="/getId", method= {RequestMethod.GET, RequestMethod.POST})
 	public String getId(MemberDto dto) {
