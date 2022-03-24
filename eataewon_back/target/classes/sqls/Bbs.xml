@@ -11,17 +11,20 @@
         ORDER BY READCNT DESC
     </select>
 
+
+
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
-        (SEQ, ID, TITLE, CONTENT,HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT)
+        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT)
         VALUES
-        (BBS_SEQ.NEXTVAL, #{id}, #{title}, #{content},#{hashtag}, SYSDATE, #{shopname}, #{address}, #{latitude},#{longtitude},0)
+        (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
+        #{shopname}, #{address}, #{latitude},#{longtitude}, 0)
     </insert>
 
 
     <!-- 글 상세페이지 보기 -->
     <select id="getBbs" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        SELECT SEQ, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
         FROM EATAEWONBBS
         WHERE SEQ=#{seq}
     </select>
@@ -32,14 +35,6 @@
         SET READCNT=READCNT+1
         WHERE SEQ=#{seq}
     </update>
-
-    <!--https://dlgkstjq623.tistory.com/364 참고 좋아요 업데이트-->
-    <update id = "likeUpdate" parameterType="java.lang.Integer">
-        UPDATE EATAEWONBBS
-        SET LIKECNT = LIKECNT+1
-        WHERE SEQ = #{seq}
-    </update>
-
 
 
     <!-- 검색 조건이 틀려도 에러가 안나오도록 where 1=1-->
@@ -137,7 +132,7 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!-- 글 수정 -->
     <update id="updateBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         UPDATE EATAEWONBBS
-        SET TITLE=#{title}, CONTENT=#{content}, SHOPNAME=#{shopname}, HASHTAG=#{hashtag}, ADDRESS=#{address},
+        SET TITLE=#{title}, CONTENT=#{content}, PICTURE=#{picture} , SHOPNAME=#{shopname}, HASHTAG=#{hashtag}, ADDRESS=#{address},
             LATITUDE=#{latitude}, LONGTITUDE=#{longtitude}
         WHERE SEQ=#{seq}
     </update>
@@ -148,6 +143,73 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         WHERE SEQ=#{seq}
     </update>
 
+
+    <!--게시물 스크랩하기-->
+    <insert id="bbsScrap" parameterType="com.proj.eataewon.dto.ScrapDto">
+        Insert into EATAEWONSCRAP
+        (id,BBSSEQ,SEQ)
+        values(#{id},#{bbsseq},scrapSeq.NEXTVAL)
+    </insert>
+
+
+    <!--스크랩된 게시물 리스트 반환-->
+    <select id = "scrapBbsList" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT TITLE, HASHTAG, SHOPNAME, ADDRESS, b.SEQ
+          FROM EATAEWONSCRAP s , EATAEWONBBS b
+         WHERE s.bbsseq = b.seq
+           AND s.ID = #{id}
+    </select>
+
+
+    <select id = "scrapBbsCnt" parameterType="com.proj.eataewon.dto.ScrapDto"  resultType="java.lang.Integer">
+        SELECT COUNT(*) AS CNT
+        FROM EATAEWONSCRAP
+        WHERE bbsseq = #{bbsseq}
+        AND ID = #{id}
+    </select>
+
+    <!--스크랩된 게시물 취소-->
+    <update id="deleteScarp" parameterType="java.lang.Integer">
+        DELETE FROM EATAEWONSCRAP
+        WHERE BBSSEQ=#{bbsseq};
+    </update>
+
+    <!--게시물 좋아요하기/ 부모키 없다는 오류 때문에 자료가 삽입이 안돼서서 일단외래키 조건 삭제했습니다.-->
+    <!--참고 사이트 : https://blog.naver.com/PostView.nhn?blogId=cksgy32&logNo=221675954355&parentCategoryNo=&categoryNo=78&viewDate=&isShowPopularPosts=true&from=search-->
+    <insert id="likeBbs" parameterType="com.proj.eataewon.dto.LikeDto">
+        insert into EATAEWONLIKE
+        (id,BBSSEQ,SEQ)
+        values(#{id},#{bbsseq},likeSeq.NEXTVAL)
+    </insert>
+
+
+    <!--좋아요된 게시물 리스트 반환-->
+    <select id = "likeBbsList" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT TITLE, HASHTAG, SHOPNAME, ADDRESS, b.SEQ
+        FROM EATAEWONLIKE l ,EATAEWONBBS b
+        WHERE l.bbsseq = b.seq
+        AND l.ID=#{id}
+    </select>
+
+    <select id = "likebbsCnt" parameterType="com.proj.eataewon.dto.LikeDto"  resultType="java.lang.Integer">
+        SELECT COUNT(*) AS CNT
+          FROM EATAEWONLIKE
+        WHERE bbsseq = #{bbsseq}
+        AND ID = #{id}
+    </select>
+
+    <!--좋아요 할때 likecnt 증가 / 중복 방지는 controller에서 -->
+    <update id="likecntUpdate" parameterType="com.proj.eataewon.dto.LikeDto" >
+        update EATAEWONBBS
+        SET likecnt = likecnt+1
+        WHERE seq = #{bbsseq}
+    </update>
+
+    <!--좋아요된 게시물 취소-->
+    <update id="deleteLike" parameterType="java.lang.Integer">
+        DELETE FROM EATAEWONLike
+        WHERE BBSSEQ=#{bbsseq};
+    </update>
 
 
 

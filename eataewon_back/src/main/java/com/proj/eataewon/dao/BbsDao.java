@@ -1,3 +1,4 @@
+
 package com.proj.eataewon.dao;
 
 import com.proj.eataewon.dto.BbsDto;
@@ -20,6 +21,8 @@ public interface BbsDao {
 
     public void likeUpdate(int seq);
 
+    public boolean bbswriteImgup(BbsDto dto);
+
     public BbsDto getBbs(int seq);
 
     public List<BbsDto> getBbsListSearch(BbsParam param);
@@ -32,9 +35,25 @@ public interface BbsDao {
 
     public int deleteBbs(int seq);
 
+    public int bbsScrap(ScrapDto dto);
+
+    public List<BbsDto> scrapBbsList(BbsDto dto);
+
+    public int likeBbs(LikeDto dto);
+
+    public int likebbsCnt(LikeDto dto);
+
+    public List<BbsDto> likeBbsList(BbsDto dto);
+
+    public int deleteScarp(int seq);
+
+    public int scrapBbsCnt(ScrapDto dto);
+
+    public int deleteLike(int seq);
+
+    public int likecntUpdate(LikeDto dto);
+
 
 }
-
-
 
 

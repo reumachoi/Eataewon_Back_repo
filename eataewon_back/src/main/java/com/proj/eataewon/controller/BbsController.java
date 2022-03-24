@@ -1,16 +1,25 @@
 package com.proj.eataewon.controller;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import com.proj.eataewon.dto.BbsDto;
 import com.proj.eataewon.dto.BbsParam;
+import com.proj.eataewon.dto.LikeDto;
+import com.proj.eataewon.dto.ScrapDto;
 import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import javax.swing.filechooser.FileSystemView;
+import java.io.File;
+
+import javax.servlet.http.HttpServletRequest;
+
+import static org.springframework.boot.autoconfigure.mongo.MongoProperties.DEFAULT_URI;
 
 @RestController
 public class BbsController {
@@ -27,7 +36,6 @@ public class BbsController {
         return list;
     }
 
-
     @RequestMapping(value = "/bbswrite", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbswrite(BbsDto dto) {
         System.out.println("BbsController bbswrite " + new Date());
@@ -39,7 +47,22 @@ public class BbsController {
         return "NO";
     }
 
-    //글 상세보기
+    @PostMapping(DEFAULT_URI + "/multi")
+    public String uploadMulti(@RequestParam("files") List<MultipartFile> files) throws Exception {
+        String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
+        String basePath = rootPath + "/" + "multi";
+        // 파일 업로드(여러개) 처리 부분
+        for(MultipartFile file : files) {
+            String originalName = file.getOriginalFilename();
+            String filePath = basePath + "/" + originalName;
+            File dest = new File(filePath);
+            file.transferTo(dest);
+        }
+        return "uploaded";
+    }
+
+
+
     @RequestMapping(value = "/bbsdetail", method = {RequestMethod.GET, RequestMethod.POST} )
     public BbsDto bbsdetail(int seq) {
         System.out.println("BbsController BbsDto " + new Date());
@@ -97,5 +120,89 @@ public class BbsController {
         }
         return "NO";
     }
+
+
+    @RequestMapping(value="/likeBbs", method = {RequestMethod.GET, RequestMethod.POST})
+    public String likeBbs(LikeDto dto){
+        System.out.println("LikeDto likeBbs " + dto+ new Date());
+        boolean a = service.likebbsCnt(dto);
+        if(a) {
+
+            boolean c = service.likecntUpdate(dto);
+            System.out.println("seq"+dto.getSeq());
+            boolean b = service.likeBbs(dto);
+            if(b&&c) {
+                return "YES";
+            }
+            return "NO";
+        }
+        return "DUP";
+
+    }
+
+    @RequestMapping(value = "/likeBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
+    public List<BbsDto> likeBbsList(BbsDto dto){
+        System.out.println("BbsController likeBbsList " + dto.toString() + new Date());
+
+        List<BbsDto> list = service.likeBbsList(dto);
+        System.out.println("BbsController likeBbsList output " + list.toString());
+        return list;
+    }
+
+
+
+    @RequestMapping(value = "/deleteLike", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String deleteLike(int seq) {
+        System.out.println("BbsController bbsdelete " + new Date());
+
+        boolean b = service.deleteLike(seq);
+        if(b) {
+            return "OK";
+        }
+        return "NO";
+    }
+
+
+    @RequestMapping(value="/bbsScrap", method = {RequestMethod.GET, RequestMethod.POST})
+    public String scrapBbs(ScrapDto dto){
+        System.out.println("ScrapDto bbsScrap " + new Date());
+        boolean a = service.scrapBbsCnt(dto);
+        if(a) {
+
+            boolean b =service.bbsScrap(dto);
+            if(b) {
+                return "YES";
+            }
+            return "NO";
+        }
+        return "DUP";
+
+    }
+
+
+    @RequestMapping(value = "/scrapBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
+    public List<BbsDto> scrapBbsList(BbsDto dto){
+        System.out.println("BbsController scrapBbsList " + dto + new Date());
+
+        List<BbsDto> list = service.scrapBbsList(dto);
+        System.out.println("BbsController scrapBbsList output " + list.toString());
+        return list;
+    }
+
+
+    @RequestMapping(value = "/deleteScarp", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String deleteScarp(int seq) {
+        System.out.println("BbsController deleteScarp " + new Date());
+
+        boolean b = service.deleteScarp(seq);
+        if(b) {
+            return "OK";
+        }
+        return "NO";
+    }
+
+
+
+
 
 }
