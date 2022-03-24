@@ -2,21 +2,34 @@ package com.proj.eataewon.dto;
 
 public class MemberDto {
 
-	private int seq;
+	//private int seq;
 	private String name;
 	private String id;
 	private String pwd;
 	private String email;
 	private String nickName;
-	private String profilPic;
+	private int profilPic;
 	private int likePoint;
 	private String profilMsg;
 	
 	public MemberDto() {
 	}
 
-	public MemberDto(int seq, String name, String id, String pwd, String email, String nickName, String profilPic, int likePoint, String profilMsg) {
-		this.seq = seq;
+	@Override
+	public String toString() {
+		return "MemberDto{" +
+				"name='" + name + '\'' +
+				", id='" + id + '\'' +
+				", pwd='" + pwd + '\'' +
+				", email='" + email + '\'' +
+				", nickName='" + nickName + '\'' +
+				", profilPic='" + profilPic + '\'' +
+				", likePoint=" + likePoint +
+				", profilMsg='" + profilMsg + '\'' +
+				'}';
+	}
+	public MemberDto(String name, String id, String pwd, String email, String nickName, int profilPic, int likePoint, String profilMsg) {
+		//this.seq = seq;
 		this.name = name;
 		this.id = id;
 		this.pwd = pwd;
@@ -27,13 +40,13 @@ public class MemberDto {
 		this.profilMsg = profilMsg;
 	}
 
-	public int getSeq() {
+/*	public int getSeq() {
 		return seq;
-	}
+	}*/
 
-	public void setSeq(int seq) {
+/*	public void setSeq(int seq) {
 		this.seq = seq;
-	}
+	}*/
 
 	public String getName() {
 		return name;
@@ -75,11 +88,11 @@ public class MemberDto {
 		this.nickName = nickName;
 	}
 
-	public String getProfilPic() {
+	public int getProfilPic() {
 		return profilPic;
 	}
 
-	public void setProfilPic(String profilPic) {
+	public void setProfilPic(int profilPic) {
 		this.profilPic = profilPic;
 	}
 
