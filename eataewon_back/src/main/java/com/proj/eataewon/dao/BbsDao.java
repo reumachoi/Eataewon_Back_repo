@@ -1,9 +1,7 @@
 
 package com.proj.eataewon.dao;
 
-import com.proj.eataewon.dto.BbsDto;
-import com.proj.eataewon.dto.BbsParam;
-import com.proj.eataewon.dto.MemberDto;
+import com.proj.eataewon.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

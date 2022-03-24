@@ -55,13 +55,6 @@ public class MemberController {
 		return mem;
 	}
 
-
-
-
-
-
-
-
 	
 	@RequestMapping(value = "/connParamGet")
 	public String connParamGet(String title) {
