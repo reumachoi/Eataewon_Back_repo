@@ -32,13 +32,13 @@ public interface BbsDao {
 
     public int bbsScrap(ScrapDto dto);
 
-    public List<BbsDto> scrapBbsList(String id);
+    public List<BbsDto> scrapBbsList(BbsDto dto);
 
     public int likeBbs(LikeDto dto);
 
     public int likebbsCnt(LikeDto dto);
 
-    public List<BbsDto> likeBbsList(String id);
+    public List<BbsDto> likeBbsList(BbsDto dto);
 
     public int deleteScarp(int seq);
 

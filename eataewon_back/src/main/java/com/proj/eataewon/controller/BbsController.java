@@ -12,13 +12,14 @@ import com.proj.eataewon.dto.LikeDto;
 import com.proj.eataewon.dto.ScrapDto;
 import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import javax.swing.filechooser.FileSystemView;
+import java.io.File;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static org.springframework.boot.autoconfigure.mongo.MongoProperties.DEFAULT_URI;
 
 @RestController
 public class BbsController {
@@ -46,35 +47,19 @@ public class BbsController {
         return "NO";
     }
 
-    @RequestMapping(value="/bbswriteImgup", method=RequestMethod.POST)
-    public String bbswriteImgup(
-
-            HttpServletRequest req,
-            @RequestParam("id") String id,
-            @RequestParam("seq") int seq,
-            @RequestParam("title")String title,
-            @RequestParam("content")String content,
-            @RequestParam("picture") MultipartFile file,
-            @RequestParam("hashtag") String hashtag,
-            @RequestParam("wdate") String wdate,
-            @RequestParam("shopname") String shopname,
-            @RequestParam("address") String address,
-            @RequestParam("latitude") double latitude,
-            @RequestParam("longtitue") double longtitude,
-            @RequestParam("readcnt") int readcnt,
-            @RequestParam("likecnt") int likecnt
-
-           ) throws IllegalStateException, IOException {
-        String PATH = req.getSession().getServletContext().getRealPath("/") + "resources/";
-        if (!file.getOriginalFilename().isEmpty()) {
-            file.transferTo(new File(PATH + file.getOriginalFilename()));
+    @PostMapping(DEFAULT_URI + "/multi")
+    public String uploadMulti(@RequestParam("files") List<MultipartFile> files) throws Exception {
+        String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
+        String basePath = rootPath + "/" + "multi";
+        // 파일 업로드(여러개) 처리 부분
+        for(MultipartFile file : files) {
+            String originalName = file.getOriginalFilename();
+            String filePath = basePath + "/" + originalName;
+            File dest = new File(filePath);
+            file.transferTo(dest);
         }
-//        service.bbswriteImgup(new BbsDto(id,seq,title,content,file,hashtag,wdate,shopname,address,latitude,longtitude,
-//        readcnt,likecnt));
-        //s.addBoard(new Board(0, title, contents, file.getOriginalFilename()));
-        return "board";
+        return "uploaded";
     }
-
 
 
 
@@ -137,7 +122,6 @@ public class BbsController {
     }
 
 
-
     @RequestMapping(value="/likeBbs", method = {RequestMethod.GET, RequestMethod.POST})
     public String likeBbs(LikeDto dto){
         System.out.println("LikeDto likeBbs " + dto+ new Date());
@@ -147,7 +131,7 @@ public class BbsController {
             boolean c = service.likecntUpdate(dto);
             System.out.println("seq"+dto.getSeq());
             boolean b = service.likeBbs(dto);
-            if(b) {
+            if(b&&c) {
                 return "YES";
             }
             return "NO";
@@ -157,10 +141,10 @@ public class BbsController {
     }
 
     @RequestMapping(value = "/likeBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
-    public List<BbsDto> likeBbsList(String id){
-        System.out.println("BbsController likeBbsList " + id + new Date());
+    public List<BbsDto> likeBbsList(BbsDto dto){
+        System.out.println("BbsController likeBbsList " + dto.toString() + new Date());
 
-        List<BbsDto> list = service.likeBbsList(id);
+        List<BbsDto> list = service.likeBbsList(dto);
         System.out.println("BbsController likeBbsList output " + list.toString());
         return list;
     }
@@ -197,11 +181,11 @@ public class BbsController {
 
 
     @RequestMapping(value = "/scrapBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
-    public List<BbsDto> scrapBbsList(String id){
-        System.out.println("BbsController scrapBbsList " + id + new Date());
+    public List<BbsDto> scrapBbsList(BbsDto dto){
+        System.out.println("BbsController scrapBbsList " + dto + new Date());
 
-        List<BbsDto> list = service.scrapBbsList(id);
-        System.out.println("BbsController scrapBbsList output " + list);
+        List<BbsDto> list = service.scrapBbsList(dto);
+        System.out.println("BbsController scrapBbsList output " + list.toString());
         return list;
     }
 

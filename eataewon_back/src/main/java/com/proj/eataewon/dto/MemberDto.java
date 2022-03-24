@@ -8,14 +8,14 @@ public class MemberDto {
 	private String pwd;
 	private String email;
 	private String nickName;
-	private String profilPic;
+	private int profilPic;
 	private int likePoint;
 	private String profilMsg;
 	
 	public MemberDto() {
 	}
 
-	public MemberDto(int seq, String name, String id, String pwd, String email, String nickName, String profilPic, int likePoint, String profilMsg) {
+	public MemberDto(int seq, String name, String id, String pwd, String email, String nickName, int profilPic, int likePoint, String profilMsg) {
 		this.seq = seq;
 		this.name = name;
 		this.id = id;
@@ -75,11 +75,11 @@ public class MemberDto {
 		this.nickName = nickName;
 	}
 
-	public String getProfilPic() {
+	public int getProfilPic() {
 		return profilPic;
 	}
 
-	public void setProfilPic(String profilPic) {
+	public void setProfilPic(int profilPic) {
 		this.profilPic = profilPic;
 	}
 

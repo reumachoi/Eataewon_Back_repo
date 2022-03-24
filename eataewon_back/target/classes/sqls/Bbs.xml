@@ -153,8 +153,8 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
 
 
     <!--스크랩된 게시물 리스트 반환-->
-    <select id = "scrapBbsList" parameterType="java.lang.String" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT TITLE, HASHTAG, SHOPNAME, ADDRESS
+    <select id = "scrapBbsList" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT TITLE, HASHTAG, SHOPNAME, ADDRESS, b.SEQ
           FROM EATAEWONSCRAP s , EATAEWONBBS b
          WHERE s.bbsseq = b.seq
            AND s.ID = #{id}
@@ -184,8 +184,8 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
 
 
     <!--좋아요된 게시물 리스트 반환-->
-    <select id = "likeBbsList" parameterType="java.lang.String" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT TITLE, HASHTAG, SHOPNAME, ADDRESS
+    <select id = "likeBbsList" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT TITLE, HASHTAG, SHOPNAME, ADDRESS, b.SEQ
         FROM EATAEWONLIKE l ,EATAEWONBBS b
         WHERE l.bbsseq = b.seq
         AND l.ID=#{id}
