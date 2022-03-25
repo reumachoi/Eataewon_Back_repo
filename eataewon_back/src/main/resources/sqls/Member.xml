@@ -22,10 +22,9 @@
 
 	<select id="login" parameterType="com.proj.eataewon.dto.MemberDto"
 			resultType="com.proj.eataewon.dto.MemberDto">
-		SELECT ID,NAME,EMAIL
+		SELECT *
 		FROM EATAEWONMEMBER
 		WHERE ID=#{id} AND PWD=#{pwd}
 	</select>
-
 
 </mapper>

@@ -131,6 +131,7 @@ public class BbsController {
             boolean c = service.likecntUpdate(dto);
             System.out.println("seq"+dto.getSeq());
             boolean b = service.likeBbs(dto);
+
             if(b&&c) {
                 return "YES";
             }

@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/LikeDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/ScrapDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/BbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/BbsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/BbsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/BbsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +53,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="oracle" />
     <property name="GitStage.ChangesTree.GroupingKeys" value="directory&#10;module&#10;repository" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -75,6 +61,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -166,6 +153,9 @@
       <option name="presentableId" value="Default" />
       <updated>1647331913379</updated>
       <workItem from="1648132392436" duration="1575000" />
+      <workItem from="1648171831564" duration="341000" />
+      <workItem from="1648181421014" duration="4513000" />
+      <workItem from="1648193852117" duration="1349000" />
     </task>
     <servers />
   </component>

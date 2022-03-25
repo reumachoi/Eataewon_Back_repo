@@ -26,7 +26,6 @@ public class MemberService {
     }
 
 	public MemberDto login(MemberDto dto) {
-
 		return dao.login(dto);
 	}
 }

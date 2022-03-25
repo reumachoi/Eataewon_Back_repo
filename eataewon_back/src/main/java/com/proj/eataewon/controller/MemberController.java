@@ -3,11 +3,13 @@ package com.proj.eataewon.controller;
 import com.proj.eataewon.dto.MemberDto;
 import com.proj.eataewon.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +31,10 @@ public class MemberController {
 		return "test success";
 	}
 
-	@RequestMapping(value="/getId", method= {RequestMethod.GET, RequestMethod.POST})
-	public String getId(MemberDto dto) {
+	@RequestMapping(value="/getId", method= {RequestMethod.GET,RequestMethod.POST})
+	public String getId(@RequestBody MemberDto dto) {
 		System.out.println("MemberController getID");
+		System.out.println("Dto : " + dto.getId());
 
 		boolean b = service.getId(dto);
 		if(b) {
@@ -42,7 +45,7 @@ public class MemberController {
 
 
 	@RequestMapping(value="/login", method= {RequestMethod.GET, RequestMethod.POST})
-	public MemberDto login(MemberDto dto, HttpServletRequest req) {
+	public MemberDto login(@RequestBody MemberDto dto, HttpServletRequest req) {
 		System.out.println("MemberController login");
 		System.out.println(dto.toString());
 
@@ -54,7 +57,6 @@ public class MemberController {
 
 		return mem;
 	}
-
 	
 	@RequestMapping(value = "/connParamGet")
 	public String connParamGet(String title) {
