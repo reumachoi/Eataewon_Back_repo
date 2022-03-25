@@ -57,7 +57,26 @@ public class MemberController {
 
 		return mem;
 	}
+<<<<<<< HEAD
 	
+=======
+
+	@RequestMapping(value = "/addmember", method = { RequestMethod.GET, RequestMethod.POST })
+	public String addmember(@RequestBody MemberDto dto) {
+
+		System.out.println("MemberController addmember");
+		System.out.println("dto :::  "+dto.toString());
+
+		boolean b = service.addmember(dto);
+
+		if (b) {
+			return "yes";
+		} else {
+			return "no";
+		}
+	}
+
+>>>>>>> 59061a74cb9d36c439fcc34800ff6f54d9b5f88a
 	@RequestMapping(value = "/connParamGet")
 	public String connParamGet(String title) {
 		System.out.println("HelloController connParamGet()");
