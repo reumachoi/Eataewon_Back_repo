@@ -8,13 +8,22 @@
     <select id="getBbsList" resultType="com.proj.eataewon.dto.BbsDto">
         SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
         FROM EATAEWONBBS
-        ORDER BY READCNT DESC
+     <!--   ORDER BY READCNT DESC-->
     </select>
 
 
 
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
+        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT)
+        VALUES
+        (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
+        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0)
+    </insert>
+
+    <!--picture string인 테이블 따로 만들어 test중-->
+    <insert id="writeBbsPic" parameterType="com.proj.eataewon.dto.BbsPicDto">
+        INSERT INTO EATAEWONBBSPIC
         (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT)
         VALUES
         (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
@@ -171,7 +180,7 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!--스크랩된 게시물 취소-->
     <update id="deleteScarp" parameterType="java.lang.Integer">
         DELETE FROM EATAEWONSCRAP
-        WHERE BBSSEQ=#{bbsseq};
+        WHERE BBSSEQ=#{bbsseq}
     </update>
 
     <!--게시물 좋아요하기/ 부모키 없다는 오류 때문에 자료가 삽입이 안돼서서 일단외래키 조건 삭제했습니다.-->
@@ -205,10 +214,17 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         WHERE seq = #{bbsseq}
     </update>
 
+    <!--좋아요 취소할때 likecnt 감소 -->
+    <update id="likecntDown" parameterType="com.proj.eataewon.dto.LikeDto" >
+        update EATAEWONBBS
+        SET likecnt = likecnt-1
+        WHERE seq = #{bbsseq}
+    </update>
+
     <!--좋아요된 게시물 취소-->
     <update id="deleteLike" parameterType="java.lang.Integer">
         DELETE FROM EATAEWONLike
-        WHERE BBSSEQ=#{bbsseq};
+        WHERE BBSSEQ=#{bbsseq}
     </update>
 
 

@@ -1,16 +1,11 @@
 package com.proj.eataewon.service;
 
 import com.proj.eataewon.dao.BbsDao;
-import com.proj.eataewon.dao.MemberDao;
 import com.proj.eataewon.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -114,7 +109,6 @@ public class BbsService {
 	}
 
 
-
 	public boolean likecntUpdate(LikeDto dto) {
 		int n = dao.likecntUpdate(dto);
 		if(n > 0) {
@@ -123,11 +117,26 @@ public class BbsService {
 		return false;
 	}
 
+	public boolean likecntDown(LikeDto dto) {
+		int n = dao.likecntDown(dto);
+		if(n>0){
+			return true;
+		}
+		return false;
+
+	}
+
 	public boolean deleteLike(int seq) {
 		int n = dao.deleteLike(seq);
 		if(n == 0) return false;
 
 		return true;
+	}
+
+	//picture string으로 만든 DB용 서비스
+	public boolean writeBbsPic(BbsPicDto dto) {
+		int n = dao.writeBbsPic(dto);
+		return n>0?true:false;
 	}
 
 

@@ -3,19 +3,20 @@ package com.proj.eataewon.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import com.proj.eataewon.dto.BbsDto;
-import com.proj.eataewon.dto.BbsParam;
-import com.proj.eataewon.dto.LikeDto;
-import com.proj.eataewon.dto.ScrapDto;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.proj.eataewon.dto.*;
 import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -41,6 +42,18 @@ public class BbsController {
         System.out.println("BbsController bbswrite " + new Date());
 
         boolean b = service.writeBbs(dto);
+        if(b) {
+            return "YES";
+        }
+        return "NO";
+    }
+
+    //picture string으로 만든 DB용 컨트롤러
+    @RequestMapping(value = "/bbswritePic", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String bbswritePic(BbsPicDto dto) {
+        System.out.println("BbsController bbswritePic " + new Date());
+
+        boolean b = service.writeBbsPic(dto);
         if(b) {
             return "YES";
         }
@@ -152,14 +165,30 @@ public class BbsController {
 
 
     @RequestMapping(value = "/deleteLike", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String deleteLike(int seq) {
-        System.out.println("BbsController bbsdelete " + new Date());
+    public String deleteLike(@RequestParam(value = "json[]")List<Integer> list, LikeDto dto) {
+        System.out.println("BbsController deleteLike " + new Date());
 
-        boolean b = service.deleteLike(seq);
-        if(b) {
-            return "OK";
-        }
-        return "NO";
+        //좋아요 수 감소 기능 안됨..
+      //  boolean a = service.likebbsCnt(dto);
+        String answer = "";
+
+    //    if(a) {
+
+            for (int n : list) {
+                System.out.println(n);
+                boolean b = service.deleteLike(n);
+                //   boolean c =service.likecntDown(dto);
+                System.out.println("----likecntDown-----seq:" + dto.getSeq());
+                if (b) {
+                    answer = "OK";
+                } else
+                    answer = "NO";
+            }
+
+
+
+        return answer;
+
     }
 
 
@@ -191,14 +220,20 @@ public class BbsController {
 
 
     @RequestMapping(value = "/deleteScarp", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String deleteScarp(int seq) {
+    public String deleteScarp(@RequestParam(value = "json[]")List<Integer> list) {
         System.out.println("BbsController deleteScarp " + new Date());
-
-        boolean b = service.deleteScarp(seq);
-        if(b) {
-            return "OK";
+        System.out.println("deleteScarp " +list.toString());
+        String answer = "";
+        for (int n : list) {
+            System.out.println(n);
+            boolean b = service.deleteScarp(n);
+            if (b) {
+                answer = "OK";
+            }else
+                answer = "NO";
         }
-        return "NO";
+        return answer;
+
     }
 
 
