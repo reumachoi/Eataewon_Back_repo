@@ -5,24 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sqls/Bbs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sqls/Member.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/MemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/MemberDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Member.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/MemberDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/MemberDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/MemberDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/MemberDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Member.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,8 +63,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../backup/eataewon_front" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
