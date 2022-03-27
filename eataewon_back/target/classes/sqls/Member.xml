@@ -10,7 +10,7 @@
 	</select>
 
 	<select id="getId" parameterType="com.proj.eataewon.dto.MemberDto" resultType="java.lang.Integer">
-		SELECT COUNT(*)
+		SELECT NVL(COUNT(*),0)
 		FROM EATAEWONMEMBER
 		WHERE id=#{id}
 	</select>

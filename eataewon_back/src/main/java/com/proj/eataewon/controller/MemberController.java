@@ -18,22 +18,10 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 
-	@RequestMapping(value = "/base", method = RequestMethod.GET)
-	public String base() {
-		System.out.println("HelloController base()");
-		return "base";
-	}
-
-	@RequestMapping(value="/test", method = RequestMethod.GET)
-	public String test(){
-		System.out.println("test~~~~~~~~~~~~~~~~~");
-		return "test success";
-	}
-
-	@RequestMapping(value="/getId", method= {RequestMethod.GET,RequestMethod.POST})
+	//@RequestBody 코틀린 통신용
+	@RequestMapping(value="/getId", method= {RequestMethod.GET, RequestMethod.POST})
 	public String getId(@RequestBody MemberDto dto) {
 		System.out.println("MemberController getID");
-		System.out.println("Dto : " + dto.getId());
 
 		boolean b = service.getId(dto);
 		if(b) {
@@ -42,7 +30,7 @@ public class MemberController {
 		return "OK";
 	}
 
-
+	//@RequestBody 코틀린 통신용
 	@RequestMapping(value="/login", method= {RequestMethod.GET, RequestMethod.POST})
 	public MemberDto login(@RequestBody MemberDto dto, HttpServletRequest req) {
 		System.out.println("MemberController login");
@@ -53,10 +41,10 @@ public class MemberController {
 		//이렇게 사용할수 있다는 말
 		req.getSession().setAttribute("login", mem);
 
-
 		return mem;
 	}
 
+	//회원가입 가입 컨트롤러 추가
 	@RequestMapping(value = "/addmember", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addmember(@RequestBody MemberDto dto) {
 
@@ -70,6 +58,14 @@ public class MemberController {
 		} else {
 			return "no";
 		}
+	}
+
+	//테스트용 주석 처리
+/*
+	@RequestMapping(value = "/base", method = RequestMethod.GET)
+	public String base() {
+		System.out.println("HelloController base()");
+		return "base";
 	}
 
 	@RequestMapping(value = "/connParamGet")
@@ -93,11 +89,11 @@ public class MemberController {
 
 		List<MemberDto> list = new ArrayList<MemberDto>();
 
-		/*
+		*//*
 		list.add(new MemberDto("abc", "123", "AAA", "aa@naver.com", 1));
 		list.add(new MemberDto("bcd", "234", "BBB", "bb@naver.com", 3));
 		list.add(new MemberDto("cde", "345", "CCC", "cc@naver.com", 1));
-		*/
+		*//*
 		return list;
 	}	
 	
@@ -109,7 +105,7 @@ public class MemberController {
 		
 		return list;		
 	}
-	
+	*/
 	
 }
 

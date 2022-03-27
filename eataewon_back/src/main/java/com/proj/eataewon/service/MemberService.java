@@ -25,17 +25,18 @@ public class MemberService {
 		return n>0?true:false;
     }
 
+	public MemberDto login(MemberDto dto) {
+
+		return dao.login(dto);
+	}
+
+	//회원가입용 추가
 	public boolean addmember(MemberDto dto) {
 		System.out.println("Service addmember");
 
 		int n = dao.addmember(dto);
 
 		return n>0?true:false;
-	}
-
-	public MemberDto login(MemberDto dto) {
-
-		return dao.login(dto);
 	}
 }
 
