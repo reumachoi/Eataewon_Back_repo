@@ -19,22 +19,10 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 
-	@RequestMapping(value = "/base", method = RequestMethod.GET)
-	public String base() {
-		System.out.println("HelloController base()");
-		return "base";
-	}
-
-	@RequestMapping(value="/test", method = RequestMethod.GET)
-	public String test(){
-		System.out.println("test~~~~~~~~~~~~~~~~~");
-		return "test success";
-	}
-
-	@RequestMapping(value="/getId", method= {RequestMethod.GET,RequestMethod.POST})
+	//@RequestBody 코틀린 통신용
+	@RequestMapping(value="/getId", method= {RequestMethod.GET, RequestMethod.POST})
 	public String getId(@RequestBody MemberDto dto) {
 		System.out.println("MemberController getID");
-		System.out.println("Dto : " + dto.getId());
 
 		boolean b = service.getId(dto);
 		if(b) {
@@ -43,7 +31,7 @@ public class MemberController {
 		return "OK";
 	}
 
-
+	//@RequestBody 코틀린 통신용
 	@RequestMapping(value="/login", method= {RequestMethod.GET, RequestMethod.POST})
 	public MemberDto login(@RequestBody MemberDto dto, HttpServletRequest req) {
 		System.out.println("MemberController login");
@@ -54,13 +42,10 @@ public class MemberController {
 		//이렇게 사용할수 있다는 말
 		req.getSession().setAttribute("login", mem);
 
-
 		return mem;
 	}
-<<<<<<< HEAD
-	
-=======
 
+	//회원가입 가입 컨트롤러 추가
 	@RequestMapping(value = "/addmember", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addmember(@RequestBody MemberDto dto) {
 
@@ -75,47 +60,6 @@ public class MemberController {
 			return "no";
 		}
 	}
-
->>>>>>> 59061a74cb9d36c439fcc34800ff6f54d9b5f88a
-	@RequestMapping(value = "/connParamGet")
-	public String connParamGet(String title) {
-		System.out.println("HelloController connParamGet()");
-		System.out.println("title:" + title);
-		
-		return "통신성공";	
-	}
-	
-	@RequestMapping(value = "/getMember")
-	public MemberDto getMember() {
-		System.out.println("HelloController getMember()");
-		//MemberDto dto = new MemberDto("abc", "123", "AAA", "aa@naver.com", 1);
-		return null;
-	}
-	
-	@RequestMapping(value = "/getMemberList")
-	public List<MemberDto> getMemberList(){
-		System.out.println("HelloController getMemberList()");
-
-		List<MemberDto> list = new ArrayList<MemberDto>();
-
-		/*
-		list.add(new MemberDto("abc", "123", "AAA", "aa@naver.com", 1));
-		list.add(new MemberDto("bcd", "234", "BBB", "bb@naver.com", 3));
-		list.add(new MemberDto("cde", "345", "CCC", "cc@naver.com", 1));
-		*/
-		return list;
-	}	
-	
-	@RequestMapping(value = "/dbTest")
-	public List<MemberDto> dbTest(){
-		System.out.println("HelloController dbTest()");
-		
-		List<MemberDto> list = service.allMember();
-		
-		return list;		
-	}
-	
-	
 }
 
 

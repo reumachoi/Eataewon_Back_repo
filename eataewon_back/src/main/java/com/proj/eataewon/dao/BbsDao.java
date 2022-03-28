@@ -51,7 +51,11 @@ public interface BbsDao {
 
     public int likecntUpdate(LikeDto dto);
 
+    public int likecntDown(LikeDto dto);
 
+    public int writeBbsPic(BbsPicDto dto);
 }
+
+
 
 
