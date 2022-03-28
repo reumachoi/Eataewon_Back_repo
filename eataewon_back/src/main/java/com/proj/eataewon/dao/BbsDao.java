@@ -14,8 +14,6 @@ public interface BbsDao {
 
     public int writeBbs(BbsDto dto);
 
-    public boolean bbswriteImgup(BbsDto dto);
-
     public void readcount(int seq);
 
     public BbsDto getBbs(int seq);
@@ -50,7 +48,7 @@ public interface BbsDao {
 
     public int likecntDown(LikeDto dto);
 
-    public int writeBbsPic(BbsPicDto dto);
+    public boolean writeBbsfile(BbsFileDto dto);
 }
 
 

@@ -22,12 +22,12 @@
     </insert>
 
     <!--picture string인 테이블 따로 만들어 test중-->
-    <insert id="writeBbsPic" parameterType="com.proj.eataewon.dto.BbsPicDto">
-        INSERT INTO EATAEWONBBSPIC
-        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT)
+    <insert id="bbswriteImgup" parameterType="com.proj.eataewon.dto.BbsFileDto">
+        INSERT INTO eataewonBbsPic
+        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT)
         VALUES
-        (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longtitude}, 0)
+        (picSeq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
+        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0)
     </insert>
 
 
