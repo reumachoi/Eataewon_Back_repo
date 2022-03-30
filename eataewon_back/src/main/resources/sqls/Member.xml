@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.proj.eataewon.dao.MemberDao">
 
 	<select id="allMember" resultType="com.proj.eataewon.dto.MemberDto">
@@ -22,10 +22,15 @@
 
 	<select id="login" parameterType="com.proj.eataewon.dto.MemberDto"
 			resultType="com.proj.eataewon.dto.MemberDto">
-		SELECT ID,NAME,EMAIL
+		SELECT *
 		FROM EATAEWONMEMBER
 		WHERE ID=#{id} AND PWD=#{pwd}
 	</select>
 
+	<select id="bbsGetUser" parameterType="String" resultType="com.proj.eataewon.dto.MemberBbsDto">
+		SELECT NICKNAME, PROFILPIC, PROFILMSG, LIKEPOINT, ID, TITLE, SEQ
+		FROM EATAEWONMEMBER m, EATAEWONBBS b
+		WHERE m.ID = #{id}
+	</select>
 
 </mapper>
