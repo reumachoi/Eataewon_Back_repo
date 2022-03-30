@@ -4,6 +4,7 @@ package com.proj.eataewon.service;
 import java.util.List;
 
 import com.proj.eataewon.dao.MemberDao;
+import com.proj.eataewon.dto.MemberBbsDto;
 import com.proj.eataewon.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,11 @@ public class MemberService {
 
 		return dao.login(dto);
 	}
+
+	public 	MemberBbsDto bbsGetUser(String id){
+		return dao.bbsGetUser(id);
+	}
+
 }
 
 

@@ -113,25 +113,17 @@ public class BbsController {
     }
 
     @RequestMapping(value = "/bbsupdate", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String bbsupdate(BbsDto dto) {
+    public Boolean bbsupdate(BbsDto dto) {
         System.out.println("BbsController bbsupdate " + new Date());
 
-        boolean b = service.updateBbs(dto);
-        if(b) {
-            return "OK";
-        }
-        return "NO";
+        return service.updateBbs(dto);
     }
 
     @RequestMapping(value = "/bbsdelete", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String bbsdelete(int seq) {
+    public Boolean bbsdelete(int seq) {
         System.out.println("BbsController bbsdelete " + new Date());
 
-        boolean b = service.deleteBbs(seq);
-        if(b) {
-            return "OK";
-        }
-        return "NO";
+        return service.deleteBbs(seq);
     }
 
 
