@@ -37,11 +37,15 @@ public class BbsDto {
 	private int readcnt;
 	private int likecnt;
 
+	private String shopphnum;
+	private String shopurl;
+
 	public BbsDto() {
 	}
 
 	public BbsDto(String id, int seq, String title, String content, int picture, String hashtag, String wdate,
-				  String shopname, String address, double latitude, double longtitude, int readcnt, int likecnt) {
+				  String shopname, String address, double latitude, double longtitude,
+				  int readcnt, int likecnt, String shopphnum,String shopurl) {
 		this.id=id;
 		this.seq = seq;
 		this.title = title;
@@ -55,6 +59,8 @@ public class BbsDto {
 		this.longtitude = longtitude;
 		this.readcnt = readcnt;
 		this.likecnt = likecnt;
+		this.shopphnum = shopphnum;
+		this.shopurl = shopurl;
 	}
 
 	public BbsDto(String id, String title, String content) {
@@ -65,7 +71,7 @@ public class BbsDto {
 	}
 
 	public BbsDto(String id, String title, String content, int picture, String hashtag, String shopname,
-				  String address, double latitude, double longtitude) {
+				  String address, double latitude, double longtitude, String shopphnum,String shopurl) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -76,6 +82,9 @@ public class BbsDto {
 		this.address = address;
 		this.latitude = latitude;
 		this.longtitude = longtitude;
+		this.shopphnum = shopphnum;
+		this.shopurl = shopurl;
+
 
 	}
 
@@ -146,6 +155,14 @@ public class BbsDto {
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
+
+	public String getShopphnum() {return shopphnum;}
+
+	public void setShopphnum(String shopphnum) {this.shopphnum = shopphnum;}
+
+	public String getShopurl() {return shopurl;}
+
+	public void setShopurl(String shopurl) {this.shopurl = shopurl;}
 
 	public double getLongtitude() {
 		return longtitude;

@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+
+
+import com.mysql.cj.log.Log;
 import com.proj.eataewon.dto.*;
 import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +103,7 @@ public class BbsController {
         System.out.println("BbsController bbsupdate " + new Date());
 
         boolean b = service.updateBbs(dto);
+        System.out.println("@@@@@@@@@@dto@@@@@@@@@"+dto.toString());
         if(b) {
             return "OK";
         }
@@ -148,33 +152,25 @@ public class BbsController {
 
 
     @RequestMapping(value = "/deleteLike", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String deleteLike(@RequestParam(value = "json[]")List<Integer> list, LikeDto dto) {
+    public String deleteLike(@RequestParam(value = "json[]") List<String> list, LikeDto dto) {
         System.out.println("BbsController deleteLike " + new Date());
 
-        //좋아요 수 감소 기능 안됨..
-//       boolean a = service.likebbsCnt(dto);
-//         if(a) {
-//             boolean c = service.likecntDown(dto);
-//             System.out.println("seq" + dto.getSeq());
-//         }
-
         String answer = "";
-            for (int n : list) {
-                System.out.println(n);
-                boolean b = service.deleteLike(n);
-              //  boolean c = service.likecntDown(dto);
-                System.out.println("seq" + dto.getSeq());
-                System.out.println("----likecntDown-----seq:" + dto.getSeq());
-                if (b) {
-                    answer = "OK";
-                } else
-                    answer = "NO";
-            }
+        String id = list.get(list.size()-1);
 
+        for (int i = 0; i < list.size()-1; i++) {
+            dto.setId(id);
+            dto.setBbsseq(Integer.parseInt(list.get(i)));
 
+            boolean c = service.likecntDown(dto);
+            boolean b = service.deleteLike(dto);
 
+            if (b) {
+                answer = "OK";
+            } else
+                answer = "NO";
+        }
         return answer;
-
     }
 
 
@@ -223,16 +219,15 @@ public class BbsController {
     }
 
 
-    @RequestMapping(value="/bbswriteImgup", method=RequestMethod.POST)
+    @RequestMapping(value="/bbswriteImgup", method = {RequestMethod.GET, RequestMethod.POST})
     public String writeAction(
             HttpServletRequest req,
-
             @RequestParam("id") String id,
             @RequestParam("title")String title,
-            @RequestParam("file") MultipartFile file,
-            @RequestParam("contents") String contents,
+//            @RequestParam("file") MultipartFile file,
+            @RequestParam("content") String contents,
             @RequestParam("hashtag") String hashtag,
-            @RequestParam("wdate") String wdate,
+//            @RequestParam("wdate") String wdate,
             @RequestParam("shopname") String shopname,
             @RequestParam("latitude") double latitude,
             @RequestParam("longtitude") double longtitude,
@@ -240,10 +235,15 @@ public class BbsController {
 
             ) throws IllegalStateException, IOException {
         String PATH = req.getSession().getServletContext().getRealPath("/") + "resources/";
+        System.out.println("PATH " +PATH.toString());
+/*
+        System.out.println("file " +file.getOriginalFilename().toString());
+
         if (!file.getOriginalFilename().isEmpty()) {
             file.transferTo(new File(PATH + file.getOriginalFilename()));
-        }
-        service.writeBbsfile(new BbsFileDto(id,title,file.getOriginalFilename(),contents,hashtag,wdate,shopname,latitude,longtitude,address,0,0));
+        }*/
+//        service.writeBbsfile(new BbsFileDto(id,title,file.getOriginalFilename(),contents,hashtag,wdate,shopname,latitude,longtitude,address,0,0));
+        service.bbswriteImgup(new BbsFileDto(id,title,"a.PNG",contents,hashtag,"",shopname,latitude,longtitude,address,0,0));
 
         return "YES";
     }

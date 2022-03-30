@@ -15,25 +15,26 @@
 
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
-        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT)
+        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
+        ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT,shopphnum,shopurl)
         VALUES
         (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0)
+        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl})
     </insert>
 
     <!--picture string인 테이블 따로 만들어 test중-->
     <insert id="bbswriteImgup" parameterType="com.proj.eataewon.dto.BbsFileDto">
-        INSERT INTO eataewonBbsPic
-        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT)
+        INSERT INTO eataewonBbsfile
+        (ID,SEQ,TITLE,CONTENT,FILENAME,FILEPATH,HASHTAG,WDATE,SHOPNAME,ADDRESS,LATITUDE,LONGTITUDE,READCNT,LIKECNT)
         VALUES
-        (picSeq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
+        ( #{id}, picSeq.NEXTVAL, #{title}, #{content}, #{filename}, 'test.txt', #{hashtag}, SYSDATE,
         #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0)
     </insert>
 
 
     <!-- 글 상세페이지 보기 -->
     <select id="getBbs" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        SELECT SEQ, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT,shopphnum,shopurl
         FROM EATAEWONBBS
         WHERE SEQ=#{seq}
     </select>
@@ -141,8 +142,8 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!-- 글 수정 -->
     <update id="updateBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         UPDATE EATAEWONBBS
-        SET TITLE=#{title}, CONTENT=#{content}, PICTURE=#{picture} , SHOPNAME=#{shopname}, HASHTAG=#{hashtag}, ADDRESS=#{address},
-            LATITUDE=#{latitude}, LONGTITUDE=#{longtitude}
+        SET TITLE=#{title}, SHOPNAME=#{shopname},CONTENT=#{content}, PICTURE=#{picture}, HASHTAG=#{hashtag},
+        LATITUDE=#{latitude}, LONGTITUDE=#{longtitude},ADDRESS=#{address}, shopphnum=#{shopphnum}, shopurl=#{shopurl}
         WHERE SEQ=#{seq}
     </update>
 
@@ -222,9 +223,10 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     </update>
 
     <!--좋아요된 게시물 취소-->
-    <update id="deleteLike" parameterType="java.lang.Integer">
+    <update id="deleteLike" parameterType="com.proj.eataewon.dto.LikeDto">
         DELETE FROM EATAEWONLike
-        WHERE BBSSEQ=#{bbsseq}
+         WHERE BBSSEQ=#{bbsseq}
+           AND ID = #{id}
     </update>
 
 
