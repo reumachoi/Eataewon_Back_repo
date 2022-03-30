@@ -1,22 +1,16 @@
 package com.proj.eataewon.controller;
 
-
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.proj.eataewon.dto.*;
 import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import javax.swing.filechooser.FileSystemView;
-import java.io.File;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -48,17 +42,6 @@ public class BbsController {
         return "NO";
     }
 
-    //picture string으로 만든 DB용 컨트롤러
-    @RequestMapping(value = "/bbswritePic", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String bbswritePic(BbsPicDto dto) {
-        System.out.println("BbsController bbswritePic " + new Date());
-
-        boolean b = service.writeBbsPic(dto);
-        if(b) {
-            return "YES";
-        }
-        return "NO";
-    }
 
     @PostMapping(DEFAULT_URI + "/multi")
     public String uploadMulti(@RequestParam("files") List<MultipartFile> files) throws Exception {
@@ -169,15 +152,18 @@ public class BbsController {
         System.out.println("BbsController deleteLike " + new Date());
 
         //좋아요 수 감소 기능 안됨..
-      //  boolean a = service.likebbsCnt(dto);
+//       boolean a = service.likebbsCnt(dto);
+//         if(a) {
+//             boolean c = service.likecntDown(dto);
+//             System.out.println("seq" + dto.getSeq());
+//         }
+
         String answer = "";
-
-    //    if(a) {
-
             for (int n : list) {
                 System.out.println(n);
                 boolean b = service.deleteLike(n);
-                //   boolean c =service.likecntDown(dto);
+              //  boolean c = service.likecntDown(dto);
+                System.out.println("seq" + dto.getSeq());
                 System.out.println("----likecntDown-----seq:" + dto.getSeq());
                 if (b) {
                     answer = "OK";
@@ -237,6 +223,30 @@ public class BbsController {
     }
 
 
+    @RequestMapping(value="/bbswriteImgup", method=RequestMethod.POST)
+    public String writeAction(
+            HttpServletRequest req,
+
+            @RequestParam("id") String id,
+            @RequestParam("title")String title,
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("contents") String contents,
+            @RequestParam("hashtag") String hashtag,
+            @RequestParam("wdate") String wdate,
+            @RequestParam("shopname") String shopname,
+            @RequestParam("latitude") double latitude,
+            @RequestParam("longtitude") double longtitude,
+            @RequestParam("address") String address
+
+            ) throws IllegalStateException, IOException {
+        String PATH = req.getSession().getServletContext().getRealPath("/") + "resources/";
+        if (!file.getOriginalFilename().isEmpty()) {
+            file.transferTo(new File(PATH + file.getOriginalFilename()));
+        }
+        service.writeBbsfile(new BbsFileDto(id,title,file.getOriginalFilename(),contents,hashtag,wdate,shopname,latitude,longtitude,address,0,0));
+
+        return "YES";
+    }
 
 
 

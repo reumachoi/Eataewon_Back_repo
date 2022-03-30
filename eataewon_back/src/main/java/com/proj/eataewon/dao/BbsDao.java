@@ -53,7 +53,7 @@ public interface BbsDao {
 
     public int likecntDown(LikeDto dto);
 
-    public int writeBbsPic(BbsPicDto dto);
+    public boolean writeBbsfile(BbsFileDto dto);
 }
 
 
