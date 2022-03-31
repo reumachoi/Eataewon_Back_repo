@@ -27,6 +27,7 @@ import lombok.*;
 public class BbsDto {
 
 	private String id;
+	private String nickname;
 	private int seq;
 	private String title;
 	private String content;
@@ -35,11 +36,11 @@ public class BbsDto {
 	private String wdate;
 	private String shopname;
 	private String address;
+	private String shopphnum;
+	private String shopurl;
 	private double latitude;
 	private double longtitude;
 	private int readcnt;
 	private int likecnt;
-	private String shopphnum;
-	private String shopurl;
 
 }
