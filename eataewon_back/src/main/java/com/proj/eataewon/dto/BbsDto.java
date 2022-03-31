@@ -25,6 +25,7 @@ public class BbsDto {
 	private String title;
 	private String content;
 	private int picture;
+	private String nickname;
 
 
 
@@ -70,8 +71,10 @@ public class BbsDto {
 		this.content = content;
 	}
 
+
+
 	public BbsDto(String id, String title, String content, int picture, String hashtag, String shopname,
-				  String address, double latitude, double longtitude, String shopphnum,String shopurl) {
+				  String address, double latitude, double longtitude, String shopphnum, String shopurl) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -187,4 +190,8 @@ public class BbsDto {
 	public void setLikecnt(int likecnt) {
 		this.likecnt = likecnt;
 	}
+
+	public String getNickname() { return nickname; }
+
+	public void setNickname(String nickname) {this.nickname = nickname;}
 }

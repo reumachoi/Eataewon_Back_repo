@@ -156,14 +156,14 @@ public class BbsController {
         System.out.println("BbsController deleteLike " + new Date());
 
         String answer = "";
-        String id = list.get(list.size()-1);
+        String id = list.get(list.size()-1); //list의 가장 마지막 값이 id이다. 가장 마지막 값을 id 변수로 설정
 
-        for (int i = 0; i < list.size()-1; i++) {
+        for (int i = 0; i < list.size()-1; i++) { //가장 마지막 값인 id값은 빼고 받기 위해 list.size()-1로 범위를 정함.
             dto.setId(id);
             dto.setBbsseq(Integer.parseInt(list.get(i)));
 
-            boolean c = service.likecntDown(dto);
-            boolean b = service.deleteLike(dto);
+            boolean c = service.likecntDown(dto); // 좋아요 값 -1 감소
+            boolean b = service.deleteLike(dto); // deleteLike는 id와 bbsseq값을 확인해야한다.
 
             if (b) {
                 answer = "OK";

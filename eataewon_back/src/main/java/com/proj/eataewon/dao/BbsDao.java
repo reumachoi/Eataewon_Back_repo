@@ -48,7 +48,6 @@ public interface BbsDao {
 
     public int likecntDown(LikeDto dto);
 
-    public boolean writeBbsfile(BbsFileDto dto);
 
     public boolean bbswriteImgup(BbsFileDto dto);
 }

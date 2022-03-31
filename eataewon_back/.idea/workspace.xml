@@ -14,19 +14,25 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/BbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/BbsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/BbsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/BbsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/MemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/MemberDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberDto.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Member.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/MemberDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/MemberDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/MemberDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/MemberDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Member.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +83,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/sqls" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../temporary/eataewon_back" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">

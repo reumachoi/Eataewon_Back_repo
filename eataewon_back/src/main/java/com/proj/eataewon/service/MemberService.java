@@ -29,6 +29,12 @@ public class MemberService {
 
 		return dao.login(dto);
 	}
+
+    public boolean addmember(MemberDto dto) {
+		int n = dao.addmember(dto);
+
+		return n>0?true:false;
+    }
 }
 
 

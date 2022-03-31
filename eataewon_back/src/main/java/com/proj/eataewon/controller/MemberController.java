@@ -45,8 +45,6 @@ public class MemberController {
 
 		//이렇게 사용할수 있다는 말
 		req.getSession().setAttribute("login", mem);
-
-
 		return mem;
 	}
 
@@ -56,14 +54,12 @@ public class MemberController {
 	public String connParamGet(String title) {
 		System.out.println("HelloController connParamGet()");
 		System.out.println("title:" + title);
-		
 		return "통신성공";	
 	}
 	
 	@RequestMapping(value = "/getMember")
 	public MemberDto getMember() {
 		System.out.println("HelloController getMember()");
-		//MemberDto dto = new MemberDto("abc", "123", "AAA", "aa@naver.com", 1);
 		return null;
 	}
 	
@@ -73,11 +69,6 @@ public class MemberController {
 
 		List<MemberDto> list = new ArrayList<MemberDto>();
 
-		/*
-		list.add(new MemberDto("abc", "123", "AAA", "aa@naver.com", 1));
-		list.add(new MemberDto("bcd", "234", "BBB", "bb@naver.com", 3));
-		list.add(new MemberDto("cde", "345", "CCC", "cc@naver.com", 1));
-		*/
 		return list;
 	}	
 	
@@ -89,7 +80,29 @@ public class MemberController {
 		
 		return list;		
 	}
-	
+/*
+	@RequestMapping(value="/addmember", method= {RequestMethod.GET, RequestMethod.POST})
+	public String addmember(MemberDto dto) {
+		System.out.println("MemberController addmember");
+		System.out.println("dto:" + dto.toString());
+		boolean b = service.addmember(dto);
+		System.out.println(dto.toString());
+		if(b) {
+			return "YES";
+		}
+		return "NO";
+	}*/
+	@RequestMapping(value="/addmember", method= {RequestMethod.GET, RequestMethod.POST})
+	public String addmember(MemberDto dto) {
+		System.out.println("MemberController addmember");
+		System.out.println("dto:" + dto.toString());
+		boolean b = service.addmember(dto);
+		System.out.println(dto.toString());
+		if(b) {
+			return "YES";
+		}
+		return "NO";
+	}
 	
 }
 
