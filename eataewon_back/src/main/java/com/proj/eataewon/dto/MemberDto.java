@@ -26,6 +26,6 @@ public class MemberDto {
 	private int profilPic;
 	private int likePoint;
 	private String profilMsg;
-	
+
 
 }

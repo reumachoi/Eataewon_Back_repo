@@ -21,18 +21,12 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String test() {
-		System.out.println("HelloController test()");
-		return "test";
-	}
-
 	//@RequestBody 코틀린 통신용
-	@RequestMapping(value="/getId", method= {RequestMethod.GET, RequestMethod.POST})
-	public String getId(@RequestBody MemberDto dto) {
-		System.out.println("MemberController getID");
+	@RequestMapping(value="/getId", method= RequestMethod.POST )
+	public String getId(@RequestBody String id) {
+		System.out.println("MemberController getID" + id);
 
-		boolean b = service.getId(dto);
+		boolean b = service.getId(id);
 		if(b) {
 			return "NO"; //1이상이란 말, 이미 아이디가 존재한다는 말이라서 사용이 안된다
 		}
@@ -45,7 +39,9 @@ public class MemberController {
 		System.out.println("MemberController login");
 		System.out.println(dto.toString());
 
-		return service.login(dto);
+		MemberDto mem = service.login(dto);
+		System.out.println(mem.toString());
+		return mem;
 	}
 
 	//회원가입 가입 컨트롤러 추가

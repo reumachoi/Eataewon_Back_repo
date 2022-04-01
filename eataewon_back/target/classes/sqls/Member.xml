@@ -9,14 +9,14 @@
 		SELECT * FROM EATAEWONMEMBER
 	</select>
 
-	<select id="getId" parameterType="com.proj.eataewon.dto.MemberDto" resultType="java.lang.Integer">
-		SELECT NVL(COUNT(*),0)
+	<select id="getId" parameterType="String" resultType="java.lang.Integer">
+		SELECT COUNT(*)
 		FROM EATAEWONMEMBER
-		WHERE id=#{id}
+		WHERE ID=#{id}
 	</select>
 
 	<insert id="addmember" parameterType="com.proj.eataewon.dto.MemberDto">
-		INSERT INTO EATAEWONMEMBER(NAME, ID, PWD, EMAIL, NICKNAME, PROFILCPIC, LIKEPOINT, PROFILMSG)
+		INSERT INTO EATAEWONMEMBER(NAME, ID, PWD, EMAIL, NICKNAME, PROFILPIC, LIKEPOINT, PROFILMSG)
 		VALUES(#{name}, #{id}, #{pwd}, #{email}, #{nickName}, #{profilPic}, 0, #{profilMsg})
 	</insert>
 

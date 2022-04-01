@@ -21,9 +21,10 @@ public class MemberService {
 		return dao.allMember();
 	}
 
-    public boolean getId(MemberDto dto) {
-		int n = dao.getId(dto);
-
+    public boolean getId(String id) {
+		System.out.println("+" + id + "+");
+		int n = dao.getId(id);
+		System.out.println(n);
 		return n>0?true:false;
     }
 
