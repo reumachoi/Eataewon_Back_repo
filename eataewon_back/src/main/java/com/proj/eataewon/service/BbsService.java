@@ -137,6 +137,11 @@ public class BbsService {
 		return dao.bbswriteImgup(dto);
 	}
 
+	//picture string으로 만든 DB용 서비스
+	public boolean writeBbsPic(BbsPicDto dto) {
+		int n = dao.writeBbsPic(dto);
+		return n>0?true:false;
+	}
 
 
 /*

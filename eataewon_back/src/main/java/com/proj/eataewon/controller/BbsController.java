@@ -1,21 +1,17 @@
 package com.proj.eataewon.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-
-
-import com.mysql.cj.log.Log;
 import com.proj.eataewon.dto.*;
 import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import javax.swing.filechooser.FileSystemView;
-
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.filechooser.FileSystemView;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 
 import static org.springframework.boot.autoconfigure.mongo.MongoProperties.DEFAULT_URI;
 
@@ -35,7 +31,7 @@ public class BbsController {
     }
 
     @RequestMapping(value = "/bbswrite", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String bbsWrite(BbsDto dto) {
+    public String bbswrite(BbsDto dto) {
         System.out.println("BbsController bbswrite " + new Date());
 
         boolean b = service.writeBbs(dto);
@@ -45,6 +41,17 @@ public class BbsController {
         return "NO";
     }
 
+    //picture string으로 만든 DB용 컨트롤러
+    @RequestMapping(value = "/bbswritePic", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String bbswritePic(BbsPicDto dto) {
+        System.out.println("BbsController bbswritePic " + new Date());
+
+        boolean b = service.writeBbsPic(dto);
+        if(b) {
+            return "YES";
+        }
+        return "NO";
+    }
 
     @PostMapping(DEFAULT_URI + "/multi")
     public String uploadMulti(@RequestParam("files") List<MultipartFile> files) throws Exception {
@@ -99,7 +106,7 @@ public class BbsController {
     }
 
     @RequestMapping(value = "/bbsupdate", method = {RequestMethod.GET, RequestMethod.POST} )
-    public Boolean bbsupdate(BbsDto dto) {
+    public String bbsupdate(BbsDto dto) {
         System.out.println("BbsController bbsupdate " + new Date());
 
         boolean b = service.updateBbs(dto);
@@ -111,10 +118,14 @@ public class BbsController {
     }
 
     @RequestMapping(value = "/bbsdelete", method = {RequestMethod.GET, RequestMethod.POST} )
-    public Boolean bbsdelete(int seq) {
+    public String bbsdelete(int seq) {
         System.out.println("BbsController bbsdelete " + new Date());
 
-        return service.deleteBbs(seq);
+        boolean b = service.deleteBbs(seq);
+        if(b) {
+            return "OK";
+        }
+        return "NO";
     }
 
 
@@ -127,7 +138,6 @@ public class BbsController {
             boolean c = service.likecntUpdate(dto);
             System.out.println("seq"+dto.getSeq());
             boolean b = service.likeBbs(dto);
-
             if(b&&c) {
                 return "YES";
             }

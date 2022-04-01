@@ -1,7 +1,4 @@
-
 package com.proj.eataewon.service;
-
-import java.util.List;
 
 import com.proj.eataewon.dao.MemberDao;
 import com.proj.eataewon.dto.MemberBbsDto;
@@ -9,6 +6,8 @@ import com.proj.eataewon.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -21,18 +20,16 @@ public class MemberService {
 		return dao.allMember();
 	}
 
-    public boolean getId(String id) {
-		System.out.println("+" + id + "+");
-		int n = dao.getId(id);
-		System.out.println(n);
+    public boolean getId(MemberDto dto) {
+		int n = dao.getId(dto);
+
 		return n>0?true:false;
     }
 
-	public boolean addmember(MemberDto dto) {
-		System.out.println("Service addmember");
-
-		int n = dao.addmember(dto);
-
+	public boolean getIdApp(String id) {
+		System.out.println("+" + id + "+");
+		int n = dao.getIdApp(id);
+		System.out.println(n);
 		return n>0?true:false;
 	}
 
@@ -41,16 +38,16 @@ public class MemberService {
 		return dao.login(dto);
 	}
 
-	public 	MemberBbsDto bbsGetUser(String id){
+    public boolean addmember(MemberDto dto) {
+		int n = dao.addmember(dto);
+
+		return n>0?true:false;
+    }
+
+	public MemberBbsDto bbsGetUser(String id){
 		return dao.bbsGetUser(id);
 	}
-
 }
-
-
-
-
-
 
 
 

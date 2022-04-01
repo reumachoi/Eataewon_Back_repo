@@ -1,8 +1,10 @@
 package com.proj.eataewon.controller;
 
+import com.proj.eataewon.dto.MemberBbsDto;
 import com.proj.eataewon.dto.MemberDto;
 import com.proj.eataewon.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,18 +19,23 @@ public class MemberController {
 	@Autowired
 	MemberService service;
 
-	@RequestMapping(value = "/base", method = RequestMethod.GET)
-	public String base() {
-		System.out.println("HelloController base()");
-		return "base";
-	}
-
-
 	@RequestMapping(value="/getId", method= {RequestMethod.GET, RequestMethod.POST})
 	public String getId(MemberDto dto) {
 		System.out.println("MemberController getID");
 
 		boolean b = service.getId(dto);
+		if(b) {
+			return "NO"; //1이상이란 말, 이미 아이디가 존재한다는 말이라서 사용이 안된다
+		}
+		return "OK";
+	}
+
+	//@RequestBody 코틀린 통신용
+	@RequestMapping(value="/getIdApp", method= RequestMethod.POST )
+	public String getIdApp(@RequestBody String id) {
+		System.out.println("MemberController getID" + id);
+
+		boolean b = service.getIdApp(id);
 		if(b) {
 			return "NO"; //1이상이란 말, 이미 아이디가 존재한다는 말이라서 사용이 안된다
 		}
@@ -57,18 +64,6 @@ public class MemberController {
 		System.out.println(mem.toString());
 		return mem;
 	}
-
-	
-
-	//글에 저장된 아이디로 유저정보 가져오기
-	@RequestMapping(value = "/bbsGetUser", method = RequestMethod.POST)
-	public MemberBbsDto bbsGetUser(@RequestBody String id){
-		System.out.println("MemberController bbsGetUser");
-		System.out.println("String id: " + id);
-
-		return service.bbsGetUser(id);
-	}
-
 	
 	@RequestMapping(value = "/connParamGet")
 	public String connParamGet(String title) {
@@ -100,18 +95,7 @@ public class MemberController {
 		
 		return list;		
 	}
-/*
-	@RequestMapping(value="/addmember", method= {RequestMethod.GET, RequestMethod.POST})
-	public String addmember(MemberDto dto) {
-		System.out.println("MemberController addmember");
-		System.out.println("dto:" + dto.toString());
-		boolean b = service.addmember(dto);
-		System.out.println(dto.toString());
-		if(b) {
-			return "YES";
-		}
-		return "NO";
-	}*/
+
 	@RequestMapping(value="/addmember", method= {RequestMethod.GET, RequestMethod.POST})
 	public String addmember(MemberDto dto) {
 		System.out.println("MemberController addmember");
@@ -139,7 +123,16 @@ public class MemberController {
 			return "no";
 		}
 	}
-	
+
+	//글에 저장된 아이디로 유저정보 가져오기
+	@RequestMapping(value = "/bbsGetUser", method = RequestMethod.POST)
+	public MemberBbsDto bbsGetUser(@RequestBody String id){
+		System.out.println("MemberController bbsGetUser");
+		System.out.println("String id: " + id);
+
+		return service.bbsGetUser(id);
+	}
+
 }
 
 

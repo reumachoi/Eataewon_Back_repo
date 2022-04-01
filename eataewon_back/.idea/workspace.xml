@@ -80,10 +80,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../temporary/eataewon_back" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/sqls" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
@@ -92,14 +96,17 @@
       <recent name="com.proj.eataewon.controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/sqls" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao" />
       <recent name="C:\eataewon_back\eataewon_back\src\main\resources\sqls" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.proj.eataewon.dto" />
       <recent name="com.proj.eataewon.controller" />
+      <recent name="com.proj.eataewon.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="애플리케이션.DemoApplication">
+  <component name="RunManager" selected="Spring Boot.DemoApplication">
     <configuration name="DemoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.proj.eataewon.DemoApplication" />
       <module name="eataewon_back" />

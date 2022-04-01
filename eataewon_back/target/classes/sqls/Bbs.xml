@@ -13,11 +13,22 @@
 
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
-        (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT, LIKECNT, SHOPPHNUM, SHOPURL)
+        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
+        ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT,shopphnum,shopurl)
         VALUES
-        (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longtitude}, 0, 0, #{shopphnum}, #{shopurl})
+        (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
+        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl})
     </insert>
+
+    <!--picture string인 테이블 따로 만들어 test중-->
+    <insert id="writeBbsPic" parameterType="com.proj.eataewon.dto.BbsPicDto">
+        INSERT INTO EATAEWONBBSPIC
+        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT)
+        VALUES
+            (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
+             #{shopname}, #{address}, #{latitude},#{longtitude}, 0)
+    </insert>
+
 
     <!--picture string인 테이블 따로 만들어 test중-->
     <insert id="bbswriteImgup" parameterType="com.proj.eataewon.dto.BbsFileDto">
