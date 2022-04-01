@@ -17,6 +17,12 @@ public interface MemberDao {
 	public MemberDto login(MemberDto dto);
 
 	public int addmember(MemberDto dto);
+
+	public MemberDto getnickname(String id);
+
+	public MemberDto detailMem(String id);
+
+	public int updateMem(MemberDto dto);
 }
 
 

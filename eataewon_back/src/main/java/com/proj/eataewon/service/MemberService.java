@@ -35,6 +35,22 @@ public class MemberService {
 
 		return n>0?true:false;
     }
+
+	public MemberDto getnickname(String id) {
+	return dao.getnickname(id);
+	}
+
+	public MemberDto detailMem(String id) {
+		return dao.detailMem(id);
+	}
+
+	public boolean updateMem(MemberDto dto) {
+		int n = dao.updateMem(dto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
+	}
 }
 
 

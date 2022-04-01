@@ -27,5 +27,33 @@
 		WHERE ID=#{id} AND PWD=#{pwd}
 	</select>
 
+	<select id="getnickname" parameterType="com.proj.eataewon.dto.MemberDto"
+			resultType="com.proj.eataewon.dto.MemberDto">
+		SELECT nickname
+		FROM EATAEWONMEMBER
+		WHERE ID=#{id}
+	</select>
+
+	<!--회원상세조회-->
+	<select id="detailMem" parameterType="java.lang.String" resultType="com.proj.eataewon.dto.MemberDto">
+		select id, name, email, pwd, nickname, profilpic,profilmsg, likepoint
+		from EATAEWONMEMBER
+		where id =#{id}
+	</select>
+
+	<!--회원정보 수정-->
+	<update id="updateMem" parameterType="com.proj.eataewon.dto.MemberDto">
+		UPDATE EATAEWONMEMBER
+		SET email=#{email}, pwd=#{pwd}, nickname=#{nickname},
+		profilmsg=#{profilmsg}, profilpic=#{profilpic}
+		WHERE id=#{id}
+	</update>
+
+	<!--회원탈퇴-->
+	<update id="deleteMem" parameterType="java.lang.Integer">
+		DELETE FROM EATAEWONMEMBER
+		WHERE id=#{id} AND pwd=#{pwd}
+	</update>
+
 
 </mapper>

@@ -6,23 +6,23 @@ public class MemberDto {
     private String pwd;
     private String email;
     private String nickname;
-    private int profilPic;
+    private int profilpic;
     private int likepoint;
-    private String profilMsg;
+    private String profilmsg;
 
     public MemberDto(){
 
     }
 
-    public MemberDto(String id, String name, String pwd, String email, String nickname, int profilPic, int likepoint, String profilMsg) {
+    public MemberDto(String id, String name, String pwd, String email, String nickname, int profilpic, int likepoint, String profilmsg) {
         this.id = id;
         this.name = name;
         this.pwd = pwd;
         this.email = email;
         this.nickname = nickname;
-        this.profilPic = profilPic;
+        this.profilpic = profilpic;
         this.likepoint = likepoint;
-        this.profilMsg = profilMsg;
+        this.profilmsg = profilmsg;
     }
 
     public String getId() {
@@ -65,12 +65,12 @@ public class MemberDto {
         this.nickname = nickname;
     }
 
-    public int getProfilPic() {
-        return profilPic;
+    public int getProfilpic() {
+        return profilpic;
     }
 
-    public void setProfilPic(int profilPic) {
-        this.profilPic = profilPic;
+    public void setProfilpic(int profilpic) {
+        this.profilpic = profilpic;
     }
 
     public int getLikepoint() {
@@ -81,25 +81,25 @@ public class MemberDto {
         this.likepoint = likepoint;
     }
 
-    public String getProfilMsg() {
-        return profilMsg;
+    public String getProfilmsg() {
+        return profilmsg;
     }
 
-    public void setProfilMsg(String profilMsg) {
-        this.profilMsg = profilMsg;
+    public void setProfilmsg(String profilmsg) {
+        this.profilmsg = profilmsg;
     }
 
     @Override
     public String toString() {
-        return "MemberDtoTest{" +
+        return "MemberDto{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", pwd='" + pwd + '\'' +
                 ", email='" + email + '\'' +
                 ", nickname='" + nickname + '\'' +
-                ", profilPic=" + profilPic +
+                ", profilPic=" + profilpic +
                 ", likepoint=" + likepoint +
-                ", profilMsg='" + profilMsg + '\'' +
+                ", profilMsg='" + profilmsg + '\'' +
                 '}';
     }
 }

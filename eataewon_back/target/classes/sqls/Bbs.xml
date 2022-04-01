@@ -6,17 +6,17 @@
 <mapper namespace="com.proj.eataewon.dao.BbsDao">
 
     <select id="getBbsList" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        SELECT SEQ, nickname, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
         FROM EATAEWONBBS
      <!--   ORDER BY READCNT DESC-->
     </select>
 
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
-        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
+        (SEQ, ID, nickname ,TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
         ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT,shopphnum,shopurl)
         VALUES
-        (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
+        (bbsseq.NEXTVAL, #{id}, #{nickname} ,#{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
         #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl})
     </insert>
 
@@ -32,7 +32,7 @@
 
     <!-- 글 상세페이지 보기 -->
     <select id="getBbs" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT,shopphnum,shopurl
+        SELECT SEQ, Nickname, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT,shopphnum,shopurl
         FROM EATAEWONBBS
         WHERE SEQ=#{seq}
     </select>
@@ -47,7 +47,7 @@
 
     <!-- 검색 조건이 틀려도 에러가 안나오도록 where 1=1-->
     <select id="getBbsListSearch" parameterType="com.proj.eataewon.dto.BbsParam" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT
+        SELECT SEQ, ID, nickname, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT
         FROM EATAEWONBBS
         WHERE 1=1
         <if test="choice !=null and choice !='' and search !=null and search !=''">
@@ -68,6 +68,9 @@
             </if>
             <if test="choice=='shopname'">
                 AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
             </if>
         </if>
   <!--      ORDER BY READCNT DESC-->
@@ -79,10 +82,10 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
 검색해서 나온 결과에 차례로 순번 매긴다고 생각하면 된다.  -->
     <select id="getBbsListSearchPage" parameterType="com.proj.eataewon.dto.BbsParam"
             resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT	ID, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
+        SELECT	ID, nickname, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
         FROM
             (SELECT ROW_NUMBER()OVER(ORDER BY READCNT DESC) AS RNUM,
-        	ID, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
+        	ID, nickname, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
         FROM EATAEWONBBS
         WHERE 1=1
         <if test="choice !=null and choice !='' and search !=null and search !=''">
@@ -103,6 +106,9 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
             </if>
             <if test="choice=='shopname'">
                 AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
             </if>
         </if>
         ORDER BY READCNT DESC)
@@ -133,6 +139,9 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
             </if>
             <if test="choice=='shopname'">
                 AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
             </if>
         </if>
     </select>
