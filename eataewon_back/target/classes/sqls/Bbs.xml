@@ -15,9 +15,9 @@
 
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
-        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT, LIKECNT, SHOPPHNUM, SHOPURL)
+        (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT, LIKECNT, SHOPPHNUM, SHOPURL)
         VALUES
-        (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
+        (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
         #{shopname}, #{address}, #{latitude},#{longtitude}, 0, 0, #{shopphnum}, #{shopurl})
     </insert>
 

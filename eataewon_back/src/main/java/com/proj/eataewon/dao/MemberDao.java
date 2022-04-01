@@ -13,7 +13,7 @@ public interface MemberDao {
 
 	public List<MemberDto> allMember();
 
-	public int getId(MemberDto dto);
+	public int getId(String id);
 
 	public MemberDto login(MemberDto dto);
 

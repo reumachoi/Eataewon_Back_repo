@@ -32,7 +32,7 @@ public class BbsController {
     }
 
     @RequestMapping(value = "/bbswrite", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String bbswrite(BbsDto dto) {
+    public String bbsWrite(BbsDto dto) {
         System.out.println("BbsController bbswrite " + new Date());
 
         boolean b = service.writeBbs(dto);
