@@ -47,13 +47,14 @@ public interface BbsDao {
 
     public int scrapBbsCnt(ScrapDto dto);
 
-    public int deleteLike(int seq);
+    public int deleteLike(LikeDto dto);
 
     public int likecntUpdate(LikeDto dto);
 
     public int likecntDown(LikeDto dto);
 
-    public boolean writeBbsfile(BbsFileDto dto);
+
+    public boolean bbswriteImgup(BbsFileDto dto);
 }
 
 

@@ -126,15 +126,15 @@ public class BbsService {
 
 	}
 
-	public boolean deleteLike(int seq) {
-		int n = dao.deleteLike(seq);
+	public boolean deleteLike(LikeDto dto) {
+		int n = dao.deleteLike(dto);
 		if(n == 0) return false;
 
 		return true;
 	}
 
-	public boolean writeBbsfile(BbsFileDto dto) {
-		return dao.writeBbsfile(dto);
+	public boolean bbswriteImgup(BbsFileDto dto) {
+		return dao.bbswriteImgup(dto);
 	}
 
 

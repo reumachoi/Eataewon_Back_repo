@@ -11,8 +11,6 @@
      <!--   ORDER BY READCNT DESC-->
     </select>
 
-
-
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
         (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT, LIKECNT, SHOPPHNUM, SHOPURL)
@@ -23,17 +21,17 @@
 
     <!--picture string인 테이블 따로 만들어 test중-->
     <insert id="bbswriteImgup" parameterType="com.proj.eataewon.dto.BbsFileDto">
-        INSERT INTO eataewonBbsPic
-        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT)
+        INSERT INTO eataewonBbsfile
+        (ID,SEQ,TITLE,CONTENT,FILENAME,FILEPATH,HASHTAG,WDATE,SHOPNAME,ADDRESS,LATITUDE,LONGTITUDE,READCNT,LIKECNT)
         VALUES
-        (picSeq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
+        ( #{id}, picSeq.NEXTVAL, #{title}, #{content}, #{filename}, 'test.txt', #{hashtag}, SYSDATE,
         #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0)
     </insert>
 
 
     <!-- 글 상세페이지 보기 -->
     <select id="getBbs" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        SELECT SEQ, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT,shopphnum,shopurl
         FROM EATAEWONBBS
         WHERE SEQ=#{seq}
     </select>
@@ -71,7 +69,7 @@
                 AND SHOPNAME LIKE '%'||#{search}||'%'
             </if>
         </if>
-        ORDER BY READCNT DESC
+  <!--      ORDER BY READCNT DESC-->
     </select>
 
 
@@ -141,8 +139,8 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!-- 글 수정 -->
     <update id="updateBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         UPDATE EATAEWONBBS
-        SET TITLE=#{title}, CONTENT=#{content}, PICTURE=#{picture} , SHOPNAME=#{shopname}, HASHTAG=#{hashtag}, ADDRESS=#{address},
-            LATITUDE=#{latitude}, LONGTITUDE=#{longtitude}
+        SET TITLE=#{title}, SHOPNAME=#{shopname},CONTENT=#{content}, PICTURE=#{picture}, HASHTAG=#{hashtag},
+        LATITUDE=#{latitude}, LONGTITUDE=#{longtitude},ADDRESS=#{address}, shopphnum=#{shopphnum}, shopurl=#{shopurl}
         WHERE SEQ=#{seq}
     </update>
 
@@ -177,13 +175,16 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         AND ID = #{id}
     </select>
 
+
     <!--스크랩된 게시물 취소-->
+    <!--eataewonscrap에 eataewonbbs의 primarykey를 참조하는 외래키를 참조하는 조건때문에
+    스크랩된 게시물은 삭제가 안됐습니다. 스크랩 여부에 상관없이 글을 삭제할수 있도록 EATAEWONLIKE의 외래키 조건 삭제했습니다.-->
     <update id="deleteScarp" parameterType="java.lang.Integer">
         DELETE FROM EATAEWONSCRAP
         WHERE BBSSEQ=#{bbsseq}
     </update>
 
-    <!--게시물 좋아요하기/ 부모키 없다는 오류 때문에 자료가 삽입이 안돼서서 일단외래키 조건 삭제했습니다.-->
+    <!--게시물 좋아요하기/ 부모키 없다는 오류 때문에 자료가 삽입이 안돼서서 일단 EATAEWONLIKE의 외래키 조건 삭제했습니다.-->
     <!--참고 사이트 : https://blog.naver.com/PostView.nhn?blogId=cksgy32&logNo=221675954355&parentCategoryNo=&categoryNo=78&viewDate=&isShowPopularPosts=true&from=search-->
     <insert id="likeBbs" parameterType="com.proj.eataewon.dto.LikeDto">
         insert into EATAEWONLIKE
@@ -222,9 +223,10 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     </update>
 
     <!--좋아요된 게시물 취소-->
-    <update id="deleteLike" parameterType="java.lang.Integer">
+    <update id="deleteLike" parameterType="com.proj.eataewon.dto.LikeDto">
         DELETE FROM EATAEWONLike
-        WHERE BBSSEQ=#{bbsseq}
+         WHERE BBSSEQ=#{bbsseq}
+           AND ID = #{id}
     </update>
 
 
