@@ -28,9 +28,9 @@ public class MemberBbsDto {
     private String name;
     private String pwd;
     private String email;
-    private String nickName;
-    private int profilPic;
+    private String nickname;
+    private int profilpic;
     private int likePoint;
-    private String profilMsg;
+    private String profilmsg;
 
 }
