@@ -22,10 +22,10 @@ public class MemberDto {
 	private String name;
 	private String pwd;
 	private String email;
-	private String nickName;
-	private int profilPic;
-	private int likePoint;
-	private String profilMsg;
+	private String nickname;
+	private int profilpic;
+	private int likepoint;
+	private String profilmsg;
 
 
 }
