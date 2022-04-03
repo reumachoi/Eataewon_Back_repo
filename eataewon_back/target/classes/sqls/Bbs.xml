@@ -13,11 +13,11 @@
 
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
-        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
-        ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT,shopphnum,shopurl)
+        (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
+        ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT,shopphnum,shopurl, testurl)
         VALUES
-        (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl})
+        (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
+        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
     </insert>
 
     <!--picture string인 테이블 따로 만들어 test중-->
@@ -54,6 +54,11 @@
         WHERE SEQ=#{seq}
     </update>
 
+    <update id="readcountApp" parameterType="java.lang.Integer">
+        UPDATE EATAEWONBBS
+        SET READCNT=READCNT+1
+        WHERE SEQ=#{seq}
+    </update>
 
     <!-- 검색 조건이 틀려도 에러가 안나오도록 where 1=1-->
     <select id="getBbsListSearch" parameterType="com.proj.eataewon.dto.BbsParam" resultType="com.proj.eataewon.dto.BbsDto">

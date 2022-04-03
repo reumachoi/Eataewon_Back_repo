@@ -14,7 +14,7 @@ public class MemberBbsDto {
     private int seq;
     private String title;
     private String content;
-    private int picture;
+    private String picture;
     private String hashtag;
     private String wdate;
     private String shopname;

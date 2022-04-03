@@ -29,6 +29,12 @@ public class BbsService {
 		dao.readcount(seq);
 	}
 
+	public String readcountApp(int seq) {
+		System.out.println("readcountApp 테스트" + seq);
+		int n = dao.readcountApp(seq);
+		return n>0?"Success":"Fail";
+	}
+
 	public BbsDto getBbs(int seq) {
 		return dao.getBbs(seq);
 	}

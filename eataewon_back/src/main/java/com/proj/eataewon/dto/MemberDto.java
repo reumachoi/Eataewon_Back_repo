@@ -23,7 +23,7 @@ public class MemberDto {
 	private String pwd;
 	private String email;
 	private String nickname;
-	private int profilpic;
+	private String profilpic;
 	private int likepoint;
 	private String profilmsg;
 

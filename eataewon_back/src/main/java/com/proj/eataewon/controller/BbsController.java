@@ -41,6 +41,17 @@ public class BbsController {
         return "NO";
     }
 
+    @RequestMapping(value = "/bbswriteApp", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String bbswriteApp(@RequestBody BbsDto dto) {
+        System.out.println("BbsController bbswrite " + new Date());
+
+        boolean b = service.writeBbs(dto);
+        if(b) {
+            return "YES";
+        }
+        return "NO";
+    }
+
     //picture string으로 만든 DB용 컨트롤러
     @RequestMapping(value = "/bbswritePic", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbswritePic(BbsPicDto dto) {
@@ -75,6 +86,15 @@ public class BbsController {
 
         service.readcount(seq);
         return service.getBbs(seq);
+    }
+
+    @RequestMapping(value = "/plustReadcntApp", method=RequestMethod.POST)
+    public String plustReadcntApp(@RequestBody int seq) {
+        System.out.println(seq);
+        System.out.println("BbsController plustReadcntApp " + new Date());
+        String res = service.readcountApp(seq);
+        System.out.println(res);
+        return res;
     }
 
     @RequestMapping(value = "/getBbsListSearch", method = {RequestMethod.GET, RequestMethod.POST} )

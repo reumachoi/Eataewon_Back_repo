@@ -16,6 +16,8 @@ public interface BbsDao {
 
     public void readcount(int seq);
 
+    public int readcountApp(int seq);
+
     public BbsDto getBbs(int seq);
 
     public List<BbsDto> getBbsListSearch(BbsParam param);
@@ -47,6 +49,7 @@ public interface BbsDao {
     public int likecntUpdate(LikeDto dto);
 
     public int likecntDown(LikeDto dto);
+
     public int writeBbsPic(BbsPicDto dto);
 
     public boolean bbswriteImgup(BbsFileDto dto);
