@@ -14,6 +14,7 @@ public interface MemberDao {
 	public List<MemberDto> allMember();
 
 	public int getId(MemberDto dto);
+
 	public int getIdApp(String id);
 
 	public MemberDto login(MemberDto dto);
@@ -28,6 +29,8 @@ public interface MemberDao {
 	public int updateMem(MemberDto dto);
 
 	public int deleteMem(MemberDto dto);
+
+	public String getProfilPic(String id);
 }
 
 

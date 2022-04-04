@@ -23,7 +23,7 @@
 
 	<insert id="addmember" parameterType="com.proj.eataewon.dto.MemberDto">
 		INSERT INTO EATAEWONMEMBER(ID,NAME,PWD,EMAIL,NICKNAME, PROFILPIC, LIKEPOINT, PROFILMSG)
-		VALUES(#{id},#{name}, #{pwd}, #{email}, #{nickname}, #{profilPic}, 0, #{profilMsg})
+		VALUES(#{id},#{name}, #{pwd}, #{email}, #{nickname}, #{profilpic}, 0, #{profilmsg})
 	</insert>
 
 	<select id="login" parameterType="com.proj.eataewon.dto.MemberDto"
@@ -65,6 +65,38 @@
 		DELETE FROM EATAEWONMEMBER
 		WHERE id=#{id} AND pwd=#{pwd}
 	</update>
+
+
+	<update id="likePWriteUp" parameterType="String">
+		update EATAEWONMEMBER
+		SET LIKEPOINT = LIKEPOINT+50
+		WHERE ID = #{id}
+	</update>
+
+	<update id="likePHeartUp" parameterType="String">
+		update EATAEWONMEMBER
+		SET LIKEPOINT = LIKEPOINT+1
+		WHERE ID = #{id}
+	</update>
+
+	<update id="likePHeartDown" parameterType="String">
+		update EATAEWONMEMBER
+		SET LIKEPOINT = LIKEPOINT-1
+		WHERE ID = #{id}
+	</update>
+
+	<update id="likePScrapUp" parameterType="String">
+		update EATAEWONMEMBER
+		SET LIKEPOINT = LIKEPOINT+5
+		WHERE ID = #{id}
+	</update>
+
+	<update id="likePScrapDown" parameterType="String">
+		update EATAEWONMEMBER
+		SET LIKEPOINT = LIKEPOINT-5
+		WHERE ID = #{id}
+	</update>
+
 
 
 </mapper>

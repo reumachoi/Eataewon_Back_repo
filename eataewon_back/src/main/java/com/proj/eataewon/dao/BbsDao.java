@@ -12,7 +12,11 @@ public interface BbsDao {
 
     public List<BbsDto> getBbsList();
 
+    public BbsDto getBbsListApp(int seq);
+
     public int writeBbs(BbsDto dto);
+
+    public int writeBbsApp(BbsDto dto);
 
     public void readcount(int seq);
 
@@ -69,6 +73,16 @@ public interface BbsDao {
     public int scrpointup(BbsDto bdto);
 
     public int scrpointminus(BbsDto dto);
+    
+    public int likePWriteUp(String id);
+
+    public int likePHeartUp(String id);
+
+    public int likePScrapUp(String id);
+
+    public int likePHeartDown(String id);
+
+    public int likePScrapDown(String id);
 }
 
 

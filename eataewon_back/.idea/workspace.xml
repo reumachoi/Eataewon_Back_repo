@@ -64,6 +64,9 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="프로젝트" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -161,6 +164,11 @@
       <workItem from="1648884062075" duration="266000" />
       <workItem from="1648884535235" duration="6968000" />
       <workItem from="1649071568455" duration="116000" />
+      <workItem from="1648994927589" duration="489000" />
+      <workItem from="1649032705976" duration="6735000" />
+      <workItem from="1649044937123" duration="5675000" />
+      <workItem from="1649056853764" duration="3461000" />
+      <workItem from="1649071708981" duration="29000" />
     </task>
     <servers />
   </component>

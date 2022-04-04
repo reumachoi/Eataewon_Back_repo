@@ -47,17 +47,6 @@ public class BbsController {
         return "NO";
     }
 
-    @RequestMapping(value = "/bbswriteApp", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String bbswriteApp(@RequestBody BbsDto dto) {
-        System.out.println("BbsController bbswrite " + new Date());
-
-        boolean b = service.writeBbs(dto);
-        if(b) {
-            return "YES";
-        }
-        return "NO";
-    }
-
     //picture string으로 만든 DB용 컨트롤러
     @RequestMapping(value = "/bbswritePic", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbswritePic(BbsPicDto dto) {
@@ -167,6 +156,15 @@ public class BbsController {
         return "NO";
     }
 
+    @RequestMapping(value = "/bbsupdateApp", method = {RequestMethod.GET, RequestMethod.POST} )
+    public Boolean bbsupdateApp(BbsDto dto) {
+        System.out.println("BbsController bbsupdate " + new Date());
+
+        boolean b = service.updateBbs(dto);
+        System.out.println("@@@@@@@@@@글수정 결과는? "+b);
+        return b;
+    }
+
     @RequestMapping(value = "/bbsdelete", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbsdelete(int seq, BbsDto dto) {
         System.out.println("BbsController bbsdelete " + new Date());
@@ -202,6 +200,19 @@ public class BbsController {
         }
         return "DUP";
 
+    }
+
+    @RequestMapping(value="/likeBbsApp", method = RequestMethod.POST)
+    public Boolean likeBbsApp(LikeDto dto){
+        System.out.println("LikeDto likeBbs " + dto+ new Date());
+        return service.likeBbs(dto);
+    }
+
+    @RequestMapping(value="/bbsScrapApp", method =RequestMethod.POST)
+    public Boolean scrapBbsApp(ScrapDto dto){
+        System.out.println("ScrapDto bbsScrapApp " + new Date());
+
+        return service.bbsScrap(dto);
     }
 
     @RequestMapping(value = "/likeBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
@@ -242,6 +253,7 @@ public class BbsController {
     }
 
 
+
     @RequestMapping(value="/bbsScrap", method = {RequestMethod.GET, RequestMethod.POST})
     public String scrapBbs(ScrapDto dto, BbsDto bdto){
         System.out.println("ScrapDto bbsScrap " + new Date());
@@ -256,7 +268,6 @@ public class BbsController {
             return "NO";
         }
         return "DUP";
-
     }
 
 
@@ -331,5 +342,4 @@ public class BbsController {
         }
         return "NO";
     }
-
 }

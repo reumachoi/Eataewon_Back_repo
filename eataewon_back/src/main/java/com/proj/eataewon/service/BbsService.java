@@ -20,9 +20,19 @@ public class BbsService {
 		return dao.getBbsList();
 	}
 
+	public BbsDto getBbsListApp(int seq){
+		return dao.getBbsListApp(seq);
+	}
+
 	public boolean writeBbs(BbsDto dto) {
 		int n = dao.writeBbs(dto);
 		return n>0?true:false;
+	}
+
+	public int writeBbsApp(BbsDto dto) {
+		int n = dao.writeBbsApp(dto);
+		System.out.println("글저장 후 seq값 돌려받기 "+n);
+		return n;
 	}
 
 	public void readcount(int seq) {
@@ -159,6 +169,10 @@ public class BbsService {
 		int n = dao.writeBbsPic(dto);
 		return n>0?true:false;
 	}
+	public boolean LikePWriteUp(String id){
+		int n = dao.likePWriteUp(id);
+		return n>0?true:false;
+	}
 
 	public boolean likepointup(BbsDto dto) {
 		int n = dao.likepointup(dto);
@@ -182,8 +196,25 @@ public class BbsService {
 			return true;
 		}
 		return false;
+	public boolean LikePHeartUp(String id){
+		int n = dao.likePHeartUp(id);
+		return n>0?true:false;
 	}
 
+	public boolean LikePScrapUp(String id){
+		int n = dao.likePScrapUp(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePHeartDown(String id){
+		int n = dao.likePHeartDown(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePScrapDown(String id){
+		int n = dao.likePScrapDown(id);
+		return n>0?true:false;
+	}
 
 	public boolean lpminuspoint(BbsDto bdto) {
 		int n = dao.lpminuspoint(bdto);

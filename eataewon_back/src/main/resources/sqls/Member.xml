@@ -23,7 +23,7 @@
 
 	<insert id="addmember" parameterType="com.proj.eataewon.dto.MemberDto">
 		INSERT INTO EATAEWONMEMBER(ID,NAME,PWD,EMAIL,NICKNAME, PROFILPIC, LIKEPOINT, PROFILMSG)
-		VALUES(#{id},#{name}, #{pwd}, #{email}, #{nickname}, #{profilPic}, 0, #{profilMsg})
+		VALUES(#{id},#{name}, #{pwd}, #{email}, #{nickname}, #{profilpic}, 0, #{profilmsg})
 	</insert>
 
 	<select id="login" parameterType="com.proj.eataewon.dto.MemberDto"
@@ -66,5 +66,11 @@
 		WHERE id=#{id} AND pwd=#{pwd}
 	</update>
 
+
+	<select id="getProfilPic" parameterType="String" resultType="String">
+		SELECT PROFILPIC
+		FROM EATAEWONMEMBER
+		WHERE ID = ${id}
+	</select>
 
 </mapper>
