@@ -137,6 +137,15 @@ public class BbsController {
         return "NO";
     }
 
+    @RequestMapping(value = "/bbsupdateApp", method = {RequestMethod.GET, RequestMethod.POST} )
+    public Boolean bbsupdateApp(BbsDto dto) {
+        System.out.println("BbsController bbsupdate " + new Date());
+
+        boolean b = service.updateBbs(dto);
+        System.out.println("@@@@@@@@@@글수정 결과는? "+b);
+        return b;
+    }
+
     @RequestMapping(value = "/bbsdelete", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbsdelete(int seq) {
         System.out.println("BbsController bbsdelete " + new Date());
@@ -148,6 +157,14 @@ public class BbsController {
         return "NO";
     }
 
+    @RequestMapping(value = "/bbsdeleteApp", method = {RequestMethod.GET, RequestMethod.POST} )
+    public Boolean bbsdeleteApp(@RequestBody int seq) {
+        System.out.println("BbsController bbsdeleteApp " + new Date());
+
+        Boolean b = service.deleteBbs(seq);
+        System.out.println("삭제결과 불리안값 "+ b);
+        return b;
+    }
 
     @RequestMapping(value="/likeBbs", method = {RequestMethod.GET, RequestMethod.POST})
     public String likeBbs(LikeDto dto){

@@ -47,6 +47,31 @@ public class MemberService {
 	public MemberBbsDto bbsGetUser(String id){
 		return dao.bbsGetUser(id);
 	}
+
+	public boolean LikePWriteUp(String id){
+		int n = dao.likePWriteUp(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePHeartUp(String id){
+		int n = dao.likePHeartUp(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePScrapUp(String id){
+		int n = dao.likePScrapUp(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePHeartDown(String id){
+		int n = dao.likePHeartDown(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePScrapDown(String id){
+		int n = dao.likePScrapDown(id);
+		return n>0?true:false;
+	}
 }
 
 

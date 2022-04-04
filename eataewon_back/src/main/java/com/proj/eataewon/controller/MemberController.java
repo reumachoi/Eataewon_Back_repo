@@ -133,6 +133,40 @@ public class MemberController {
 		return service.bbsGetUser(id);
 	}
 
+	@RequestMapping(value="/LikePWriteUp", method=RequestMethod.POST)
+	public Boolean LikePWriteUp(@RequestBody String id){
+		System.out.println("MemberController LikePWriteUp " + id);
+
+		return service.LikePWriteUp(id);
+	}
+
+	@RequestMapping(value="/LikePHeartUp", method=RequestMethod.POST)
+	public Boolean LikePHeartUp(@RequestBody String id){
+		System.out.println("MemberController LikePHeartUp " + id);
+
+		return service.LikePHeartUp(id);
+	}
+
+	@RequestMapping(value="/LikePScrapUp", method=RequestMethod.POST)
+	public Boolean LikePScrapUp(@RequestBody String id){
+		System.out.println("MemberController LikePScrapUp " + id);
+
+		return service.LikePScrapUp(id);
+	}
+
+	@RequestMapping(value="/LikePHeartDown", method=RequestMethod.POST)
+	public Boolean LikePHeartDown(@RequestBody String id){
+		System.out.println("MemberController LikePHeartUp " + id);
+
+		return service.LikePHeartDown(id);
+	}
+
+	@RequestMapping(value="/LikePScrapDown", method=RequestMethod.POST)
+	public Boolean LikePScrapDown(@RequestBody String id){
+		System.out.println("MemberController LikePScrapUp " + id);
+
+		return service.LikePScrapDown(id);
+	}
 }
 
 
