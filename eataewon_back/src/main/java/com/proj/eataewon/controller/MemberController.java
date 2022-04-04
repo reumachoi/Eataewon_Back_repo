@@ -99,7 +99,7 @@ public class MemberController {
 	//닉네임 불러오기
 	@RequestMapping(value = "/getnickname", method = {RequestMethod.GET, RequestMethod.POST} )
 	public MemberDto getnickname(String id) {
-		System.out.println("getnickname " + id.toString() +new Date());
+		System.out.println("getnickname " + id.toString() + new Date());
 
 		return service.getnickname(id);
 	}
@@ -119,6 +119,19 @@ public class MemberController {
 
 		boolean b = service.updateMem(dto);
 		System.out.println("@@@@@@@@@@dto@@@@@@@@@"+dto.toString());
+		if(b) {
+			return "OK";
+		}
+		return "NO";
+	}
+
+	//회원 탈퇴하기
+	@RequestMapping(value = "/deleteMem", method = {RequestMethod.GET, RequestMethod.POST} )
+	public String deleteMem(MemberDto dto) {
+		System.out.println("MemberController deleteMem " + new Date());
+		System.out.println("MemberController deleteMem  " + dto.getId() + dto.getPwd() +new Date());
+
+		boolean b = service.deleteMem(dto);
 		if(b) {
 			return "OK";
 		}

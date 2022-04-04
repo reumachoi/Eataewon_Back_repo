@@ -23,6 +23,8 @@ public interface MemberDao {
 	public MemberDto detailMem(String id);
 
 	public int updateMem(MemberDto dto);
+
+	public int deleteMem(MemberDto dto);
 }
 
 

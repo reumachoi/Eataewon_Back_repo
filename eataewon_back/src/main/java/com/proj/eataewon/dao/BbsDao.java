@@ -18,9 +18,13 @@ public interface BbsDao {
 
     public BbsDto getBbs(int seq);
 
+    public BbsFileDto getBbsDetail(int seq);
+
     public List<BbsDto> getBbsListSearch(BbsParam param);
 
     public List<BbsDto> getBbsListSearchPage(BbsParam param);
+
+    public List<BbsFileDto> getBbsListFileSearchPage(BbsParam param);
 
     public int getBbsCount(BbsParam param);
 
@@ -48,8 +52,19 @@ public interface BbsDao {
 
     public int likecntDown(LikeDto dto);
 
-
     public boolean bbswriteImgup(BbsFileDto dto);
+
+    public int likepointup(BbsDto dto);
+
+    public int likepointdown(BbsDto dto);
+
+    public int lppluspoint(BbsDto dto);
+
+    public int lpminuspoint(BbsDto bdto);
+
+    public int scrpointup(BbsDto bdto);
+
+    public int scrpointminus(BbsDto dto);
 }
 
 

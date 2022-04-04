@@ -6,7 +6,7 @@ public class MemberDto {
     private String pwd;
     private String email;
     private String nickname;
-    private int profilpic;
+    private String profilpic;
     private int likepoint;
     private String profilmsg;
 
@@ -14,7 +14,7 @@ public class MemberDto {
 
     }
 
-    public MemberDto(String id, String name, String pwd, String email, String nickname, int profilpic, int likepoint, String profilmsg) {
+    public MemberDto(String id, String name, String pwd, String email, String nickname, String profilpic, int likepoint, String profilmsg) {
         this.id = id;
         this.name = name;
         this.pwd = pwd;
@@ -65,11 +65,11 @@ public class MemberDto {
         this.nickname = nickname;
     }
 
-    public int getProfilpic() {
+    public String getProfilpic() {
         return profilpic;
     }
 
-    public void setProfilpic(int profilpic) {
+    public void setProfilpic(String profilpic) {
         this.profilpic = profilpic;
     }
 

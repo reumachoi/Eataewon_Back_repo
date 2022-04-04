@@ -51,6 +51,13 @@ public class MemberService {
 		}
 		return false;
 	}
+
+	public boolean deleteMem(MemberDto dto) {
+		int n = dao.deleteMem(dto);
+		if(n == 0) return false;
+
+		return true;
+	}
 }
 
 

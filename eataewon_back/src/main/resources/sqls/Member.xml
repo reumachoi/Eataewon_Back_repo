@@ -50,7 +50,7 @@
 	</update>
 
 	<!--회원탈퇴-->
-	<update id="deleteMem" parameterType="java.lang.Integer">
+	<update id="deleteMem" parameterType="com.proj.eataewon.dto.MemberDto">
 		DELETE FROM EATAEWONMEMBER
 		WHERE id=#{id} AND pwd=#{pwd}
 	</update>

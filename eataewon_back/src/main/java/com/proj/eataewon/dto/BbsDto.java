@@ -24,7 +24,7 @@ public class BbsDto {
 	private int seq;
 	private String title;
 	private String content;
-	private int picture;
+	private String picture;
 	private String nickname;
 
 
@@ -44,7 +44,7 @@ public class BbsDto {
 	public BbsDto() {
 	}
 
-	public BbsDto(String id, int seq, String title, String content, int picture, String hashtag, String wdate,
+	public BbsDto(String id, int seq, String title, String content, String picture, String hashtag, String wdate,
 				  String shopname, String address, double latitude, double longtitude,
 				  int readcnt, int likecnt, String shopphnum,String shopurl) {
 		this.id=id;
@@ -73,7 +73,7 @@ public class BbsDto {
 
 
 
-	public BbsDto(String id, String title, String content, int picture, String hashtag, String shopname,
+	public BbsDto(String id, String title, String content, String picture, String hashtag, String shopname,
 				  String address, double latitude, double longtitude, String shopphnum, String shopurl) {
 		super();
 		this.id = id;
@@ -119,9 +119,9 @@ public class BbsDto {
 		this.content = content;
 	}
 
-	public int getPicture() {return picture;}
+	public String getPicture() {return picture;}
 
-	public void setPicture(int picture) {this.picture = picture;}
+	public void setPicture(String picture) {this.picture = picture;}
 
 	public String getHashtag() {
 		return hashtag;
