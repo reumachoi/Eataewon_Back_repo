@@ -2,6 +2,7 @@ package com.proj.eataewon.controller;
 
 import com.proj.eataewon.dto.MemberBbsDto;
 import com.proj.eataewon.dto.MemberDto;
+import com.proj.eataewon.service.AppMemberService;
 import com.proj.eataewon.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,10 +18,12 @@ import java.util.List;
 public class AppMemberController {
 
 	@Autowired
-	MemberService service;
+	AppMemberService service;
 
+	@Autowired
+	MemberService mservice;
 
-	//@RequestBody 코틀린 통신용
+	//아이디 중복확인
 	@RequestMapping(value="/getIdApp", method= RequestMethod.POST )
 	public String getIdApp(@RequestBody String id) {
 		System.out.println("MemberController getID" + id);
@@ -33,25 +36,25 @@ public class AppMemberController {
 	}
 
 
-	//@RequestBody 코틀린 통신용
+	//로그인 체크
 	@RequestMapping(value="/loginApp", method= RequestMethod.POST)
 	public MemberDto loginApp(@RequestBody MemberDto dto) {
 		System.out.println("MemberController login");
 		System.out.println(dto.toString());
 
-		MemberDto mem = service.login(dto);
+		MemberDto mem = mservice.login(dto);
 		System.out.println(mem.toString());
 		return mem;
 	}
 
-	//회원가입 가입 컨트롤러 추가
+	//회원가입 가입
 	@RequestMapping(value = "/addmemberApp", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addmemberApp(@RequestBody MemberDto dto) {
 
 		System.out.println("MemberController addmember");
 		System.out.println("dto :::  "+dto.toString());
 
-		boolean b = service.addmember(dto);
+		boolean b = mservice.addmember(dto);
 
 		if (b) {
 			return "yes";
@@ -66,15 +69,51 @@ public class AppMemberController {
 		System.out.println("MemberController bbsGetUser");
 		System.out.println("String id: " + id);
 
-		return service.bbsGetUser(id);
+		return mservice.bbsGetUser(id);
 	}
 
-	@RequestMapping(value="getProfilPicApp", method=RequestMethod.POST)
+	//글쓴이 프로필사진 가져오기	@RequestMapping(value="getProfilPicApp", method=RequestMethod.POST)
 	public String getProfilPic(@RequestBody String id){
 		System.out.println("MemberController getProfilPic "+id);
-		String pic = service.getProfilPic(id);
+		String pic = mservice.getProfilPic(id);
 		return pic;
 	}
+
+	@RequestMapping(value="/LikePWriteUp", method=RequestMethod.POST)
+	public Boolean LikePWriteUp(@RequestBody String id){
+		System.out.println("MemberController LikePWriteUp " + id);
+
+		return service.LikePWriteUp(id);
+	}
+
+	@RequestMapping(value="/LikePHeartUp", method=RequestMethod.POST)
+	public Boolean LikePHeartUp(@RequestBody String id){
+		System.out.println("MemberController LikePHeartUp " + id);
+
+		return service.LikePHeartUp(id);
+	}
+
+	@RequestMapping(value="/LikePScrapUp", method=RequestMethod.POST)
+	public Boolean LikePScrapUp(@RequestBody String id){
+		System.out.println("MemberController LikePScrapUp " + id);
+
+		return service.LikePScrapUp(id);
+	}
+
+	@RequestMapping(value="/LikePHeartDown", method=RequestMethod.POST)
+	public Boolean LikePHeartDown(@RequestBody String id){
+		System.out.println("MemberController LikePHeartUp " + id);
+
+		return service.LikePHeartDown(id);
+	}
+
+	@RequestMapping(value="/LikePScrapDown", method=RequestMethod.POST)
+	public Boolean LikePScrapDown(@RequestBody String id){
+		System.out.println("MemberController LikePScrapUp " + id);
+
+		return service.LikePScrapDown(id);
+	}
+
 }
 
 

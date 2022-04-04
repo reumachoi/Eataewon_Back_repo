@@ -2,6 +2,7 @@ package com.proj.eataewon.controller;
 
 import com.proj.eataewon.dto.*;
 import com.proj.eataewon.service.BbsService;
+import com.proj.eataewon.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +23,9 @@ public class BbsController {
     @Autowired
     BbsService service;
 
+    @Autowired
+    MemberService mservice;
+
     @RequestMapping(value = "/getBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
     public List<BbsDto> getBbsList(){
         System.out.println("BbsController getBbsList " + new Date());
@@ -38,7 +42,7 @@ public class BbsController {
         System.out.println("BbsController likepointup" + dto.getId()  + new Date());
 
         //호감도 증가
-        boolean a = service.likepointup(dto);
+        boolean a = mservice.likePWriteUp(dto);
 
         boolean b = service.writeBbs(dto);
         if(b) {
@@ -47,17 +51,6 @@ public class BbsController {
         return "NO";
     }
 
-    //picture string으로 만든 DB용 컨트롤러
-    @RequestMapping(value = "/bbswritePic", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String bbswritePic(BbsPicDto dto) {
-        System.out.println("BbsController bbswritePic " + new Date());
-
-        boolean b = service.writeBbsPic(dto);
-        if(b) {
-            return "YES";
-        }
-        return "NO";
-    }
 
     @PostMapping(DEFAULT_URI + "/multi")
     public String uploadMulti(@RequestParam("files") List<MultipartFile> files) throws Exception {
@@ -83,14 +76,6 @@ public class BbsController {
         return service.getBbs(seq);
     }
 
-    @RequestMapping(value = "/plustReadcntApp", method=RequestMethod.POST)
-    public String plustReadcntApp(@RequestBody int seq) {
-        System.out.println(seq);
-        System.out.println("BbsController plustReadcntApp " + new Date());
-        String res = service.readcountApp(seq);
-        System.out.println(res);
-        return res;
-        
     @RequestMapping(value = "/bbsFileDetail", method = {RequestMethod.GET, RequestMethod.POST} )
     public BbsFileDto bbsFileDetail(int seq) {
         System.out.println("BbsController BbsDto " + new Date());
@@ -156,22 +141,13 @@ public class BbsController {
         return "NO";
     }
 
-    @RequestMapping(value = "/bbsupdateApp", method = {RequestMethod.GET, RequestMethod.POST} )
-    public Boolean bbsupdateApp(BbsDto dto) {
-        System.out.println("BbsController bbsupdate " + new Date());
-
-        boolean b = service.updateBbs(dto);
-        System.out.println("@@@@@@@@@@글수정 결과는? "+b);
-        return b;
-    }
-
     @RequestMapping(value = "/bbsdelete", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbsdelete(int seq, BbsDto dto) {
         System.out.println("BbsController bbsdelete " + new Date());
         System.out.println("BbsController likepointDown " + dto.getId() +new Date());
 
         //글 삭제시 호감도 감소
-        boolean a = service.likepointdown(dto);
+        boolean a = mservice.likePWriteDown(dto);
 
 
         boolean b = service.deleteBbs(seq);
@@ -187,7 +163,7 @@ public class BbsController {
         System.out.println("LikeDto likeBbs " + dto+ new Date());
 
         boolean a = service.likebbsCnt(dto); //좋아요 게시판에 중복 없는지 확인
-        boolean d = service.lppluspoint(bdto); // 좋아요시 likepoint 증가
+        boolean d = mservice.likePHeartUp(bdto); // 좋아요시 likepoint 증가
         if(a) {
 
             boolean c = service.likecntUpdate(dto);
@@ -200,19 +176,6 @@ public class BbsController {
         }
         return "DUP";
 
-    }
-
-    @RequestMapping(value="/likeBbsApp", method = RequestMethod.POST)
-    public Boolean likeBbsApp(LikeDto dto){
-        System.out.println("LikeDto likeBbs " + dto+ new Date());
-        return service.likeBbs(dto);
-    }
-
-    @RequestMapping(value="/bbsScrapApp", method =RequestMethod.POST)
-    public Boolean scrapBbsApp(ScrapDto dto){
-        System.out.println("ScrapDto bbsScrapApp " + new Date());
-
-        return service.bbsScrap(dto);
     }
 
     @RequestMapping(value = "/likeBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
@@ -241,7 +204,7 @@ public class BbsController {
             bdto.setSeq(Integer.parseInt(list.get(i)));
 
             boolean c = service.likecntDown(dto); // 좋아요 값 -1 감소
-            boolean d = service.lpminuspoint(bdto); // 호감도 -1 감소
+            boolean d = mservice.likePHeartDown(bdto); // 호감도 -1 감소
             boolean b = service.deleteLike(dto); // deleteLike는 id와 bbsseq값을 확인해야한다.
 
             if (b) {
@@ -253,12 +216,11 @@ public class BbsController {
     }
 
 
-
     @RequestMapping(value="/bbsScrap", method = {RequestMethod.GET, RequestMethod.POST})
     public String scrapBbs(ScrapDto dto, BbsDto bdto){
         System.out.println("ScrapDto bbsScrap " + new Date());
         boolean a = service.scrapBbsCnt(dto);
-        boolean c = service.scrpointup(bdto); // 스크랩시 호감도 증가
+        boolean c = mservice.likePScrapUp(bdto); // 스크랩시 호감도 증가
         if(a) {
 
             boolean b =service.bbsScrap(dto);
@@ -268,6 +230,7 @@ public class BbsController {
             return "NO";
         }
         return "DUP";
+
     }
 
 
@@ -291,7 +254,7 @@ public class BbsController {
             System.out.println(n);
             dto.setSeq(n);
             boolean b = service.deleteScarp(n);
-            boolean c = service.scrpointminus(dto); //스크랩 취소시 호감도 -5감소
+            boolean c = mservice.likePScrapDown(dto); //스크랩 취소시 호감도 -5감소
             if (b) {
                 answer = "OK";
             }else

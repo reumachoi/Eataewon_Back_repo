@@ -20,29 +20,13 @@ public class BbsService {
 		return dao.getBbsList();
 	}
 
-	public BbsDto getBbsListApp(int seq){
-		return dao.getBbsListApp(seq);
-	}
-
 	public boolean writeBbs(BbsDto dto) {
 		int n = dao.writeBbs(dto);
 		return n>0?true:false;
 	}
 
-	public int writeBbsApp(BbsDto dto) {
-		int n = dao.writeBbsApp(dto);
-		System.out.println("글저장 후 seq값 돌려받기 "+n);
-		return n;
-	}
-
 	public void readcount(int seq) {
 		dao.readcount(seq);
-	}
-
-	public String readcountApp(int seq) {
-		System.out.println("readcountApp 테스트" + seq);
-		int n = dao.readcountApp(seq);
-		return n>0?"Success":"Fail";
 	}
 
 	public BbsDto getBbs(int seq) {
@@ -65,26 +49,18 @@ public class BbsService {
 		return dao.getBbsListFileSearchPage(param);
 	}
 
-
-
-
 	public int getBbsCount(BbsParam param) {
 		return dao.getBbsCount(param);
 	}
 
 	public boolean updateBbs(BbsDto dto) {
 		int n = dao.updateBbs(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
+		return n>0?true:false;
 	}
 
 	public boolean deleteBbs(int seq) {
 		int n = dao.deleteBbs(seq);
-		if(n == 0) return false;
-
-		return true;
+		return n>0?true:false;
 	}
 
 	public boolean bbsScrap(ScrapDto dto) {
@@ -110,9 +86,7 @@ public class BbsService {
 
 	public boolean deleteScarp(int seq) {
 		int n = dao.deleteScarp(seq);
-		if(n == 0) return false;
-
-		return true;
+		return n>0?true:false;
 	}
 
 	public boolean likeBbs(LikeDto dto) {
@@ -127,7 +101,6 @@ public class BbsService {
 		int n = dao.likebbsCnt(dto);
 		System.out.println("likebbsCnt : "  + n);
 		return n == 0 ? true : false;
-
 	}
 
 	public List<BbsDto> likeBbsList(BbsDto dto) {
@@ -138,109 +111,43 @@ public class BbsService {
 
 	public boolean likecntUpdate(LikeDto dto) {
 		int n = dao.likecntUpdate(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
+		return n>0?true:false;
 	}
 
 	public boolean likecntDown(LikeDto dto) {
 		int n = dao.likecntDown(dto);
-		if(n>0){
-			return true;
-		}
-		return false;
-
+		return n>0?true:false;
 	}
 
 	public boolean deleteLike(LikeDto dto) {
 		int n = dao.deleteLike(dto);
-		if(n == 0) return false;
-
-		return true;
+		return n>0?true:false;
 	}
 
 	public boolean bbswriteImgup(BbsFileDto dto) {
 		return dao.bbswriteImgup(dto);
 	}
 
-	//picture string으로 만든 DB용 서비스
-	public boolean writeBbsPic(BbsPicDto dto) {
-		int n = dao.writeBbsPic(dto);
-		return n>0?true:false;
-	}
-	public boolean LikePWriteUp(String id){
-		int n = dao.likePWriteUp(id);
-		return n>0?true:false;
+
+
+	public BbsDto getBbsListApp(int seq){
+		return dao.getBbsListApp(seq);
 	}
 
-	public boolean likepointup(BbsDto dto) {
-		int n = dao.likepointup(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
+
+	public int writeBbsApp(BbsDto dto) {
+		int n = dao.writeBbsApp(dto);
+		System.out.println("글저장 후 seq값 돌려받기 "+n);
+		return n;
 	}
 
-	public boolean likepointdown(BbsDto dto) {
-		int n = dao.likepointdown(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
+	public String readcountApp(int seq) {
+		System.out.println("readcountApp 테스트" + seq);
+		int n = dao.readcountApp(seq);
+		return n>0?"Success":"Fail";
 	}
 
-	public boolean lppluspoint(BbsDto bdto) {
-		int n = dao.lppluspoint(bdto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-	public boolean LikePHeartUp(String id){
-		int n = dao.likePHeartUp(id);
-		return n>0?true:false;
-	}
 
-	public boolean LikePScrapUp(String id){
-		int n = dao.likePScrapUp(id);
-		return n>0?true:false;
-	}
-
-	public boolean LikePHeartDown(String id){
-		int n = dao.likePHeartDown(id);
-		return n>0?true:false;
-	}
-
-	public boolean LikePScrapDown(String id){
-		int n = dao.likePScrapDown(id);
-		return n>0?true:false;
-	}
-
-	public boolean lpminuspoint(BbsDto bdto) {
-		int n = dao.lpminuspoint(bdto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean scrpointup(BbsDto bdto) {
-		int n = dao.scrpointup(bdto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-
-	}
-
-	public boolean scrpointminus(BbsDto dto) {
-		int n = dao.scrpointminus(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-
-	}
 }
 
 

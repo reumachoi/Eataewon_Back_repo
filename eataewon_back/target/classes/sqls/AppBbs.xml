@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.eataewon.dao.AppBbsDao">
+
+
+    <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        FROM EATAEWONBBS
+        WHERE SEQ = #{seq}
+    </select>
+
+    <insert id="writeBbsApp" parameterType="com.proj.eataewon.dto.BbsDto" useGeneratedKeys="true" keyProperty="seq">
+        INSERT INTO EATAEWONBBS
+            (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
+            ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT,shopphnum,shopurl, testurl)
+        VALUES
+            (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
+             #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
+    </insert>
+
+    <update id="readcountApp" parameterType="java.lang.Integer">
+        UPDATE EATAEWONBBS
+        SET READCNT=READCNT+1
+        WHERE SEQ=#{seq}
+    </update>
+
+
+</mapper>

@@ -1,6 +1,7 @@
 package com.proj.eataewon.service;
 
 import com.proj.eataewon.dao.MemberDao;
+import com.proj.eataewon.dto.BbsDto;
 import com.proj.eataewon.dto.MemberBbsDto;
 import com.proj.eataewon.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ public class MemberService {
 
     public boolean getId(MemberDto dto) {
 		int n = dao.getId(dto);
-
 		return n>0?true:false;
     }
 
@@ -34,20 +34,20 @@ public class MemberService {
 	}
 
 	public MemberDto login(MemberDto dto) {
-
 		return dao.login(dto);
 	}
 
     public boolean addmember(MemberDto dto) {
 		int n = dao.addmember(dto);
-
 		return n>0?true:false;
     }
 
-	public MemberBbsDto bbsGetUser(String id){
+	public MemberBbsDto bbsGetUser(String id) {
 		return dao.bbsGetUser(id);
+	}
+
 	public MemberDto getnickname(String id) {
-	return dao.getnickname(id);
+		return dao.getnickname(id);
 	}
 
 	public MemberDto detailMem(String id) {
@@ -56,21 +56,74 @@ public class MemberService {
 
 	public boolean updateMem(MemberDto dto) {
 		int n = dao.updateMem(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
+		return n>0?true:false;
 	}
 
 	public boolean deleteMem(MemberDto dto) {
 		int n = dao.deleteMem(dto);
-		if(n == 0) return false;
-
-		return true;
+		return n>0?true:false;
 	}
 
 	public String getProfilPic(String id){
 		return dao.getProfilPic(id);
+	}
+
+	public boolean likePWriteUp(BbsDto dto) {
+		int n = dao.likePWriteUp(dto);
+		return n>0?true:false;
+	}
+
+	public boolean likePWriteDown(BbsDto dto) {
+		int n = dao.likePWriteDown(dto);
+		return n>0?true:false;
+	}
+
+	public boolean likePHeartUp(BbsDto bdto) {
+		int n = dao.likePHeartUp(bdto);
+		return n>0?true:false;
+	}
+
+
+	public boolean likePHeartDown(BbsDto bdto) {
+		int n = dao.likePHeartDown(bdto);
+		return n>0?true:false;
+	}
+
+	public boolean likePScrapUp(BbsDto bdto) {
+		int n = dao.likePScrapUp(bdto);
+		return n>0?true:false;
+
+	}
+
+	public boolean likePScrapDown(BbsDto dto) {
+		int n = dao.likePScrapDown(dto);
+		return n>0?true:false;
+
+	}
+
+	public boolean LikePWriteUp(String id){
+		int n = dao.LikePWriteUp(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePHeartUp(String id){
+		int n = dao.LikePHeartUp(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePScrapUp(String id){
+		int n = dao.LikePScrapUp(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePHeartDown(String id){
+		int n = dao.LikePHeartDown(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePScrapDown(String id){
+		int n = dao.LikePScrapDown(id);
+		return n>0?true:false;
 	}
 }
 

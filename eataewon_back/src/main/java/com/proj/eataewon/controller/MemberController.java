@@ -1,4 +1,4 @@
-fpackage com.proj.eataewon.controller;
+package com.proj.eataewon.controller;
 
 import com.proj.eataewon.dto.MemberBbsDto;
 import com.proj.eataewon.dto.BbsDto;
@@ -32,18 +32,6 @@ public class MemberController {
 		return "OK";
 	}
 
-	//@RequestBody 코틀린 통신용
-	@RequestMapping(value="/getIdApp", method= RequestMethod.POST )
-	public String getIdApp(@RequestBody String id) {
-		System.out.println("MemberController getID" + id);
-
-		boolean b = service.getIdApp(id);
-		if(b) {
-			return "NO"; //1이상이란 말, 이미 아이디가 존재한다는 말이라서 사용이 안된다
-		}
-		return "OK";
-	}
-
 	@RequestMapping(value="/login", method= {RequestMethod.GET, RequestMethod.POST})
 	public MemberDto login(MemberDto dto, HttpServletRequest req) {
 		System.out.println("MemberController login");
@@ -54,24 +42,6 @@ public class MemberController {
 		//이렇게 사용할수 있다는 말
 		req.getSession().setAttribute("login", mem);
 		return mem;
-	}
-
-	//@RequestBody 코틀린 통신용
-	@RequestMapping(value="/loginApp", method= RequestMethod.POST)
-	public MemberDto loginApp(@RequestBody MemberDto dto) {
-		System.out.println("MemberController login");
-		System.out.println(dto.toString());
-
-		MemberDto mem = service.login(dto);
-		System.out.println(mem.toString());
-		return mem;
-	}
-	
-	@RequestMapping(value = "/connParamGet")
-	public String connParamGet(String title) {
-		System.out.println("HelloController connParamGet()");
-		System.out.println("title:" + title);
-		return "통신성공";	
 	}
 	
 	@RequestMapping(value = "/getMember")
@@ -87,15 +57,6 @@ public class MemberController {
 		List<MemberDto> list = new ArrayList<MemberDto>();
 
 		return list;
-	}	
-	
-	@RequestMapping(value = "/dbTest")
-	public List<MemberDto> dbTest(){
-		System.out.println("HelloController dbTest()");
-		
-		List<MemberDto> list = service.allMember();
-		
-		return list;		
 	}
 
 	//회원가입
@@ -111,19 +72,6 @@ public class MemberController {
 		return "NO";
 	}
 
-	//회원가입 가입 컨트롤러 추가
-	@RequestMapping(value = "/addmemberApp", method = { RequestMethod.GET, RequestMethod.POST })
-	public String addmemberApp(@RequestBody MemberDto dto) {
-
-		System.out.println("MemberController addmember");
-		System.out.println("dto :::  "+dto.toString());
-
-		boolean b = service.addmember(dto);
-
-		if (b) {
-			return "yes";
-		} else {
-			return "no";
 	//닉네임 불러오기
 	@RequestMapping(value = "/getnickname", method = {RequestMethod.GET, RequestMethod.POST} )
 	public MemberDto getnickname(String id) {
@@ -150,15 +98,7 @@ public class MemberController {
 		if(b) {
 			return "OK";
 		}
-	}
-
-	//글에 저장된 아이디로 유저정보 가져오기
-	@RequestMapping(value = "/bbsGetUser", method = RequestMethod.POST)
-	public MemberBbsDto bbsGetUser(@RequestBody String id){
-		System.out.println("MemberController bbsGetUser");
-		System.out.println("String id: " + id);
-
-		return service.bbsGetUser(id);
+		return "NO";
 	}
 
 	//회원 탈퇴하기
@@ -176,12 +116,6 @@ public class MemberController {
 
 
 
-	@RequestMapping(value="getProfilPicApp", method=RequestMethod.POST)
-	public String getProfilPic(@RequestBody String id){
-		System.out.println("MemberController getProfilPic "+id);
-		String pic = service.getProfilPic(id);
-		return pic;
-	}
 }
 
 

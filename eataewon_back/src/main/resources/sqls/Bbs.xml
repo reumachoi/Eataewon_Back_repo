@@ -12,12 +12,6 @@
      <!--   ORDER BY READCNT DESC-->
     </select>
 
-    <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
-        FROM EATAEWONBBS
-        WHERE SEQ = #{seq}
-    </select>
-
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
         (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
@@ -25,15 +19,6 @@
         VALUES
         (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
         #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
-    </insert>
-
-    <insert id="writeBbsApp" parameterType="com.proj.eataewon.dto.BbsDto" useGeneratedKeys="true" keyProperty="seq">
-        INSERT INTO EATAEWONBBS
-            (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
-            ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT,shopphnum,shopurl, testurl)
-        VALUES
-            (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
-             #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
     </insert>
 
     <!--picture string인 테이블 따로 만들어 test중-->
@@ -44,7 +29,6 @@
             (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
              #{shopname}, #{address}, #{latitude},#{longtitude}, 0)
     </insert>
-
 
 
     <!--picture string인 테이블 따로 만들어 test중-->
@@ -72,12 +56,6 @@
 
     <!-- 조회수 업데이트 -->
     <update id="readcount" parameterType="java.lang.Integer">
-        UPDATE EATAEWONBBS
-        SET READCNT=READCNT+1
-        WHERE SEQ=#{seq}
-    </update>
-
-    <update id="readcountApp" parameterType="java.lang.Integer">
         UPDATE EATAEWONBBS
         SET READCNT=READCNT+1
         WHERE SEQ=#{seq}
@@ -266,7 +244,7 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!--스크랩된 게시물 취소-->
     <!--eataewonscrap에 eataewonbbs의 primarykey를 참조하는 외래키를 참조하는 조건때문에
     스크랩된 게시물은 삭제가 안됐습니다. 스크랩 여부에 상관없이 글을 삭제할수 있도록 EATAESCRAP의 외래키 조건 삭제했습니다.-->
-    <update id="deleteScarp" parameterType="java.lang.Integer">
+    <delete id="deleteScarp" parameterType="java.lang.Integer">
         DELETE FROM EATAEWONSCRAP
         WHERE BBSSEQ=#{bbsseq}
           AND ID = #{id}
@@ -296,50 +274,6 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         AND ID = #{id}
     </select>
 
-    <!--글쓸때 likeponit 증가 -->
-    <update id="likepointup" parameterType="com.proj.eataewon.dto.BbsDto" >
-        update EATAEWONMEMBER
-        SET likepoint = likepoint+50
-        WHERE id = #{id}
-    </update>
-
-    <!--글삭제시 likeponit 감소 -->
-    <update id="likepointdown" parameterType="com.proj.eataewon.dto.BbsDto" >
-        update EATAEWONMEMBER
-        SET likepoint = likepoint-50
-        WHERE id = #{id}
-    </update>
-
-<!--좋아요 누를시 likeponit 증가 -->
-    <update id="lppluspoint" parameterType="com.proj.eataewon.dto.BbsDto" >
-        update EATAEWONMEMBER
-        SET likepoint = likepoint+1
-        where id = ( select id from EATAEWONBBS where seq= #{seq})
-    </update>
-
-    <!-- 좋아요 취소시 likeponit 감소 -->
-    <update id="lpminuspoint" parameterType="com.proj.eataewon.dto.BbsDto" >
-        update EATAEWONMEMBER
-        SET likepoint = likepoint-1
-        where id = ( select id from EATAEWONBBS where seq= #{seq})
-    </update>
-
-    <!-- 스크랩시 likeponit +5증가-->
-      <update id="scrpointup" parameterType="com.proj.eataewon.dto.BbsDto" >
-          update EATAEWONMEMBER
-          SET likepoint = likepoint+5
-          where id = ( select id from EATAEWONBBS where seq= #{seq})
-      </update>
-
-    <!--스크랩 취소시 likeponit -5 감소 -->
-      <update id="scrpointminus" parameterType="com.proj.eataewon.dto.BbsDto" >
-          update EATAEWONMEMBER
-          SET likepoint = likepoint-5
-          where id = ( select id from EATAEWONBBS where seq= #{seq})
-      </update>
-
-
-    <!--좋아요 할때 likecnt 증가 / 중복 방지는 controller에서 -->
     <update id="likecntUpdate" parameterType="com.proj.eataewon.dto.LikeDto" >
         update EATAEWONBBS
         SET likecnt = likecnt+1
@@ -359,36 +293,5 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
          WHERE BBSSEQ=#{bbsseq}
            AND ID = #{id}
     </delete>
-
-    <update id="likePWriteUp" parameterType="String">
-        update EATAEWONMEMBER
-        SET LIKEPOINT = LIKEPOINT+50
-        WHERE ID = #{id}
-    </update>
-
-    <update id="likePHeartUp" parameterType="String">
-        update EATAEWONMEMBER
-        SET LIKEPOINT = LIKEPOINT+1
-        WHERE ID = #{id}
-    </update>
-
-    <update id="likePHeartDown" parameterType="String">
-        update EATAEWONMEMBER
-        SET LIKEPOINT = LIKEPOINT-1
-        WHERE ID = #{id}
-    </update>
-
-    <update id="likePScrapUp" parameterType="String">
-        update EATAEWONMEMBER
-        SET LIKEPOINT = LIKEPOINT+5
-        WHERE ID = #{id}
-    </update>
-
-    <update id="likePScrapDown" parameterType="String">
-        update EATAEWONMEMBER
-        SET LIKEPOINT = LIKEPOINT-5
-        WHERE ID = #{id}
-    </update>
-
 
 </mapper>
