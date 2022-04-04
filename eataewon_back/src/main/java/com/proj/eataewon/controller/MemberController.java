@@ -1,6 +1,7 @@
-package com.proj.eataewon.controller;
+fpackage com.proj.eataewon.controller;
 
 import com.proj.eataewon.dto.MemberBbsDto;
+import com.proj.eataewon.dto.BbsDto;
 import com.proj.eataewon.dto.MemberDto;
 import com.proj.eataewon.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController  // @Controller + @ResponsBody -> Restful
@@ -96,6 +98,7 @@ public class MemberController {
 		return list;		
 	}
 
+	//회원가입
 	@RequestMapping(value="/addmember", method= {RequestMethod.GET, RequestMethod.POST})
 	public String addmember(MemberDto dto) {
 		System.out.println("MemberController addmember");
@@ -121,6 +124,31 @@ public class MemberController {
 			return "yes";
 		} else {
 			return "no";
+	//닉네임 불러오기
+	@RequestMapping(value = "/getnickname", method = {RequestMethod.GET, RequestMethod.POST} )
+	public MemberDto getnickname(String id) {
+		System.out.println("getnickname " + id.toString() + new Date());
+
+		return service.getnickname(id);
+	}
+
+	//회원 상세 정보 불러오기
+	@RequestMapping(value = "/detailMem", method = {RequestMethod.GET, RequestMethod.POST} )
+	public MemberDto detailMem(String id) {
+		System.out.println("MemberDto MemberDto " + new Date());
+
+		return service.detailMem(id);
+	}
+	
+	//회원정보 수정하기
+	@RequestMapping(value = "/updateMem", method = {RequestMethod.GET, RequestMethod.POST} )
+	public String updateMem(MemberDto dto) {
+		System.out.println("MemberDto dto updateMem " + new Date());
+
+		boolean b = service.updateMem(dto);
+		System.out.println("@@@@@@@@@@dto@@@@@@@@@"+dto.toString());
+		if(b) {
+			return "OK";
 		}
 	}
 
@@ -132,6 +160,21 @@ public class MemberController {
 
 		return service.bbsGetUser(id);
 	}
+
+	//회원 탈퇴하기
+	@RequestMapping(value = "/deleteMem", method = {RequestMethod.GET, RequestMethod.POST} )
+	public String deleteMem(MemberDto dto) {
+		System.out.println("MemberController deleteMem " + new Date());
+		System.out.println("MemberController deleteMem  " + dto.getId() + dto.getPwd() +new Date());
+
+		boolean b = service.deleteMem(dto);
+		if(b) {
+			return "OK";
+		}
+		return "NO";
+	}
+
+
 
 }
 

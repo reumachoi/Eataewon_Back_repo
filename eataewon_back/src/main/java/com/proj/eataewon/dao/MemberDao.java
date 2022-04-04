@@ -21,6 +21,13 @@ public interface MemberDao {
 	public int addmember(MemberDto dto);
 
 	public MemberBbsDto bbsGetUser(String id);
+	public MemberDto getnickname(String id);
+
+	public MemberDto detailMem(String id);
+
+	public int updateMem(MemberDto dto);
+
+	public int deleteMem(MemberDto dto);
 }
 
 

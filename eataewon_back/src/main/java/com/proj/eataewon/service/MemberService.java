@@ -46,6 +46,27 @@ public class MemberService {
 
 	public MemberBbsDto bbsGetUser(String id){
 		return dao.bbsGetUser(id);
+	public MemberDto getnickname(String id) {
+	return dao.getnickname(id);
+	}
+
+	public MemberDto detailMem(String id) {
+		return dao.detailMem(id);
+	}
+
+	public boolean updateMem(MemberDto dto) {
+		int n = dao.updateMem(dto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean deleteMem(MemberDto dto) {
+		int n = dao.deleteMem(dto);
+		if(n == 0) return false;
+
+		return true;
 	}
 }
 

@@ -5,8 +5,9 @@
 
 <mapper namespace="com.proj.eataewon.dao.BbsDao">
 
+    <!--글 데이터 삽입시 닉네임도 같이 삽입된 글의 닉네임만 잘 출력된다. 아닐경우 null로 나온다.-->
     <select id="getBbsList" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        SELECT SEQ, nickname, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
         FROM EATAEWONBBS
      <!--   ORDER BY READCNT DESC-->
     </select>
@@ -35,14 +36,20 @@
         INSERT INTO eataewonBbsfile
         (ID,SEQ,TITLE,CONTENT,FILENAME,FILEPATH,HASHTAG,WDATE,SHOPNAME,ADDRESS,LATITUDE,LONGTITUDE,READCNT,LIKECNT)
         VALUES
-        ( #{id}, picSeq.NEXTVAL, #{title}, #{content}, #{filename}, 'test.txt', #{hashtag}, SYSDATE,
+        ( #{id}, picSeq.NEXTVAL, #{title}, #{content}, #{filename}, #{filepath}, #{hashtag}, SYSDATE,
         #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0)
     </insert>
 
+    <!-- 글 상세페이지 보기 -->
+    <select id="getBbsDetail" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT SEQ, ID, TITLE, CONTENT ,FILENAME,FILEPATH, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        FROM eataewonBbsfile
+        WHERE SEQ=#{seq}
+    </select>
 
     <!-- 글 상세페이지 보기 -->
     <select id="getBbs" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT,shopphnum,shopurl
+        SELECT SEQ, Nickname, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT,shopphnum,shopurl
         FROM EATAEWONBBS
         WHERE SEQ=#{seq}
     </select>
@@ -62,7 +69,7 @@
 
     <!-- 검색 조건이 틀려도 에러가 안나오도록 where 1=1-->
     <select id="getBbsListSearch" parameterType="com.proj.eataewon.dto.BbsParam" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT
+        SELECT SEQ, ID, nickname, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT
         FROM EATAEWONBBS
         WHERE 1=1
         <if test="choice !=null and choice !='' and search !=null and search !=''">
@@ -83,6 +90,9 @@
             </if>
             <if test="choice=='shopname'">
                 AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
             </if>
         </if>
   <!--      ORDER BY READCNT DESC-->
@@ -94,10 +104,10 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
 검색해서 나온 결과에 차례로 순번 매긴다고 생각하면 된다.  -->
     <select id="getBbsListSearchPage" parameterType="com.proj.eataewon.dto.BbsParam"
             resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT	ID, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
+        SELECT	ID, nickname, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
         FROM
             (SELECT ROW_NUMBER()OVER(ORDER BY READCNT DESC) AS RNUM,
-        	ID, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
+        	ID, nickname, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
         FROM EATAEWONBBS
         WHERE 1=1
         <if test="choice !=null and choice !='' and search !=null and search !=''">
@@ -118,6 +128,48 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
             </if>
             <if test="choice=='shopname'">
                 AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+        ORDER BY READCNT DESC)
+        WHERE RNUM BETWEEN ${start} AND ${end}
+    </select>
+
+
+    <!--ROW_NUMBER()OVER(ORDER BY REF DESC, STEP ASC)란 뜻은
+REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 ROW_NUMBER()을 통해서 순번을 차례로 매긴다.
+검색해서 나온 결과에 차례로 순번 매긴다고 생각하면 된다.  -->
+    <select id="getBbsListFileSearchPage" parameterType="com.proj.eataewon.dto.BbsParam"
+            resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT	ID, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
+        FROM
+        (SELECT ROW_NUMBER()OVER(ORDER BY READCNT DESC) AS RNUM,
+        ID, SEQ, TITLE, CONTENT,HASHTAG, WDATE, ADDRESS, READCNT
+        FROM EATAEWONBBSFILE
+        WHERE 1=1
+        <if test="choice !=null and choice !='' and search !=null and search !=''">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
             </if>
         </if>
         ORDER BY READCNT DESC)
@@ -148,6 +200,9 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
             </if>
             <if test="choice=='shopname'">
                 AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
             </if>
         </if>
     </select>
@@ -194,7 +249,7 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
 
     <!--스크랩된 게시물 취소-->
     <!--eataewonscrap에 eataewonbbs의 primarykey를 참조하는 외래키를 참조하는 조건때문에
-    스크랩된 게시물은 삭제가 안됐습니다. 스크랩 여부에 상관없이 글을 삭제할수 있도록 EATAEWONLIKE의 외래키 조건 삭제했습니다.-->
+    스크랩된 게시물은 삭제가 안됐습니다. 스크랩 여부에 상관없이 글을 삭제할수 있도록 EATAESCRAP의 외래키 조건 삭제했습니다.-->
     <update id="deleteScarp" parameterType="java.lang.Integer">
         DELETE FROM EATAEWONSCRAP
         WHERE BBSSEQ=#{bbsseq}
@@ -223,6 +278,49 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         WHERE bbsseq = #{bbsseq}
         AND ID = #{id}
     </select>
+
+    <!--글쓸때 likeponit 증가 -->
+    <update id="likepointup" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+50
+        WHERE id = #{id}
+    </update>
+
+    <!--글삭제시 likeponit 감소 -->
+    <update id="likepointdown" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-50
+        WHERE id = #{id}
+    </update>
+
+<!--좋아요 누를시 likeponit 증가 -->
+    <update id="lppluspoint" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+1
+        where id = ( select id from EATAEWONBBS where seq= #{seq})
+    </update>
+
+    <!-- 좋아요 취소시 likeponit 감소 -->
+    <update id="lpminuspoint" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-1
+        where id = ( select id from EATAEWONBBS where seq= #{seq})
+    </update>
+
+    <!-- 스크랩시 likeponit +5증가-->
+      <update id="scrpointup" parameterType="com.proj.eataewon.dto.BbsDto" >
+          update EATAEWONMEMBER
+          SET likepoint = likepoint+5
+          where id = ( select id from EATAEWONBBS where seq= #{seq})
+      </update>
+
+    <!--스크랩 취소시 likeponit -5 감소 -->
+      <update id="scrpointminus" parameterType="com.proj.eataewon.dto.BbsDto" >
+          update EATAEWONMEMBER
+          SET likepoint = likepoint-5
+          where id = ( select id from EATAEWONBBS where seq= #{seq})
+      </update>
+
 
     <!--좋아요 할때 likecnt 증가 / 중복 방지는 controller에서 -->
     <update id="likecntUpdate" parameterType="com.proj.eataewon.dto.LikeDto" >

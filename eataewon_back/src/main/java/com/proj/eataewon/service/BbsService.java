@@ -39,6 +39,10 @@ public class BbsService {
 		return dao.getBbs(seq);
 	}
 
+	public BbsFileDto getBbsDetail(int seq) {
+		return dao.getBbsDetail(seq);
+	}
+
 	public List<BbsDto> getBbsListSearch(BbsParam param) {
 		return dao.getBbsListSearch(param);
 	}
@@ -46,6 +50,13 @@ public class BbsService {
 	public List<BbsDto> getBbsListSearchPage(BbsParam param) {
 		return dao.getBbsListSearchPage(param);
 	}
+
+	public List<BbsFileDto> getBbsListFileSearchPage(BbsParam param) {
+		return dao.getBbsListFileSearchPage(param);
+	}
+
+
+
 
 	public int getBbsCount(BbsParam param) {
 		return dao.getBbsCount(param);
@@ -149,60 +160,57 @@ public class BbsService {
 		return n>0?true:false;
 	}
 
-
-/*
-
-	public void BbsImgUp(BbsDto bdto, HttpServletRequest request){
-		HttpSession session = request.getSession(false);
-		MemberDto mdto = (MemberDto) session.getAttribute("memberDto");
-		bdto.setId(mdto.getId());
-
-		boolean contentNo = writeBbs(bdto); //글쓰는 값 들어가면 true
-
-		//파일 업로드 path 설정
-		// getServletContext()를 사용하여 웹 서비스 디렉토리의 물리적 경로를 구한다.
-		String uploadPath=request.getSession().getServletContext().getRealPath("/resources/img/");
-
-
-		//파일 리스트를 getFile()로 받는다.
-
-		//List<MultipartFile> fileList=bdto.getPicture();
-		String fileList=bdto.getPicture();
-		ArrayList<String> nameList=new ArrayList<String>();
-		for(int i=0; i<fileList.length(); i++){
-			if(fileList.isEmpty()==false){
-				BbsDto bbsfileDto=new BbsDto();
-				//FileVO fileVO=new FileVO();
-				String fileName=fileList.get(i).getOriginalFilename();
-				if(fileName.equals("")==false){
-					try{
-						//업로드된 이미지 파일을 transferTo 메서드를 사용하여 업로드 경로에 전송한다.
-						fileList.get(i).transferTo(new File(uploadPath+fileName));
-						fileVO.setNo(contentNo);
-						fileVO.setFilepath(fileName);
-						boardVO.setFileVO(fileVO);
-						nameList.add(fileName);
-						//업로드된 파일의 정보를 데이터베이스에 저장한다.
-						boardDAO.freeboardWriteFileUpload(boardVO);
-					} catch (IllegalStateException | IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
+	public boolean likepointup(BbsDto dto) {
+		int n = dao.likepointup(dto);
+		if(n > 0) {
+			return true;
 		}
+		return false;
+	}
+
+	public boolean likepointdown(BbsDto dto) {
+		int n = dao.likepointdown(dto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean lppluspoint(BbsDto bdto) {
+		int n = dao.lppluspoint(bdto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
+	}
 
 
+	public boolean lpminuspoint(BbsDto bdto) {
+		int n = dao.lpminuspoint(bdto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
+	}
 
+	public boolean scrpointup(BbsDto bdto) {
+		int n = dao.scrpointup(bdto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
 
 	}
-*/
 
+	public boolean scrpointminus(BbsDto dto) {
+		int n = dao.scrpointminus(dto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
 
+	}
 }
-
-
-
-
 
 
 
