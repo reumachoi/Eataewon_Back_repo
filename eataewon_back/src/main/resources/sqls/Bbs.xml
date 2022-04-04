@@ -211,10 +211,11 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!--스크랩된 게시물 취소-->
     <!--eataewonscrap에 eataewonbbs의 primarykey를 참조하는 외래키를 참조하는 조건때문에
     스크랩된 게시물은 삭제가 안됐습니다. 스크랩 여부에 상관없이 글을 삭제할수 있도록 EATAEWONLIKE의 외래키 조건 삭제했습니다.-->
-    <update id="deleteScarp" parameterType="java.lang.Integer">
+    <delete id="deleteScarp" parameterType="java.lang.Integer">
         DELETE FROM EATAEWONSCRAP
         WHERE BBSSEQ=#{bbsseq}
-    </update>
+          AND ID = #{id}
+    </delete>
 
     <!--게시물 좋아요하기/ 부모키 없다는 오류 때문에 자료가 삽입이 안돼서서 일단 EATAEWONLIKE의 외래키 조건 삭제했습니다.-->
     <!--참고 사이트 : https://blog.naver.com/PostView.nhn?blogId=cksgy32&logNo=221675954355&parentCategoryNo=&categoryNo=78&viewDate=&isShowPopularPosts=true&from=search-->
@@ -255,17 +256,41 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     </update>
 
     <!--좋아요된 게시물 취소-->
-    <update id="deleteLike" parameterType="com.proj.eataewon.dto.LikeDto">
+    <delete id="deleteLike" parameterType="com.proj.eataewon.dto.LikeDto">
         DELETE FROM EATAEWONLike
          WHERE BBSSEQ=#{bbsseq}
            AND ID = #{id}
+    </delete>
+
+    <update id="likePWriteUp" parameterType="String">
+        update EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT+50
+        WHERE ID = #{id}
     </update>
 
+    <update id="likePHeartUp" parameterType="String">
+        update EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT+1
+        WHERE ID = #{id}
+    </update>
 
+    <update id="likePHeartDown" parameterType="String">
+        update EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT-1
+        WHERE ID = #{id}
+    </update>
 
+    <update id="likePScrapUp" parameterType="String">
+        update EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT+5
+        WHERE ID = #{id}
+    </update>
 
-
-
+    <update id="likePScrapDown" parameterType="String">
+        update EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT-5
+        WHERE ID = #{id}
+    </update>
 
 
 </mapper>

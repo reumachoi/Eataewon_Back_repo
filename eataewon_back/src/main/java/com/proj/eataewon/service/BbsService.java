@@ -158,55 +158,30 @@ public class BbsService {
 		int n = dao.writeBbsPic(dto);
 		return n>0?true:false;
 	}
-
-
-/*
-
-	public void BbsImgUp(BbsDto bdto, HttpServletRequest request){
-		HttpSession session = request.getSession(false);
-		MemberDto mdto = (MemberDto) session.getAttribute("memberDto");
-		bdto.setId(mdto.getId());
-
-		boolean contentNo = writeBbs(bdto); //글쓰는 값 들어가면 true
-
-		//파일 업로드 path 설정
-		// getServletContext()를 사용하여 웹 서비스 디렉토리의 물리적 경로를 구한다.
-		String uploadPath=request.getSession().getServletContext().getRealPath("/resources/img/");
-
-
-		//파일 리스트를 getFile()로 받는다.
-
-		//List<MultipartFile> fileList=bdto.getPicture();
-		String fileList=bdto.getPicture();
-		ArrayList<String> nameList=new ArrayList<String>();
-		for(int i=0; i<fileList.length(); i++){
-			if(fileList.isEmpty()==false){
-				BbsDto bbsfileDto=new BbsDto();
-				//FileVO fileVO=new FileVO();
-				String fileName=fileList.get(i).getOriginalFilename();
-				if(fileName.equals("")==false){
-					try{
-						//업로드된 이미지 파일을 transferTo 메서드를 사용하여 업로드 경로에 전송한다.
-						fileList.get(i).transferTo(new File(uploadPath+fileName));
-						fileVO.setNo(contentNo);
-						fileVO.setFilepath(fileName);
-						boardVO.setFileVO(fileVO);
-						nameList.add(fileName);
-						//업로드된 파일의 정보를 데이터베이스에 저장한다.
-						boardDAO.freeboardWriteFileUpload(boardVO);
-					} catch (IllegalStateException | IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-
-
-
-
+	public boolean LikePWriteUp(String id){
+		int n = dao.likePWriteUp(id);
+		return n>0?true:false;
 	}
-*/
 
+	public boolean LikePHeartUp(String id){
+		int n = dao.likePHeartUp(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePScrapUp(String id){
+		int n = dao.likePScrapUp(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePHeartDown(String id){
+		int n = dao.likePHeartDown(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePScrapDown(String id){
+		int n = dao.likePScrapDown(id);
+		return n>0?true:false;
+	}
 
 }
 

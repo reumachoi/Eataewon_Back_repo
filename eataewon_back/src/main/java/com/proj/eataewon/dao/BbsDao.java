@@ -57,6 +57,16 @@ public interface BbsDao {
     public int writeBbsPic(BbsPicDto dto);
 
     public boolean bbswriteImgup(BbsFileDto dto);
+
+    public int likePWriteUp(String id);
+
+    public int likePHeartUp(String id);
+
+    public int likePScrapUp(String id);
+
+    public int likePHeartDown(String id);
+
+    public int likePScrapDown(String id);
 }
 
 

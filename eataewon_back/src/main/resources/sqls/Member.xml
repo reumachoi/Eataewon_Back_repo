@@ -39,36 +39,6 @@
 		WHERE m.ID = #{id}
 	</select>
 
-	<update id="likePWriteUp" parameterType="String">
-		update EATAEWONMEMBER
-		SET LIKEPOINT = LIKEPOINT+50
-		WHERE ID = #{id}
-	</update>
-
-	<update id="likePHeartUp" parameterType="String">
-		update EATAEWONMEMBER
-		SET LIKEPOINT = LIKEPOINT+1
-		WHERE ID = #{id}
-	</update>
-
-	<update id="likePHeartDown" parameterType="String">
-		update EATAEWONMEMBER
-		SET LIKEPOINT = LIKEPOINT-1
-		WHERE ID = #{id}
-	</update>
-
-	<update id="likePScrapUp" parameterType="String">
-		update EATAEWONMEMBER
-		SET LIKEPOINT = LIKEPOINT+5
-		WHERE ID = #{id}
-	</update>
-
-	<update id="likePScrapDown" parameterType="String">
-		update EATAEWONMEMBER
-		SET LIKEPOINT = LIKEPOINT-5
-		WHERE ID = #{id}
-	</update>
-
 	<select id="getProfilPic" parameterType="String" resultType="String">
 		SELECT PROFILPIC
 		FROM EATAEWONMEMBER

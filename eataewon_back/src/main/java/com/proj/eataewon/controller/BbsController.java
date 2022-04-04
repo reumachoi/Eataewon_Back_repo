@@ -30,14 +30,6 @@ public class BbsController {
         return list;
     }
 
-    @RequestMapping(value = "/getBbsListApp", method = {RequestMethod.GET, RequestMethod.POST} )
-    public BbsDto getBbsListApp(@RequestBody int seq){
-        System.out.println("BbsController getBbsList " + seq);
-        System.out.println(service.getBbsListApp(seq).toString());
-
-        return service.getBbsListApp(seq);
-    }
-
     @RequestMapping(value = "/bbswrite", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbswrite(BbsDto dto) {
         System.out.println("BbsController bbswrite " + new Date());
@@ -47,14 +39,6 @@ public class BbsController {
             return "YES";
         }
         return "NO";
-    }
-
-    @RequestMapping(value = "/bbswriteApp", method = {RequestMethod.GET, RequestMethod.POST} )
-    public int bbswriteApp(@RequestBody BbsDto dto) {
-        System.out.println("BbsController bbswrite " + new Date());
-
-        int seq = service.writeBbsApp(dto);
-        return seq;
     }
 
     //picture string으로 만든 DB용 컨트롤러
@@ -93,14 +77,6 @@ public class BbsController {
         return service.getBbs(seq);
     }
 
-    @RequestMapping(value = "/plustReadcntApp", method=RequestMethod.POST)
-    public String plustReadcntApp(@RequestBody int seq) {
-        System.out.println(seq);
-        System.out.println("BbsController plustReadcntApp " + new Date());
-        String res = service.readcountApp(seq);
-        System.out.println(res);
-        return res;
-    }
 
     @RequestMapping(value = "/getBbsListSearch", method = {RequestMethod.GET, RequestMethod.POST} )
     public List<BbsDto> getBbsListSearch(BbsParam param){
@@ -162,14 +138,6 @@ public class BbsController {
         return "NO";
     }
 
-    @RequestMapping(value = "/bbsdeleteApp", method = {RequestMethod.GET, RequestMethod.POST} )
-    public Boolean bbsdeleteApp(@RequestBody int seq) {
-        System.out.println("BbsController bbsdeleteApp " + new Date());
-
-        Boolean b = service.deleteBbs(seq);
-        System.out.println("삭제결과 불리안값 "+ b);
-        return b;
-    }
 
     @RequestMapping(value="/likeBbs", method = {RequestMethod.GET, RequestMethod.POST})
     public String likeBbs(LikeDto dto){
@@ -187,6 +155,19 @@ public class BbsController {
         }
         return "DUP";
 
+    }
+
+    @RequestMapping(value="/likeBbsApp", method = RequestMethod.POST)
+    public Boolean likeBbsApp(LikeDto dto){
+        System.out.println("LikeDto likeBbs " + dto+ new Date());
+        return service.likeBbs(dto);
+    }
+
+    @RequestMapping(value="/bbsScrapApp", method =RequestMethod.POST)
+    public Boolean scrapBbsApp(ScrapDto dto){
+        System.out.println("ScrapDto bbsScrapApp " + new Date());
+
+        return service.bbsScrap(dto);
     }
 
     @RequestMapping(value = "/likeBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
@@ -223,6 +204,7 @@ public class BbsController {
     }
 
 
+
     @RequestMapping(value="/bbsScrap", method = {RequestMethod.GET, RequestMethod.POST})
     public String scrapBbs(ScrapDto dto){
         System.out.println("ScrapDto bbsScrap " + new Date());
@@ -236,7 +218,6 @@ public class BbsController {
             return "NO";
         }
         return "DUP";
-
     }
 
 
@@ -296,7 +277,4 @@ public class BbsController {
 
         return "YES";
     }
-
-
-
 }

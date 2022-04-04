@@ -14,6 +14,7 @@ public interface MemberDao {
 	public List<MemberDto> allMember();
 
 	public int getId(MemberDto dto);
+
 	public int getIdApp(String id);
 
 	public MemberDto login(MemberDto dto);
@@ -21,16 +22,6 @@ public interface MemberDao {
 	public int addmember(MemberDto dto);
 
 	public MemberBbsDto bbsGetUser(String id);
-
-	public int likePWriteUp(String id);
-
-	public int likePHeartUp(String id);
-
-	public int likePScrapUp(String id);
-
-	public int likePHeartDown(String id);
-
-	public int likePScrapDown(String id);
 
 	public String getProfilPic(String id);
 }
