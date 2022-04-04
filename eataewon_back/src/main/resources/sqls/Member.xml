@@ -69,6 +69,10 @@
 		WHERE ID = #{id}
 	</update>
 
-
+	<select id="getProfilPic" parameterType="String" resultType="String">
+		SELECT PROFILPIC
+		FROM EATAEWONMEMBER
+		WHERE ID = ${id}
+	</select>
 
 </mapper>

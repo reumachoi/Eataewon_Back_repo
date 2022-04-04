@@ -31,6 +31,8 @@ public interface MemberDao {
 	public int likePHeartDown(String id);
 
 	public int likePScrapDown(String id);
+
+	public String getProfilPic(String id);
 }
 
 

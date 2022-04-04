@@ -11,6 +11,12 @@
      <!--   ORDER BY READCNT DESC-->
     </select>
 
+    <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        FROM EATAEWONBBS
+        WHERE SEQ = #{seq}
+    </select>
+
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
         (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
@@ -18,6 +24,15 @@
         VALUES
         (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
         #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
+    </insert>
+
+    <insert id="writeBbsApp" parameterType="com.proj.eataewon.dto.BbsDto" useGeneratedKeys="true" keyProperty="seq">
+        INSERT INTO EATAEWONBBS
+            (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
+            ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT,shopphnum,shopurl, testurl)
+        VALUES
+            (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
+             #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
     </insert>
 
     <!--picture string인 테이블 따로 만들어 test중-->
@@ -28,6 +43,7 @@
             (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
              #{shopname}, #{address}, #{latitude},#{longtitude}, 0)
     </insert>
+
 
 
     <!--picture string인 테이블 따로 만들어 test중-->

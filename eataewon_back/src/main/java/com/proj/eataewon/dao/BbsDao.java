@@ -12,7 +12,11 @@ public interface BbsDao {
 
     public List<BbsDto> getBbsList();
 
+    public BbsDto getBbsListApp(int seq);
+
     public int writeBbs(BbsDto dto);
+
+    public int writeBbsApp(BbsDto dto);
 
     public void readcount(int seq);
 

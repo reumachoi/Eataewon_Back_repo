@@ -20,9 +20,19 @@ public class BbsService {
 		return dao.getBbsList();
 	}
 
+	public BbsDto getBbsListApp(int seq){
+		return dao.getBbsListApp(seq);
+	}
+
 	public boolean writeBbs(BbsDto dto) {
 		int n = dao.writeBbs(dto);
 		return n>0?true:false;
+	}
+
+	public int writeBbsApp(BbsDto dto) {
+		int n = dao.writeBbsApp(dto);
+		System.out.println("글저장 후 seq값 돌려받기 "+n);
+		return n;
 	}
 
 	public void readcount(int seq) {

@@ -30,6 +30,14 @@ public class BbsController {
         return list;
     }
 
+    @RequestMapping(value = "/getBbsListApp", method = {RequestMethod.GET, RequestMethod.POST} )
+    public BbsDto getBbsListApp(@RequestBody int seq){
+        System.out.println("BbsController getBbsList " + seq);
+        System.out.println(service.getBbsListApp(seq).toString());
+
+        return service.getBbsListApp(seq);
+    }
+
     @RequestMapping(value = "/bbswrite", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbswrite(BbsDto dto) {
         System.out.println("BbsController bbswrite " + new Date());
@@ -42,14 +50,11 @@ public class BbsController {
     }
 
     @RequestMapping(value = "/bbswriteApp", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String bbswriteApp(@RequestBody BbsDto dto) {
+    public int bbswriteApp(@RequestBody BbsDto dto) {
         System.out.println("BbsController bbswrite " + new Date());
 
-        boolean b = service.writeBbs(dto);
-        if(b) {
-            return "YES";
-        }
-        return "NO";
+        int seq = service.writeBbsApp(dto);
+        return seq;
     }
 
     //picture string으로 만든 DB용 컨트롤러

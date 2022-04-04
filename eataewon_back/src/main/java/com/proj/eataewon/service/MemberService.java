@@ -72,6 +72,10 @@ public class MemberService {
 		int n = dao.likePScrapDown(id);
 		return n>0?true:false;
 	}
+
+	public String getProfilPic(String id){
+		return dao.getProfilPic(id);
+	}
 }
 
 

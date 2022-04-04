@@ -167,6 +167,13 @@ public class MemberController {
 
 		return service.LikePScrapDown(id);
 	}
+
+	@RequestMapping(value="getProfilPicApp" method=RequestMethod.POST)
+	public String getProfilPic(@RequestBody String id){
+		System.out.println("MemberController getProfilPic "+id);
+		String pic = service.getProfilPic(id);
+		return pic;
+	}
 }
 
 
