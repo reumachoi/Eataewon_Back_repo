@@ -25,14 +25,6 @@ public class MemberService {
 		int n = dao.getId(dto);
 		return n>0?true:false;
     }
-
-	public boolean getIdApp(String id) {
-		System.out.println("+" + id + "+");
-		int n = dao.getIdApp(id);
-		System.out.println(n);
-		return n>0?true:false;
-	}
-
 	public MemberDto login(MemberDto dto) {
 		return dao.login(dto);
 	}

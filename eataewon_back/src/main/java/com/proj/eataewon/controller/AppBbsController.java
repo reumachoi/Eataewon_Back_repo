@@ -11,14 +11,11 @@ import java.util.Date;
 @RestController
 public class AppBbsController {
 
-
     @Autowired
     AppBbsService service;
 
     @Autowired
     BbsService bservice;
-
-    @Autowired
 
     @RequestMapping(value = "/getBbsListApp", method =  RequestMethod.POST)
     public BbsDto getBbsListApp(@RequestBody int seq) {
