@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.proj.eataewon.dao.MemberDao">
 
 	<select id="allMember" resultType="com.proj.eataewon.dto.MemberDto">
@@ -23,7 +23,7 @@
 
 	<insert id="addmember" parameterType="com.proj.eataewon.dto.MemberDto">
 		INSERT INTO EATAEWONMEMBER(ID,NAME,PWD,EMAIL,NICKNAME, PROFILPIC, LIKEPOINT, PROFILMSG)
-		VALUES(#{id},#{name}, #{pwd}, #{email}, #{nickname}, #{profilPic}, 0, #{profilMsg})
+		VALUES(#{id},#{name}, #{pwd}, #{email}, #{nickname}, #{profilpic}, 0, #{profilmsg})
 	</insert>
 
 	<select id="login" parameterType="com.proj.eataewon.dto.MemberDto"
@@ -38,5 +38,89 @@
 		FROM EATAEWONMEMBER m, EATAEWONBBS b
 		WHERE m.ID = #{id}
 	</select>
+
+	<select id="getnickname" parameterType="com.proj.eataewon.dto.MemberDto"
+			resultType="com.proj.eataewon.dto.MemberDto">
+		SELECT nickname
+		FROM EATAEWONMEMBER
+		WHERE ID=#{id}
+	</select>
+
+	<!--회원상세조회-->
+	<select id="detailMem" parameterType="java.lang.String" resultType="com.proj.eataewon.dto.MemberDto">
+		select id, name, email, pwd, nickname, profilpic,profilmsg, likepoint
+		from EATAEWONMEMBER
+		where id =#{id}
+	</select>
+
+	<!--회원정보 수정-->
+	<update id="updateMem" parameterType="com.proj.eataewon.dto.MemberDto">
+		UPDATE EATAEWONMEMBER
+		SET email=#{email}, pwd=#{pwd}, nickname=#{nickname},
+		profilmsg=#{profilmsg}, profilpic=#{profilpic}
+		WHERE id=#{id}
+	</update>
+
+	<!--회원탈퇴-->
+	<update id="deleteMem" parameterType="com.proj.eataewon.dto.MemberDto">
+		DELETE FROM EATAEWONMEMBER
+		WHERE id=#{id} AND pwd=#{pwd}
+	</update>
+
+
+	<select id="getProfilPic" parameterType="String" resultType="String">
+		SELECT PROFILPIC
+		FROM EATAEWONMEMBER
+		WHERE ID = ${id}
+	</select>
+
+	<!--글쓸때 likeponit 증가 -->
+	<update id="likePWriteUp" parameterType="com.proj.eataewon.dto.BbsDto" >
+		update EATAEWONMEMBER
+		SET likepoint = likepoint+50
+		WHERE id = #{id}
+	</update>
+
+	<!--글삭제시 likeponit 감소 -->
+	<update id="likePWriteDown" parameterType="com.proj.eataewon.dto.BbsDto" >
+		update EATAEWONMEMBER
+		SET likepoint = likepoint-50
+		WHERE id = #{id}
+	</update>
+
+	<!-- 스크랩시 likeponit +5증가-->
+	<update id="likePScrapUp" parameterType="com.proj.eataewon.dto.BbsDto" >
+		update EATAEWONMEMBER
+		SET likepoint = likepoint+5
+		where id = ( select id from EATAEWONBBS where seq= #{seq})
+	</update>
+
+	<!--스크랩 취소시 likeponit -5 감소 -->
+	<update id="likePScrapDown" parameterType="com.proj.eataewon.dto.BbsDto" >
+		update EATAEWONMEMBER
+		SET likepoint = likepoint-5
+		where id = ( select id from EATAEWONBBS where seq= #{seq})
+	</update>
+
+	<!--좋아요 누를시 likeponit 증가 -->
+	<update id="likePHeartUp" parameterType="com.proj.eataewon.dto.BbsDto" >
+		update EATAEWONMEMBER
+		SET likepoint = likepoint+1
+		where id = ( select id from EATAEWONBBS where seq= #{seq})
+	</update>
+
+	<!-- 좋아요 취소시 likeponit 감소 -->
+	<update id="likePHeartDown" parameterType="com.proj.eataewon.dto.BbsDto" >
+		update EATAEWONMEMBER
+		SET likepoint = likepoint-1
+		where id = ( select id from EATAEWONBBS where seq= #{seq})
+	</update>
+
+	<!--좋아요 할때 likecnt 증가 / 중복 방지는 controller에서 -->
+	<update id="likecntUpdate" parameterType="com.proj.eataewon.dto.LikeDto" >
+		update EATAEWONBBS
+		SET likecnt = likecnt+1
+		WHERE seq = #{bbsseq}
+	</update>
 
 </mapper>

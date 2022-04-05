@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.eataewon.dao.AppBbsDao">
+
+    <!--메인 페이지 Upper 영역 게시물 조회수 높은순 정렬-->
+    <select id="getUpperBbsListApp" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, NICKNAME, PICTURE, TITLE, READCNT, LIKECNT
+        FROM EATAEWONBBS
+        ORDER BY READCNT DESC
+    </select>
+
+    <!--메인 페이지 Lower 영역 게시물 최신순 정렬-->
+    <select id="getLowerBbsListApp" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT a.SEQ, a.SHOPNAME, a.ADDRESS, a.PICTURE, a.NICKNAME, a.CONTENT, a.HASHTAG, a.WDATE, b.PROFILPIC
+        FROM a.EATAEWONBBS, b.EATAEWONMEMBER
+        WHERE a.ID = b.ID
+        ORDER BY WDATE DESC
+    </select>
+
+    <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT, TESTURL
+        FROM EATAEWONBBS
+        WHERE SEQ = #{seq}
+    </select>
+
+    <insert id="writeBbsApp" parameterType="com.proj.eataewon.dto.BbsDto" useGeneratedKeys="true" keyProperty="seq">
+        INSERT INTO EATAEWONBBS
+        (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
+        ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT,shopphnum,shopurl, testurl)
+        VALUES
+        (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
+        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
+    </insert>
+
+    <update id="readcountApp" parameterType="java.lang.Integer">
+        UPDATE EATAEWONBBS
+        SET READCNT=READCNT+1
+        WHERE SEQ=#{seq}
+    </update>
+
+
+</mapper>

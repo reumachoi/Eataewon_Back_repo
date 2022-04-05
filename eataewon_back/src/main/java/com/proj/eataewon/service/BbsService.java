@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @Transactional
 public class BbsService {
-	
+
 	@Autowired
 	BbsDao dao;
 
@@ -29,14 +29,12 @@ public class BbsService {
 		dao.readcount(seq);
 	}
 
-	public String readcountApp(int seq) {
-		System.out.println("readcountApp 테스트" + seq);
-		int n = dao.readcountApp(seq);
-		return n>0?"Success":"Fail";
-	}
-
 	public BbsDto getBbs(int seq) {
 		return dao.getBbs(seq);
+	}
+
+	public BbsFileDto getBbsDetail(int seq) {
+		return dao.getBbsDetail(seq);
 	}
 
 	public List<BbsDto> getBbsListSearch(BbsParam param) {
@@ -47,23 +45,22 @@ public class BbsService {
 		return dao.getBbsListSearchPage(param);
 	}
 
+	public List<BbsFileDto> getBbsListFileSearchPage(BbsParam param) {
+		return dao.getBbsListFileSearchPage(param);
+	}
+
 	public int getBbsCount(BbsParam param) {
 		return dao.getBbsCount(param);
 	}
 
 	public boolean updateBbs(BbsDto dto) {
 		int n = dao.updateBbs(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
+		return n>0?true:false;
 	}
 
 	public boolean deleteBbs(int seq) {
 		int n = dao.deleteBbs(seq);
-		if(n == 0) return false;
-
-		return true;
+		return n>0?true:false;
 	}
 
 	public boolean bbsScrap(ScrapDto dto) {
@@ -89,9 +86,7 @@ public class BbsService {
 
 	public boolean deleteScarp(int seq) {
 		int n = dao.deleteScarp(seq);
-		if(n == 0) return false;
-
-		return true;
+		return n>0?true:false;
 	}
 
 	public boolean likeBbs(LikeDto dto) {
@@ -106,7 +101,6 @@ public class BbsService {
 		int n = dao.likebbsCnt(dto);
 		System.out.println("likebbsCnt : "  + n);
 		return n == 0 ? true : false;
-
 	}
 
 	public List<BbsDto> likeBbsList(BbsDto dto) {
@@ -117,92 +111,22 @@ public class BbsService {
 
 	public boolean likecntUpdate(LikeDto dto) {
 		int n = dao.likecntUpdate(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
+		return n>0?true:false;
 	}
 
 	public boolean likecntDown(LikeDto dto) {
 		int n = dao.likecntDown(dto);
-		if(n>0){
-			return true;
-		}
-		return false;
-
+		return n>0?true:false;
 	}
 
 	public boolean deleteLike(LikeDto dto) {
 		int n = dao.deleteLike(dto);
-		if(n == 0) return false;
-
-		return true;
+		return n>0?true:false;
 	}
 
 	public boolean bbswriteImgup(BbsFileDto dto) {
 		return dao.bbswriteImgup(dto);
 	}
 
-	//picture string으로 만든 DB용 서비스
-	public boolean writeBbsPic(BbsPicDto dto) {
-		int n = dao.writeBbsPic(dto);
-		return n>0?true:false;
-	}
-
-
-/*
-
-	public void BbsImgUp(BbsDto bdto, HttpServletRequest request){
-		HttpSession session = request.getSession(false);
-		MemberDto mdto = (MemberDto) session.getAttribute("memberDto");
-		bdto.setId(mdto.getId());
-
-		boolean contentNo = writeBbs(bdto); //글쓰는 값 들어가면 true
-
-		//파일 업로드 path 설정
-		// getServletContext()를 사용하여 웹 서비스 디렉토리의 물리적 경로를 구한다.
-		String uploadPath=request.getSession().getServletContext().getRealPath("/resources/img/");
-
-
-		//파일 리스트를 getFile()로 받는다.
-
-		//List<MultipartFile> fileList=bdto.getPicture();
-		String fileList=bdto.getPicture();
-		ArrayList<String> nameList=new ArrayList<String>();
-		for(int i=0; i<fileList.length(); i++){
-			if(fileList.isEmpty()==false){
-				BbsDto bbsfileDto=new BbsDto();
-				//FileVO fileVO=new FileVO();
-				String fileName=fileList.get(i).getOriginalFilename();
-				if(fileName.equals("")==false){
-					try{
-						//업로드된 이미지 파일을 transferTo 메서드를 사용하여 업로드 경로에 전송한다.
-						fileList.get(i).transferTo(new File(uploadPath+fileName));
-						fileVO.setNo(contentNo);
-						fileVO.setFilepath(fileName);
-						boardVO.setFileVO(fileVO);
-						nameList.add(fileName);
-						//업로드된 파일의 정보를 데이터베이스에 저장한다.
-						boardDAO.freeboardWriteFileUpload(boardVO);
-					} catch (IllegalStateException | IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-
-
-
-
-	}
-*/
-
 
 }
-
-
-
-
-
-
-
