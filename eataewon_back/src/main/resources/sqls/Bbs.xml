@@ -421,6 +421,20 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         WHERE SEQ=#{seq}
     </update>
 
+    <!--글쓸때 likeponit 증가 -->
+    <update id="likepointupfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+50
+        WHERE id = #{id}
+    </update>
+
+    <!--글삭제시 likeponit 감소 -->
+    <update id="likepointdownfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-50
+        WHERE id = #{id}
+    </update>
+
 
     <!--좋아요-->
     <insert id="likeBbsFile" parameterType="com.proj.eataewon.dto.LikeDto">
@@ -511,10 +525,10 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!--스크랩된 게시물 취소-->
     <!--eataewonscrap에 eataewonbbs의 primarykey를 참조하는 외래키를 참조하는 조건때문에
     스크랩된 게시물은 글 삭제가 불가능했습니다. 스크랩 여부에 상관없이 글을 삭제할수 있도록 EATAESCRAP의 외래키 조건 삭제했습니다.-->
-    <update id="deleteScrapfile" parameterType="com.proj.eataewon.dto.BbsFileDto">
+    <update id="deleteScrapfile" parameterType="com.proj.eataewon.dto.ScrapDto">
         DELETE FROM EATAEWONSCRAP
         WHERE BBSSEQ=#{bbsseq}
-        and id = #{id}
+        AND ID = #{id}
     </update>
 
     <!-- 스크랩시 likeponit +5증가-->

@@ -303,7 +303,7 @@ public class BbsService {
 		return dao.scrapBbsListfile(dto);
 	}
 
-	public boolean deleteScrapfile(BbsFileDto dto) {
+	public boolean deleteScrapfile(ScrapDto dto) {
 		int n = dao.deleteScrapfile(dto);
 		if(n == 0) return false;
 
@@ -320,6 +320,22 @@ public class BbsService {
 
 	public int getBbsFileCount(BbsParam param) {
 		return dao.getBbsFileCount(param);
+	}
+
+	public boolean likepointupfile(BbsFileDto dto) {
+		int n = dao.likepointupfile(dto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean likepointdownfile(BbsFileDto dto) {
+		int n = dao.likepointdownfile(dto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
 	}
 }
 
