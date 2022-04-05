@@ -128,26 +128,6 @@ public class BbsService {
 		return dao.bbswriteImgup(dto);
 	}
 
-
-
-	public BbsDto getBbsListApp(int seq){
-		return dao.getBbsListApp(seq);
-	}
-
-
-	public int writeBbsApp(BbsDto dto) {
-		int n = dao.writeBbsApp(dto);
-		System.out.println("글저장 후 seq값 돌려받기 "+n);
-		return n;
-	}
-
-	public String readcountApp(int seq) {
-		System.out.println("readcountApp 테스트" + seq);
-		int n = dao.readcountApp(seq);
-		return n>0?"Success":"Fail";
-	}
-
-
 }
 
 

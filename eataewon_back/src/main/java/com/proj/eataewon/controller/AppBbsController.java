@@ -1,6 +1,7 @@
 package com.proj.eataewon.controller;
 
 import com.proj.eataewon.dto.*;
+import com.proj.eataewon.service.AppBbsService;
 import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +13,14 @@ public class AppBbsController {
 
 
     @Autowired
-    BbsService service;
+    AppBbsService service;
 
+    @Autowired
+    BbsService bservice;
 
-    @RequestMapping(value = "/getBbsListApp", method = {RequestMethod.GET, RequestMethod.POST})
+    @Autowired
+
+    @RequestMapping(value = "/getBbsListApp", method =  RequestMethod.POST)
     public BbsDto getBbsListApp(@RequestBody int seq) {
         System.out.println("BbsController getBbsList " + seq);
         System.out.println(service.getBbsListApp(seq).toString());
@@ -28,6 +33,9 @@ public class AppBbsController {
         System.out.println("BbsController bbswrite " + new Date());
 
         int seq = service.writeBbsApp(dto);
+        if(seq>0){
+
+        }
         return seq;
     }
 
@@ -45,7 +53,7 @@ public class AppBbsController {
     public Boolean bbsdeleteApp(@RequestBody int seq) {
         System.out.println("BbsController bbsdeleteApp " + new Date());
 
-        Boolean b = service.deleteBbs(seq);
+        Boolean b = bservice.deleteBbs(seq);
         System.out.println("삭제결과 불리안값 " + b);
         return b;
     }

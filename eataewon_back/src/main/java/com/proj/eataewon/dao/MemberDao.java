@@ -46,15 +46,6 @@ public interface MemberDao {
 
 	public int likePScrapDown(BbsDto dto);
 
-	public int LikePWriteUp(String id);
-
-	public int LikePHeartUp(String id);
-
-	public int LikePScrapUp(String id);
-
-	public int LikePHeartDown(String id);
-
-	public int LikePScrapDown(String id);
 }
 
 
