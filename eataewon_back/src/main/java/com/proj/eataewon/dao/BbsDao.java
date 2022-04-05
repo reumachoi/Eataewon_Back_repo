@@ -18,13 +18,9 @@ public interface BbsDao {
 
     public BbsDto getBbs(int seq);
 
-    public BbsFileDto getBbsDetail(int seq);
-
     public List<BbsDto> getBbsListSearch(BbsParam param);
 
     public List<BbsDto> getBbsListSearchPage(BbsParam param);
-
-    public List<BbsFileDto> getBbsListFileSearchPage(BbsParam param);
 
     public int getBbsCount(BbsParam param);
 
@@ -52,8 +48,6 @@ public interface BbsDao {
 
     public int likecntDown(LikeDto dto);
 
-    public boolean bbswriteImgup(BbsFileDto dto);
-
     public int likepointup(BbsDto dto);
 
     public int likepointdown(BbsDto dto);
@@ -65,6 +59,48 @@ public interface BbsDao {
     public int scrpointup(BbsDto bdto);
 
     public int scrpointminus(BbsDto dto);
+
+    public List<BbsFileDto> getBbsListFileSearchPage(BbsParam param);
+
+    public BbsFileDto getBbsDetail(int seq);
+
+    public boolean bbswriteImgup(BbsFileDto dto);
+
+    public void readcountFile(int seq);
+
+    public int updateBbsFile(BbsFileDto dto);
+
+    public int deleteBbsFile(int seq);
+
+    public int likeBbsFile(LikeDto dto);
+
+    public List<BbsFileDto> likeBbsListFile(BbsFileDto dto);
+
+    public int likebbsfileCnt(LikeDto dto);
+
+    public int lpplusfilepoint(BbsFileDto fdto);
+
+    public int likecntfileUpdate(LikeDto dto);
+
+    public int likecntDownfile(LikeDto dto);
+
+    public int lpminuspointfile(BbsFileDto fdto);
+
+    public int deleteLikefile(LikeDto dto);
+
+    public int scrapBbsCntfile(ScrapDto dto);
+
+    public int scrpointupfile(BbsFileDto bdto);
+
+    public int bbsScrapfile(ScrapDto dto);
+
+    public List<BbsFileDto> scrapBbsListfile(BbsFileDto dto);
+
+    public int deleteScrapfile(BbsFileDto dto);
+
+    public int scrpointminusfile(BbsFileDto dto);
+
+    public int getBbsFileCount(BbsParam param);
 }
 
 

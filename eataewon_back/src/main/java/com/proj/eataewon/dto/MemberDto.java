@@ -9,12 +9,14 @@ public class MemberDto {
     private String profilpic;
     private int likepoint;
     private String profilmsg;
+    private int del;
 
     public MemberDto(){
 
     }
 
-    public MemberDto(String id, String name, String pwd, String email, String nickname, String profilpic, int likepoint, String profilmsg) {
+    public MemberDto(String id, String name, String pwd, String email, String nickname,
+                     String profilpic, int likepoint, String profilmsg, int del) {
         this.id = id;
         this.name = name;
         this.pwd = pwd;
@@ -23,6 +25,7 @@ public class MemberDto {
         this.profilpic = profilpic;
         this.likepoint = likepoint;
         this.profilmsg = profilmsg;
+        this.del = del;
     }
 
     public String getId() {
@@ -89,6 +92,14 @@ public class MemberDto {
         this.profilmsg = profilmsg;
     }
 
+    public int getDel() {
+        return del;
+    }
+
+    public void setDel(int del) {
+        this.del = del;
+    }
+
     @Override
     public String toString() {
         return "MemberDto{" +
@@ -97,9 +108,10 @@ public class MemberDto {
                 ", pwd='" + pwd + '\'' +
                 ", email='" + email + '\'' +
                 ", nickname='" + nickname + '\'' +
-                ", profilPic=" + profilpic +
+                ", profilpic='" + profilpic + '\'' +
                 ", likepoint=" + likepoint +
-                ", profilMsg='" + profilmsg + '\'' +
+                ", profilmsg='" + profilmsg + '\'' +
+                ", del=" + del +
                 '}';
     }
 }
