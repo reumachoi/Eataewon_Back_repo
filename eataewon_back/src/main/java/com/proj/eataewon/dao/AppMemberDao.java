@@ -20,6 +20,8 @@ public interface AppMemberDao {
 
 	public int LikePWriteUp(String id);
 
+	public int LikePWriteDown(String id);
+
 	public int LikePHeartUp(String id);
 
 	public int LikePScrapUp(String id);
@@ -27,6 +29,10 @@ public interface AppMemberDao {
 	public int LikePHeartDown(String id);
 
 	public int LikePScrapDown(String id);
+
+	public MemberDto findUserData(MemberDto dto);
+
+	public int updateUserData(MemberDto dto);
 }
 
 

@@ -118,6 +118,13 @@ public class AppMemberController {
 		return service.LikePScrapUp(id);
 	}
 
+	@RequestMapping(value="/LikePWriteDown", method=RequestMethod.POST)
+	public Boolean LikePWriteDown(@RequestBody String id){
+		System.out.println("AppMemberController LikePWriteUp " + id);
+
+		return service.LikePWriteDown(id);
+	}
+
 	@RequestMapping(value="/LikePHeartDown", method=RequestMethod.POST)
 	public Boolean LikePHeartDown(@RequestBody String id){
 		System.out.println("MemberController LikePHeartUp " + id);
@@ -130,6 +137,18 @@ public class AppMemberController {
 		System.out.println("MemberController LikePScrapUp " + id);
 
 		return service.LikePScrapDown(id);
+	}
+
+	@RequestMapping(value="findUserData", method = RequestMethod.POST)
+	public MemberDto findUserData(@RequestBody MemberDto dto){
+		System.out.println("AppMemberController findUserData "+dto);
+		return service.findUserData(dto);
+	}
+
+	@RequestMapping(value = "updateUserData", method = RequestMethod.POST)
+	public Boolean updateUserData(@RequestBody MemberDto dto){
+		System.out.println("AppMemberController updateUserData "+dto);
+		return service.updateUserData(dto);
 	}
 
 }

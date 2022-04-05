@@ -36,8 +36,14 @@ public class AppMemberService {
 		int n = dao.resetPwd(dto);
 		return n>0?true:false;
 	}
+
 	public boolean LikePWriteUp(String id){
 		int n = dao.LikePWriteUp(id);
+		return n>0?true:false;
+	}
+
+	public boolean LikePWriteDown(String id){
+		int n = dao.LikePWriteDown(id);
 		return n>0?true:false;
 	}
 
@@ -58,6 +64,15 @@ public class AppMemberService {
 
 	public boolean LikePScrapDown(String id){
 		int n = dao.LikePScrapDown(id);
+		return n>0?true:false;
+	}
+
+	public MemberDto findUserData(MemberDto dto){
+		return dao.findUserData(dto);
+	}
+
+	public boolean updateUserData(MemberDto dto){
+		int n = dao.updateUserData(dto);
 		return n>0?true:false;
 	}
 }
