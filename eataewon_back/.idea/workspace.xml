@@ -5,34 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/UploadController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsFileDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/LikeDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/ScrapDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/UploadResultDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/BbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/BbsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppBbsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppBbsDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/BbsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/BbsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/MemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/MemberDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberDto.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Member.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppMemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppMemberController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/AppMemberDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/AppMemberDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/MemberDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/MemberDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/MemberDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/MemberDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/AppMemberService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/AppMemberService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sqls/AppMember.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/AppMember.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Member.xml" afterDir="false" />
     </list>
@@ -82,10 +69,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="GitStage.ChangesTree.GroupingKeys" value="directory&#10;module&#10;repository" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../새 폴더/Eataewon_Back_repo-developer/eataewon_back" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
   </component>
   <component name="RecentsManager">
@@ -146,6 +139,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eataewon_back" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.proj.eataewon.DemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="애플리케이션.DemoApplication" />
@@ -162,8 +162,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647331913379</updated>
+      <workItem from="1649166794763" duration="324000" />
+      <workItem from="1649167138443" duration="1158000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

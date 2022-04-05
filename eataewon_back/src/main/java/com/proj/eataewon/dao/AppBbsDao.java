@@ -10,8 +10,6 @@ import java.util.List;
 @Repository
 public interface AppBbsDao {
 
-
-
     public BbsDto getBbsListApp(int seq);
 
     public int writeBbsApp(BbsDto dto);

@@ -30,23 +30,6 @@
              #{shopname}, #{address}, #{latitude},#{longtitude}, 0)
     </insert>
 
-
-    <!--picture string인 테이블 따로 만들어 test중-->
-    <insert id="bbswriteImgup" parameterType="com.proj.eataewon.dto.BbsFileDto">
-        INSERT INTO eataewonBbsfile
-        (ID,SEQ,TITLE,CONTENT,FILENAME,FILEPATH,HASHTAG,WDATE,SHOPNAME,ADDRESS,LATITUDE,LONGTITUDE,READCNT,LIKECNT)
-        VALUES
-        ( #{id}, picSeq.NEXTVAL, #{title}, #{content}, #{filename}, #{filepath}, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0)
-    </insert>
-
-    <!-- 글 상세페이지 보기 -->
-    <select id="getBbsDetail" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsFileDto">
-        SELECT SEQ, ID, TITLE, CONTENT ,FILENAME,FILEPATH, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
-        FROM eataewonBbsfile
-        WHERE SEQ=#{seq}
-    </select>
-
     <!-- 글 상세페이지 보기 -->
     <select id="getBbs" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
         SELECT SEQ, Nickname, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT,shopphnum,shopurl
@@ -263,7 +246,22 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         WHERE id = #{id}
     </update>
 
-<!--좋아요 누를시 likeponit 증가 -->
+    <!-- 스크랩시 likeponit +5증가-->
+    <update id="scrpointupfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+5
+        where id = ( select id from eataewonbbsfile where seq= #{seq})
+    </update>
+
+    <!--스크랩 취소시 likeponit -5 감소 -->
+    <update id="scrpointminusfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-5
+        where id = ( select id from eataewonbbsfile where seq= #{seq})
+    </update>
+
+
+    <!--좋아요 누를시 likeponit 증가 -->
     <update id="lppluspoint" parameterType="com.proj.eataewon.dto.BbsDto" >
         update EATAEWONMEMBER
         SET likepoint = likepoint+1
@@ -297,7 +295,7 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         DELETE FROM EATAEWONLike
          WHERE BBSSEQ=#{bbsseq}
            AND ID = #{id}
-    </update>
+    </delete>
 
 
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@이미지 나오는 게시판 따로 만들어서 테스트 중@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
@@ -314,8 +312,7 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
 
     <!-- 사진 포함 상세페이지 보기 -->
     <select id="getBbsDetail" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsFileDto">
-        SELECT SEQ, ID, nickname, TITLE, CONTENT ,FILENAME,FILEPATH, HASHTAG ,WDATE, SHOPNAME,
-        ADDRESS, LATITUDE,LONGTITUDE,READCNT, LIKECNT,shopphnum,shopurl
+        SELECT *
         FROM eataewonbbsfile
         WHERE SEQ=#{seq}
     </select>
@@ -357,7 +354,7 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     </select>
 
     <!--글 목록 보기-->
-  <select id="getBbsListFile" resultType="com.proj.eataewon.dto.BbsFileDto">
+    <select id="getBbsListFile" resultType="com.proj.eataewon.dto.BbsFileDto">
         SELECT SEQ, nickname, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
         FROM eataewonbbsfile
     </select>
@@ -543,19 +540,6 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         and id = #{id}
     </update>
 
-    <!-- 스크랩시 likeponit +5증가-->
-    <update id="scrpointupfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
-        update EATAEWONMEMBER
-        SET likepoint = likepoint+5
-        where id = ( select id from eataewonbbsfile where seq= #{seq})
-    </update>
-
-    <!--스크랩 취소시 likeponit -5 감소 -->
-    <update id="scrpointminusfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
-        update EATAEWONMEMBER
-        SET likepoint = likepoint-5
-        where id = ( select id from eataewonbbsfile where seq= #{seq})
-    </update>
 
 
 

@@ -43,11 +43,6 @@ public class BbsService {
 		return dao.getBbsListSearchPage(param);
 	}
 
-	public List<BbsFileDto> getBbsListFileSearchPage(BbsParam param) {
-		return dao.getBbsListFileSearchPage(param);
-	}
-
-
 	public int getBbsCount(BbsParam param) {
 		return dao.getBbsCount(param);
 	}
@@ -121,58 +116,6 @@ public class BbsService {
 	public boolean deleteLike(LikeDto dto) {
 		int n = dao.deleteLike(dto);
 		return n>0?true:false;
-	}
-
-
-	public boolean likepointup(BbsDto dto) {
-		int n = dao.likepointup(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean likepointdown(BbsDto dto) {
-		int n = dao.likepointdown(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean lppluspoint(BbsDto bdto) {
-		int n = dao.lppluspoint(bdto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-	}
-
-
-	public boolean lpminuspoint(BbsDto bdto) {
-		int n = dao.lpminuspoint(bdto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean scrpointup(BbsDto bdto) {
-		int n = dao.scrpointup(bdto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-
-	}
-
-	public boolean scrpointminus(BbsDto dto) {
-		int n = dao.scrpointminus(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-
 	}
 
 	public BbsFileDto getBbsDetail(int seq) {

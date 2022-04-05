@@ -29,6 +29,14 @@
         WHERE ID = #{id}
     </update>
 
+
+    <update id="LikePWriteDown" parameterType="String">
+        UPDATE EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT-50
+        WHERE ID = #{id}
+    </update>
+
+
     <update id="LikePHeartUp" parameterType="String">
         UPDATE EATAEWONMEMBER
         SET LIKEPOINT = LIKEPOINT+1
@@ -53,4 +61,15 @@
         WHERE ID = #{id}
     </update>
 
+    <select id="findUserData" parameterType="com.proj.eataewon.dto.MemberDto">
+        SELECT *
+        FROM EATAEWONMEMBER
+        WHERE ID=#{id} AND NICKNAME=#{nickname}
+    </select>
+
+    <update id="updateUserData" parameterType="com.proj.eataewon.dto.MemberDto">
+        UPDATE EATAEWONMEMBER
+        SET EMAIL=#{email} AND NICKNAME=#{nickname} AND PROFILMSG=#{profilmsg}
+        WHERE ID=#{id}
+    </update>
 </mapper>
