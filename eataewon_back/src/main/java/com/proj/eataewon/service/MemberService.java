@@ -100,31 +100,6 @@ public class MemberService {
 		return n>0?true:false;
 
 	}
-
-	public boolean LikePWriteUp(String id){
-		int n = dao.LikePWriteUp(id);
-		return n>0?true:false;
-	}
-
-	public boolean LikePHeartUp(String id){
-		int n = dao.LikePHeartUp(id);
-		return n>0?true:false;
-	}
-
-	public boolean LikePScrapUp(String id){
-		int n = dao.LikePScrapUp(id);
-		return n>0?true:false;
-	}
-
-	public boolean LikePHeartDown(String id){
-		int n = dao.LikePHeartDown(id);
-		return n>0?true:false;
-	}
-
-	public boolean LikePScrapDown(String id){
-		int n = dao.LikePScrapDown(id);
-		return n>0?true:false;
-	}
 }
 
 
