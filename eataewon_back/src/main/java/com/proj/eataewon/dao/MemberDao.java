@@ -16,8 +16,6 @@ public interface MemberDao {
 
 	public int getId(MemberDto dto);
 
-	public int getIdApp(String id);
-
 	public MemberDto login(MemberDto dto);
 
 	public int addmember(MemberDto dto);
