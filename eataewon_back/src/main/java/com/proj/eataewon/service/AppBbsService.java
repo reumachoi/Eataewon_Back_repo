@@ -34,7 +34,15 @@ public class AppBbsService {
 		return n>0?"Success":"Fail";
 	}
 
+	public boolean checkUserLike(LikeDto dto){
+		int n = dao.checkUserLike(dto);
+		return n>0?true:false;
+	}
 
+	public boolean checkUserScrap(ScrapDto dto){
+		int n = dao.checkUserScrap(dto);
+		return n>0?true:false;
+	}
 }
 
 

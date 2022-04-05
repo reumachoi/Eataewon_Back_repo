@@ -14,6 +14,10 @@ public interface AppMemberDao {
 
 	public int getIdApp(String id);
 
+	public String getEmailApp(String email);
+
+	public int resetPwd(MemberDto dto);
+
 	public int LikePWriteUp(String id);
 
 	public int LikePHeartUp(String id);

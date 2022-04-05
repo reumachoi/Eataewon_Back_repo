@@ -25,6 +25,17 @@ public class AppMemberService {
 		return n>0?true:false;
 	}
 
+	public String getEmailApp(String email) {
+		System.out.println("+" + email + "+");
+		String id = dao.getEmailApp(email);
+		System.out.println("이메일로찾은 아이디 "+id);
+		return id;
+	}
+
+	public Boolean resetPwd(MemberDto dto){
+		int n = dao.resetPwd(dto);
+		return n>0?true:false;
+	}
 	public boolean LikePWriteUp(String id){
 		int n = dao.LikePWriteUp(id);
 		return n>0?true:false;

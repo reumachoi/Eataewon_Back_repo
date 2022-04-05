@@ -18,7 +18,9 @@ public interface AppBbsDao {
 
     public int readcountApp(int seq);
 
+    public int checkUserLike(LikeDto dto);
 
+    public int checkUserScrap(ScrapDto dto);
 
 }
 

@@ -24,6 +24,7 @@ public class AppMemberController {
 	MemberService mservice;
 
 	//아이디 중복확인
+	//동일한 아이디를 가진 유저가 있는지 (아이디비번찾기)
 	@RequestMapping(value="/getIdApp", method= RequestMethod.POST )
 	public String getIdApp(@RequestBody String id) {
 		System.out.println("MemberController getID" + id);
@@ -35,6 +36,13 @@ public class AppMemberController {
 		return "OK";
 	}
 
+	//동일한 이메일을 가진 유저가 있는지 (아이디비번찾기)
+	@RequestMapping(value="/getEmailApp", method= RequestMethod.POST )
+	public String getEmailApp(@RequestBody String email) {
+		System.out.println("MemberController getEailApp" + email);
+
+		return service.getEmailApp(email);
+	}
 
 	//로그인 체크
 	@RequestMapping(value="/loginApp", method= RequestMethod.POST)
@@ -66,22 +74,32 @@ public class AppMemberController {
 	//글에 저장된 아이디로 유저정보 가져오기
 	@RequestMapping(value = "/bbsGetUser", method = RequestMethod.POST)
 	public MemberBbsDto bbsGetUser(@RequestBody String id){
-		System.out.println("MemberController bbsGetUser");
+		System.out.println("AppMemberController bbsGetUser");
 		System.out.println("String id: " + id);
 
 		return mservice.bbsGetUser(id);
 	}
 
-	//글쓴이 프로필사진 가져오기	@RequestMapping(value="getProfilPicApp", method=RequestMethod.POST)
+	//글쓴이 프로필사진 가져오기
+	@RequestMapping(value="/getProfilPicApp", method=RequestMethod.POST)
 	public String getProfilPic(@RequestBody String id){
-		System.out.println("MemberController getProfilPic "+id);
+		System.out.println("AppMemberController getProfilPic "+id);
 		String pic = mservice.getProfilPic(id);
 		return pic;
 	}
 
+	//아이디찾기후 비밀번호 재설정
+	@RequestMapping(value = "/resetPwd", method = RequestMethod.POST)
+	public Boolean resetPwd(@RequestBody MemberDto dto){
+		System.out.println("AppMemberController resetPwd "+dto);
+		boolean b = service.resetPwd(dto);
+		System.out.println("비밀번호 재설정 성공/실패?? " + b);
+		return b;
+	}
+
 	@RequestMapping(value="/LikePWriteUp", method=RequestMethod.POST)
 	public Boolean LikePWriteUp(@RequestBody String id){
-		System.out.println("MemberController LikePWriteUp " + id);
+		System.out.println("AppMemberController LikePWriteUp " + id);
 
 		return service.LikePWriteUp(id);
 	}

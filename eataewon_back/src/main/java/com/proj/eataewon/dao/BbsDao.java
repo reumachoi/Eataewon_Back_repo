@@ -48,7 +48,7 @@ public interface BbsDao {
 
     public List<BbsDto> likeBbsList(BbsDto dto);
 
-    public int deleteScarp(int seq);
+    public int deleteScrap(ScrapDto dto);
 
     public int scrapBbsCnt(ScrapDto dto);
 

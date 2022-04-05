@@ -27,5 +27,16 @@
         WHERE SEQ=#{seq}
     </update>
 
+    <select id="checkUserLike" parameterType="com.proj.eataewon.dto.LikeDto" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM EATAEWONLIKE
+        WHERE BBSSEQ = #{bbsseq} AND ID = #{id}
+    </select>
+
+    <select id="checkUserScrap" parameterType="com.proj.eataewon.dto.ScrapDto" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM EATAEWONSCRAP
+        WHERE BBSSEQ = #{bbsseq} AND ID = #{id}
+    </select>
 
 </mapper>

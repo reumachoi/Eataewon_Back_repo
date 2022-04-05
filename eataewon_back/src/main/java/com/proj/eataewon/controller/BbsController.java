@@ -243,8 +243,8 @@ public class BbsController {
         return list;
     }
 
-
-    @RequestMapping(value = "/deleteScarp", method = {RequestMethod.GET, RequestMethod.POST} )
+    //나현님 수정하실 예정
+  /*  @RequestMapping(value = "/deleteScarp", method = {RequestMethod.GET, RequestMethod.POST} )
     public String deleteScarp(@RequestParam(value = "json[]")List<Integer> list, BbsDto dto) {
         System.out.println("BbsController deleteScarp " + new Date());
         System.out.println("deleteScarp " +list.toString());
@@ -253,7 +253,7 @@ public class BbsController {
         for (int n : list) {
             System.out.println(n);
             dto.setSeq(n);
-            boolean b = service.deleteScarp(n);
+            boolean b = service.deleteScrap(n);
             boolean c = mservice.likePScrapDown(dto); //스크랩 취소시 호감도 -5감소
             if (b) {
                 answer = "OK";
@@ -262,7 +262,7 @@ public class BbsController {
         }
         return answer;
 
-    }
+    }*/
 //
 //
 //    @RequestMapping(value="/bbswriteImgup", method = {RequestMethod.GET, RequestMethod.POST})

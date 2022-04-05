@@ -84,8 +84,8 @@ public class BbsService {
 	}
 
 
-	public boolean deleteScarp(int seq) {
-		int n = dao.deleteScarp(seq);
+	public boolean deleteScrap(ScrapDto dto) {
+		int n = dao.deleteScrap(dto);
 		return n>0?true:false;
 	}
 
