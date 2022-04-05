@@ -52,6 +52,7 @@ public class BbsController {
     }
 
 
+
     @PostMapping(DEFAULT_URI + "/multi")
     public String uploadMulti(@RequestParam("files") List<MultipartFile> files) throws Exception {
         String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
@@ -76,13 +77,7 @@ public class BbsController {
         return service.getBbs(seq);
     }
 
-    @RequestMapping(value = "/bbsFileDetail", method = {RequestMethod.GET, RequestMethod.POST} )
-    public BbsFileDto bbsFileDetail(int seq) {
-        System.out.println("BbsController BbsDto " + new Date());
 
-        service.readcount(seq);
-        return service.getBbsDetail(seq);
-    }
 
     @RequestMapping(value = "/getBbsListSearch", method = {RequestMethod.GET, RequestMethod.POST} )
     public List<BbsDto> getBbsListSearch(BbsParam param){
@@ -108,20 +103,6 @@ public class BbsController {
 
 
 
-    @RequestMapping(value = "/getBbsListFileSearchPage", method = {RequestMethod.GET, RequestMethod.POST} )
-    public List<BbsFileDto> getBbsListFileSearchPage(BbsParam param){
-        System.out.println("BbsController getBbsListFileSearchPage " + new Date());
-
-        // 페이지 설정
-        int sn = param.getPage();	// 0 1 2 3 ~
-        int start = sn * 10 + 1;	// 1	11
-        int end = (sn + 1) * 10;	// 10	20
-
-        param.setStart(start);
-        param.setEnd(end);
-
-        return service.getBbsListFileSearchPage(param);
-    }
 
     @RequestMapping(value = "/getBbsCount", method = {RequestMethod.GET, RequestMethod.POST} )
     public int getBbsCount(BbsParam param) {
@@ -262,39 +243,11 @@ public class BbsController {
         }
         return answer;
 
-    }*/
-//
-//
-//    @RequestMapping(value="/bbswriteImgup", method = {RequestMethod.GET, RequestMethod.POST})
-//    public String writeAction(
-//            HttpServletRequest req,
-//            @RequestParam("id") String id,
-//            @RequestParam("title")String title,
-//            @RequestParam("filename") MultipartFile filename,
-//            @RequestParam("filepath") MultipartFile filepath,
-//            @RequestParam("content") String contents,
-//            @RequestParam("hashtag") String hashtag,
-////            @RequestParam("wdate") String wdate,
-//            @RequestParam("shopname") String shopname,
-//            @RequestParam("latitude") double latitude,
-//            @RequestParam("longtitude") double longtitude,
-//            @RequestParam("address") String address
-//
-//            ) throws IllegalStateException, IOException {
-//        String PATH = req.getSession().getServletContext().getRealPath("/") + "resources/";
-//        System.out.println("PATH " +PATH.toString());
-///*
-//        System.out.println("file " +file.getOriginalFilename().toString());
-//
-//        if (!file.getOriginalFilename().isEmpty()) {
-//            file.transferTo(new File(PATH + file.getOriginalFilename()));
-//        }*/
-////        service.writeBbsfile(new BbsFileDto(id,title,file.getOriginalFilename(),contents,hashtag,wdate,shopname,latitude,longtitude,address,0,0));
-//        service.bbswriteImgup(new BbsFileDto(id,title,filename, filepath,contents,hashtag,"",shopname,latitude,longtitude,address,0,0));
-//
-//        return "YES";
-//    }
+    }
 
+    ////////////////////////////////////////파일포함 페이지 테스트 중////////////////////////////////////////////
+
+    //파일 삽입 페이지 test중
     @RequestMapping(value = "/bbswriteImgup", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbswriteImgup(BbsFileDto dto) {
         System.out.println("BbsController bbswriteImgup " + new Date());
@@ -305,4 +258,181 @@ public class BbsController {
         }
         return "NO";
     }
+
+    //파일 포함 상세페이지
+    @RequestMapping(value = "/bbsFileDetail", method = {RequestMethod.GET, RequestMethod.POST} )
+    public BbsFileDto bbsFileDetail(int seq) {
+        System.out.println("BbsController BbsFileDto " + new Date());
+
+        service.readcountFile(seq); //조회수 업데이트가 안된다.
+        return service.getBbsDetail(seq);
+    }
+
+    //글의 총 개수
+    @RequestMapping(value = "/getBbsFileCount", method = {RequestMethod.GET, RequestMethod.POST} )
+    public int getBbsFileCount(BbsParam param) {
+        System.out.println("BbsController getBbsFileCount " + new Date());
+        return service.getBbsFileCount(param);
+    }
+
+
+    //파일 포함 리스트
+    @RequestMapping(value = "/getBbsListFileSearchPage", method = {RequestMethod.GET, RequestMethod.POST} )
+    public List<BbsFileDto> getBbsListFileSearchPage(BbsParam param){
+        System.out.println("BbsController getBbsListFileSearchPage " + new Date());
+
+        // 페이지 설정
+        int sn = param.getPage();	// 0 1 2 3 ~
+        int start = sn * 10 + 1;	// 1	11
+        int end = (sn + 1) * 10;	// 10	20
+
+        param.setStart(start);
+        param.setEnd(end);
+
+        return service.getBbsListFileSearchPage(param);
+    }
+
+    //파일수정
+    @RequestMapping(value = "/updateBbsFile", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String bbsupdate(BbsFileDto dto) {
+        System.out.println("BbsController updateBbsFile " + new Date());
+
+        boolean b = service.updateBbsFile(dto);
+        System.out.println("@@@@@@@@@@dto@@@@@@@@@"+dto.toString());
+        if(b) {
+            return "OK";
+        }
+        return "NO";
+    }
+
+    //글삭제
+    @RequestMapping(value = "/deleteBbsFile", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String deleteBbsFile(int seq, BbsFileDto dto) {
+        System.out.println("BbsController deleteBbsFile " + new Date());
+        //System.out.println("BbsController likepointDown " + dto.getId() +new Date());
+
+        //글 삭제시 호감도 감소
+       // boolean a = service.likepointdown(dto);
+
+
+        boolean b = service.deleteBbsFile(seq);
+        if(b) {
+            return "OK";
+        }
+        return "NO";
+    }
+
+    //좋아요
+    @RequestMapping(value="/likeBbsFile", method = {RequestMethod.GET, RequestMethod.POST})
+    public String likeBbsFile(LikeDto dto, BbsFileDto fdto){
+        System.out.println("LikeDto likeBbs " + dto.toString()+ new Date());
+
+        boolean a = service.likebbsfileCnt(dto); //좋아요 게시판에 중복 없는지 확인
+        boolean d = service.lpplusfilepoint(fdto); // 좋아요시 likepoint 증가
+        if(a) {
+
+            boolean c = service.likecntfileUpdate(dto);
+            System.out.println("seq"+dto.getSeq());
+            boolean b = service.likeBbsFile(dto);
+            if(b&&c) {
+                return "YES";
+            }
+            return "NO";
+        }
+        return "DUP";
+
+    }
+
+    //좋아요 목록
+    @RequestMapping(value = "/likeBbsListFile", method = {RequestMethod.GET, RequestMethod.POST} )
+    public List<BbsFileDto> likeBbsListFile(BbsFileDto dto){
+        System.out.println("BbsController likeBbsListFile " + dto.toString() + new Date());
+
+        List<BbsFileDto> list = service.likeBbsListFile(dto);
+        System.out.println("BbsController likeBbsListFile output " + list.toString());
+        return list;
+    }
+
+
+    //좋아요 취소
+    @RequestMapping(value = "/deleteLikefile", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String deleteLikefile(@RequestParam(value = "json[]") List<String> list, LikeDto dto, BbsFileDto fdto) {
+        System.out.println("BbsController deleteLikefile " + new Date());
+
+        String answer = "";
+        String id = list.get(list.size()-1); //list의 가장 마지막 값이 id이다. 가장 마지막 값을 id 변수로 설정
+
+        for (int i = 0; i < list.size()-1; i++) { //가장 마지막 값인 id값은 빼고 받기 위해 list.size()-1로 범위를 정함.
+            dto.setId(id);
+            dto.setBbsseq(Integer.parseInt(list.get(i)));
+
+            fdto.setId(id);
+            fdto.setSeq(Integer.parseInt(list.get(i)));
+
+            boolean c = service.likecntDownfile(dto); // 좋아요 값 -1 감소
+            boolean d = service.lpminuspointfile(fdto); // 호감도 -1 감소
+            boolean b = service.deleteLikefile(dto); // deleteLike는 id와 bbsseq값을 확인해야한다.
+
+            if (b) {
+                answer = "OK";
+            } else
+                answer = "NO";
+        }
+        return answer;
+    }
+
+
+    //스크랩
+    @RequestMapping(value="/bbsScrapfile", method = {RequestMethod.GET, RequestMethod.POST})
+    public String bbsScrapfile(ScrapDto dto, BbsFileDto bdto){
+        System.out.println("ScrapDto bbsScrapfile " + new Date());
+        boolean a = service.scrapBbsCntfile(dto);
+        boolean c = service.scrpointupfile(bdto); // 스크랩시 호감도 증가
+        if(a) {
+
+            boolean b =service.bbsScrapfile(dto);
+            if(b) {
+                return "YES";
+            }
+            return "NO";
+        }
+        return "DUP";
+
+    }
+
+
+    //스크랩 리스트
+    @RequestMapping(value = "/scrapBbsListfile", method = {RequestMethod.GET, RequestMethod.POST} )
+    public List<BbsFileDto> scrapBbsListfile(BbsFileDto dto){
+        System.out.println("BbsController scrapBbsListfile " + dto + new Date());
+
+        List<BbsFileDto> list = service.scrapBbsListfile(dto);
+        System.out.println("BbsController scrapBbsListfile output " + list.toString());
+        return list;
+    }
+
+
+    @RequestMapping(value = "/deleteScrapfile", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String deleteScarpfile(@RequestParam(value = "json[]")List<Integer> list, BbsFileDto dto) {
+        System.out.println("BbsController deleteScarpfile " + new Date());
+        System.out.println("deleteScarpfile " +list.toString());
+
+        String answer = "";
+        for (int n : list) {
+            System.out.println(n);
+            dto.setSeq(n);
+            boolean b = service.deleteScrapfile(dto);
+            boolean c = service.scrpointminusfile(dto); //스크랩 취소시 호감도 -5감소
+            if (b) {
+                answer = "OK";
+            }else
+                answer = "NO";
+        }
+        return answer;
+
+    }
+
+
+
+
 }

@@ -8,6 +8,8 @@ public class BbsFileDto {
     private String content;
     private String filename;
     private String filepath;
+    private String nickname;
+
     private String hashtag;
     private String wdate;
     private String shopname;
@@ -17,13 +19,21 @@ public class BbsFileDto {
     private int readcnt;
     private int likecnt;
 
+    private String shopphnum;
+    private String shopurl;
+
     public BbsFileDto(){
 
     }
 
-    public BbsFileDto(String id, int seq, String title, String content, String filename, String filepath, String hashtag, String wdate, String shopname, String address, double latitude, double longtitude, int readcnt, int likecnt) {
+    public BbsFileDto(String id, int seq, String nickname, String title, String content,
+                      String filename, String filepath, String hashtag,
+                      String wdate, String shopname,
+                      String address, double latitude, double longtitude,
+                      int readcnt, int likecnt, String shopphnum,String shopurl) {
         this.id = id;
         this.seq = seq;
+        this.nickname =nickname;
         this.title = title;
         this.content = content;
         this.filename = filename;
@@ -36,6 +46,37 @@ public class BbsFileDto {
         this.longtitude = longtitude;
         this.readcnt = readcnt;
         this.likecnt = likecnt;
+        this.shopphnum = shopphnum;
+        this.shopurl = shopurl;
+    }
+
+    public BbsFileDto(String id, String title, String content) {
+        super();
+        this.id = id;
+        this.title = title;
+        this.content = content;
+    }
+
+
+
+    public BbsFileDto(String id, String title, String nickname, String content, String filename, String filepath, String hashtag, String shopname,
+                      String address, double latitude, double longtitude, String shopphnum, String shopurl) {
+        super();
+        this.id = id;
+        this.title = title;
+        this.nickname = nickname;
+        this.content = content;
+        this.filename = filename;
+        this.filepath = filepath;
+        this.hashtag = hashtag;
+        this.shopname = shopname;
+        this.address = address;
+        this.latitude = latitude;
+        this.longtitude = longtitude;
+        this.shopphnum = shopphnum;
+        this.shopurl = shopurl;
+
+
     }
 
     public String getId() {
@@ -150,6 +191,30 @@ public class BbsFileDto {
         this.likecnt = likecnt;
     }
 
+    public String getnickname() {
+        return nickname;
+    }
+
+    public void setnickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getShopphnum() {
+        return shopphnum;
+    }
+
+    public void setShopphnum(String shopphnum) {
+        this.shopphnum = shopphnum;
+    }
+
+    public String getShopurl() {
+        return shopurl;
+    }
+
+    public void setShopurl(String shopurl) {
+        this.shopurl = shopurl;
+    }
+
     @Override
     public String toString() {
         return "BbsFileDto{" +
@@ -159,6 +224,7 @@ public class BbsFileDto {
                 ", content='" + content + '\'' +
                 ", filename='" + filename + '\'' +
                 ", filepath='" + filepath + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", hashtag='" + hashtag + '\'' +
                 ", wdate='" + wdate + '\'' +
                 ", shopname='" + shopname + '\'' +
@@ -167,6 +233,8 @@ public class BbsFileDto {
                 ", longtitude=" + longtitude +
                 ", readcnt=" + readcnt +
                 ", likecnt=" + likecnt +
+                ", shopphnum='" + shopphnum + '\'' +
+                ", shopurl='" + shopurl + '\'' +
                 '}';
     }
 }

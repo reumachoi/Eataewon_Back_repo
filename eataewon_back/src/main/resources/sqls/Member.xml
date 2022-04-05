@@ -12,7 +12,8 @@
 	<select id="getId" parameterType="com.proj.eataewon.dto.MemberDto" resultType="java.lang.Integer">
 		SELECT NVL(COUNT(*),0)
 		FROM EATAEWONMEMBER
-		WHERE id=#{id}
+		WHERE id=#{id} AND DEL=0
+		<!--탈퇴하지 않고 가입중인 아이디 중에서 중복 아이디를 찾음-->
 	</select>
 
 
@@ -26,7 +27,7 @@
 			resultType="com.proj.eataewon.dto.MemberDto">
 		SELECT ID,NAME,nickname
 		FROM EATAEWONMEMBER
-		WHERE ID=#{id} AND PWD=#{pwd}
+		WHERE ID=#{id} AND PWD=#{pwd} AND DEL=0
 	</select>
 
 	<select id="bbsGetUser" parameterType="String" resultType="com.proj.eataewon.dto.MemberBbsDto">
@@ -59,7 +60,8 @@
 
 	<!--회원탈퇴-->
 	<update id="deleteMem" parameterType="com.proj.eataewon.dto.MemberDto">
-		DELETE FROM EATAEWONMEMBER
+		update EATAEWONMEMBER
+		set del =1
 		WHERE id=#{id} AND pwd=#{pwd}
 	</update>
 
