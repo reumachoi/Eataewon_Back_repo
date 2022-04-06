@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController  // @Controller + @ResponsBody -> Restful
@@ -151,6 +152,18 @@ public class AppMemberController {
 		return service.updateUserData(dto);
 	}
 
+	//회원 탈퇴하기
+	@RequestMapping(value = "/deleteMemApp", method = {RequestMethod.GET, RequestMethod.POST} )
+	public String deleteMem(@RequestBody MemberDto dto) {
+		System.out.println("MemberController deleteMem " + new Date());
+		System.out.println("MemberController deleteMem  " + dto.getId() + dto.getPwd() +new Date());
+
+		boolean b = mservice.deleteMem(dto);
+		if(b) {
+			return "OK";
+		}
+		return "NO";
+	}
 }
 
 
