@@ -15,7 +15,7 @@ public class BbsFileDto {
     private String shopname;
     private String address;
     private double latitude;
-    private double longtitude;
+    private double longitude;
     private int readcnt;
     private int likecnt;
 
@@ -29,7 +29,7 @@ public class BbsFileDto {
     public BbsFileDto(String id, int seq, String nickname, String title, String content,
                       String filename, String filepath, String hashtag,
                       String wdate, String shopname,
-                      String address, double latitude, double longtitude,
+                      String address, double latitude, double longitude,
                       int readcnt, int likecnt, String shopphnum,String shopurl) {
         this.id = id;
         this.seq = seq;
@@ -43,7 +43,7 @@ public class BbsFileDto {
         this.shopname = shopname;
         this.address = address;
         this.latitude = latitude;
-        this.longtitude = longtitude;
+        this.longitude = longitude;
         this.readcnt = readcnt;
         this.likecnt = likecnt;
         this.shopphnum = shopphnum;
@@ -60,7 +60,7 @@ public class BbsFileDto {
 
 
     public BbsFileDto(String id, String title, String nickname, String content, String filename, String filepath, String hashtag, String shopname,
-                      String address, double latitude, double longtitude, String shopphnum, String shopurl) {
+                      String address, double latitude, double longitude, String shopphnum, String shopurl) {
         super();
         this.id = id;
         this.title = title;
@@ -72,7 +72,7 @@ public class BbsFileDto {
         this.shopname = shopname;
         this.address = address;
         this.latitude = latitude;
-        this.longtitude = longtitude;
+        this.longitude = longitude;
         this.shopphnum = shopphnum;
         this.shopurl = shopurl;
 
@@ -167,12 +167,12 @@ public class BbsFileDto {
         this.latitude = latitude;
     }
 
-    public double getLongtitude() {
-        return longtitude;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLongtitude(double longtitude) {
-        this.longtitude = longtitude;
+    public void setLongitude(double longtitude) {
+        this.longitude = longtitude;
     }
 
     public int getReadcnt() {
@@ -230,7 +230,7 @@ public class BbsFileDto {
                 ", shopname='" + shopname + '\'' +
                 ", address='" + address + '\'' +
                 ", latitude=" + latitude +
-                ", longtitude=" + longtitude +
+                ", longitude=" + longitude +
                 ", readcnt=" + readcnt +
                 ", likecnt=" + likecnt +
                 ", shopphnum='" + shopphnum + '\'' +

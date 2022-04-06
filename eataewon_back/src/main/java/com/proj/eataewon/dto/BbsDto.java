@@ -39,7 +39,7 @@ public class BbsDto {
 	private String shopphnum;
 	private String shopurl;
 	private double latitude;
-	private double longtitude;
+	private double longitude;
 	private int readcnt;
 	private int likecnt;
 	private String testurl;

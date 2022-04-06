@@ -21,7 +21,7 @@ public class BbsPicDto {
 	private String shopname;
 	private String address;
 	private double latitude;
-	private double longtitude;
+	private double longitude;
 	private int readcnt;
 	private int likecnt;
 	
