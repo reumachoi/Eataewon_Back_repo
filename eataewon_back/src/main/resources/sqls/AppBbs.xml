@@ -39,4 +39,9 @@
         WHERE BBSSEQ = #{bbsseq} AND ID = #{id}
     </select>
 
+    <select id="findMyBbs" parameterType="String" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT *
+        FROM EATAEWONBBS
+        WHERE ID=#{id}
+    </select>
 </mapper>

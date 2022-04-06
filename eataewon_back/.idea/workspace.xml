@@ -74,7 +74,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../새 폴더/Eataewon_Back_repo-developer/eataewon_back" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -164,6 +164,8 @@
       <updated>1647331913379</updated>
       <workItem from="1649166794763" duration="324000" />
       <workItem from="1649167138443" duration="1158000" />
+      <workItem from="1649208160604" duration="613000" />
+      <workItem from="1649209797664" duration="1617000" />
     </task>
     <servers />
   </component>

@@ -43,6 +43,10 @@ public class AppBbsService {
 		int n = dao.checkUserScrap(dto);
 		return n>0?true:false;
 	}
+
+	public BbsDto findMyBbs(String id){
+		return dao.findMyBbs(id);
+	}
 }
 
 

@@ -98,4 +98,11 @@ public class AppBbsController {
         System.out.println("BbsController checkUserScrap " + new Date());
         return service.checkUserScrap(dto);
     }
+
+    @RequestMapping(value="/findMyBbs",method = RequestMethod.POST)
+    public BbsDto findMyBbs(@RequestBody String id){
+        System.out.println("AppBbsController findUser "+id);
+        System.out.println(service.findMyBbs(id).toString());
+        return service.findMyBbs(id);
+    }
 }
