@@ -7,23 +7,22 @@
 
     <!--메인 페이지 Upper 영역 게시물 조회수 높은순 정렬-->
     <select id="getUpperBbsListApp" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, NICKNAME, PICTURE, TITLE, READCNT, LIKECNT
+        SELECT SEQ, NICKNAME, TESTURL, TITLE, READCNT, LIKECNT
         FROM EATAEWONBBS
         ORDER BY READCNT DESC
     </select>
 
     <!--메인 페이지 Lower 영역 게시물 최신순 정렬-->
     <select id="getLowerBbsListApp" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT a.SEQ, a.SHOPNAME, a.ADDRESS, a.PICTURE, a.NICKNAME, a.CONTENT, a.HASHTAG, a.WDATE, b.PROFILPIC
-        FROM a.EATAEWONBBS, b.EATAEWONMEMBER
+        SELECT a.SEQ, a.SHOPNAME, a.ADDRESS, a.TESTURL, a.NICKNAME, a.CONTENT, a.HASHTAG, a.WDATE, b.PROFILPIC
+        FROM EATAEWONBBS a, EATAEWONMEMBER b
         WHERE a.ID = b.ID
-        ORDER BY WDATE DESC
+        ORDER BY a.WDATE DESC
     </select>
 
     <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT, TESTURL
+        SELECT SEQ, nickname, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT, TESTURL
         FROM EATAEWONBBS
-        WHERE SEQ = #{seq}
     </select>
 
     <insert id="writeBbsApp" parameterType="com.proj.eataewon.dto.BbsDto" useGeneratedKeys="true" keyProperty="seq">

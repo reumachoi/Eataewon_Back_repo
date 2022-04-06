@@ -5,7 +5,10 @@ import com.proj.eataewon.service.AppBbsService;
 import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @RestController
@@ -18,27 +21,27 @@ public class AppBbsController {
     BbsService bservice;
 
     @RequestMapping(value = "/getUpperBbsListApp", method = {RequestMethod.GET, RequestMethod.POST})
-    public BbsDto getUpperBbsListApp(@RequestBody int seq) {
-        System.out.println("BbsController getUpperBbsListApp " + seq);
-        System.out.println(service.getUpperBbsListApp(seq).toString());
+    public ArrayList<BbsDto> getUpperBbsListApp() {
+        System.out.println("BbsController getBbsList ");
 
-        return service.getUpperBbsListApp(seq);
+        ArrayList<BbsDto> list = service.getUpperBbsListApp();
+        return list;
     }
 
     @RequestMapping(value = "/getLowerBbsListApp", method = {RequestMethod.GET, RequestMethod.POST})
-    public BbsDto getLowerBbsListApp(@RequestBody int seq) {
-        System.out.println("BbsController getLowerBbsListApp " + seq);
-        System.out.println(service.getLowerBbsListApp(seq).toString());
+    public ArrayList<BbsDto> getLowerBbsListApp() {
+        System.out.println("BbsController getBbsList ");
 
-        return service.getLowerBbsListApp(seq);
+        ArrayList<BbsDto> list = service.getLowerBbsListApp();
+        return list;
     }
 
     @RequestMapping(value = "/getBbsListApp", method =  {RequestMethod.GET, RequestMethod.POST})
-    public BbsDto getBbsListApp(@RequestBody int seq) {
-        System.out.println("BbsController getBbsList " + seq);
-        System.out.println(service.getBbsListApp(seq).toString());
+    public ArrayList<BbsDto> getBbsListApp() {
+        System.out.println("BbsController getBbsList ");
 
-        return service.getBbsListApp(seq);
+        ArrayList<BbsDto> list = service.getBbsListApp();
+        return list;
     }
 
     @RequestMapping(value = "/bbswriteApp", method = {RequestMethod.GET, RequestMethod.POST})

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,16 +18,16 @@ public class AppBbsService {
     @Autowired
     AppBbsDao dao;
 
-    public BbsDto getUpperBbsListApp(int seq){
-        return dao.getUpperBbsListApp(seq);
+    public ArrayList<BbsDto> getUpperBbsListApp(){
+        return dao.getUpperBbsListApp();
     }
 
-    public BbsDto getLowerBbsListApp(int seq){
-        return dao.getLowerBbsListApp(seq);
+    public ArrayList<BbsDto> getLowerBbsListApp(){
+        return dao.getLowerBbsListApp();
     }
 
-    public BbsDto getBbsListApp(int seq){
-        return dao.getBbsListApp(seq);
+    public ArrayList<BbsDto> getBbsListApp(){
+        return dao.getBbsListApp();
     }
 
 

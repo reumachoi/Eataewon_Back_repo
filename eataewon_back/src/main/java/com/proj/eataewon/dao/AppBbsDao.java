@@ -4,17 +4,18 @@ import com.proj.eataewon.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
 @Repository
 public interface AppBbsDao {
 
-    public BbsDto getUpperBbsListApp(int seq);
+    public ArrayList<BbsDto> getUpperBbsListApp();
 
-    public BbsDto getLowerBbsListApp(int seq);
+    public ArrayList<BbsDto> getLowerBbsListApp();
 
-    public BbsDto getBbsListApp(int seq);
+    public ArrayList<BbsDto> getBbsListApp();
 
     public int writeBbsApp(BbsDto dto);
 

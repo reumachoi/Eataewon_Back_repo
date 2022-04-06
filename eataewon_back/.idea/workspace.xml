@@ -5,95 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppMemberController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppBbsDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppMemberDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/AppBbsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/AppMemberService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sqls/AppBbs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sqls/AppMember.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dd01b1a2-93c9-4c8c-9c88-606794241374.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dd01b1a2-93c9-4c8c-9c88-606794241374.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dd01b1a2-93c9-4c8c-9c88-606794241374/storage_v2/_src_/schema/SYS.rUIBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dd01b1a2-93c9-4c8c-9c88-606794241374/storage_v2/_src_/schema/SYS.rUIBAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dd01b1a2-93c9-4c8c-9c88-606794241374/storage_v2/_src_/schema/SYSTEM.L2avkg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dd01b1a2-93c9-4c8c-9c88-606794241374/storage_v2/_src_/schema/SYSTEM.L2avkg.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/DatabaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/DatabaseConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/DemoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/controller/BbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/controller/BbsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dao/BbsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dao/BbsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dao/MemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dao/MemberDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dto/BbsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dto/BbsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dto/BbsParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dto/BbsParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dto/LikeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dto/LikeDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dto/MemberDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dto/ScrapDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/dto/ScrapDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/service/BbsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/service/BbsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/java/com/proj/eataewon/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/resources/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/resources/sqls/Bbs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/main/resources/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/main/resources/sqls/Member.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/src/test/java/com/proj/eataewon/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/src/test/java/com/proj/eataewon/DemoApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/target/classes/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/target/classes/sqls/Bbs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eataewon_back/target/classes/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/eataewon_back/target/classes/sqls/Member.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/DatabaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/DatabaseConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/DemoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/BbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/BbsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/BbsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/BbsDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/MemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/MemberDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsFileDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsFileDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsPicDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsPicDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/LikeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/LikeDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberBbsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberBbsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MemberDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/ScrapDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/ScrapDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Member.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/proj/eataewon/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/proj/eataewon/DemoApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/MemberDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/MemberDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Member.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppBbsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppBbsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/AppBbsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/AppBbsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/AppBbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/AppBbs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppBbsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppBbsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/AppBbsDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/AppBbsDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/AppBbsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/AppBbsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sqls/AppBbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/AppBbs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
