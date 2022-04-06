@@ -15,29 +15,29 @@
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
         (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
-        ADDRESS, LATITUDE, LONGTITUDE, READCNT,LIKECNT,shopphnum,shopurl, testurl)
+        ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,shopphnum,shopurl, testurl)
         VALUES
         (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
+        #{shopname}, #{address}, #{latitude},#{longitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
     </insert>
 
     <!--picture string인 테이블 따로 만들어 test중-->
     <insert id="writeBbsPic" parameterType="com.proj.eataewon.dto.BbsPicDto">
         INSERT INTO EATAEWONBBSPIC
-        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGTITUDE, READCNT)
+        (SEQ, ID, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME, ADDRESS, LATITUDE, LONGITUDE, READCNT)
         VALUES
         (bbsseq.NEXTVAL, #{id}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longtitude}, 0)
+        #{shopname}, #{address}, #{latitude},#{longitude}, 0)
     </insert>
 
 
     <!--picture string인 테이블 따로 만들어 test중-->
     <insert id="bbswriteImgup" parameterType="com.proj.eataewon.dto.BbsFileDto">
         INSERT INTO eataewonBbsfile
-        (ID,SEQ,TITLE,CONTENT,FILENAME,FILEPATH,HASHTAG,WDATE,SHOPNAME,ADDRESS,LATITUDE,LONGTITUDE,READCNT,LIKECNT)
+        (ID,SEQ,TITLE,CONTENT,FILENAME,FILEPATH,HASHTAG,WDATE,SHOPNAME,ADDRESS,LATITUDE,LONGITUDE,READCNT,LIKECNT)
         VALUES
         ( #{id}, picSeq.NEXTVAL, #{title}, #{content}, #{filename}, #{filepath}, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longtitude}, 0,0)
+        #{shopname}, #{address}, #{latitude},#{longitude}, 0,0)
     </insert>
 
     <!-- 글 상세페이지 보기 -->
@@ -205,7 +205,7 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <update id="updateBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         UPDATE EATAEWONBBS
         SET TITLE=#{title}, SHOPNAME=#{shopname},CONTENT=#{content}, PICTURE=#{picture}, HASHTAG=#{hashtag},
-        LATITUDE=#{latitude}, LONGTITUDE=#{longtitude},ADDRESS=#{address}, shopphnum=#{shopphnum}, shopurl=#{shopurl}
+        LATITUDE=#{latitude}, LONGITUDE=#{longitude},ADDRESS=#{address}, shopphnum=#{shopphnum}, shopurl=#{shopurl}
         WHERE SEQ=#{seq}
     </update>
 

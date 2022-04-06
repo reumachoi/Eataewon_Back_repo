@@ -22,7 +22,7 @@ public class AppBbsController {
 
     @RequestMapping(value = "/getUpperBbsListApp", method = {RequestMethod.GET, RequestMethod.POST})
     public ArrayList<BbsDto> getUpperBbsListApp() {
-        System.out.println("BbsController getBbsList ");
+        System.out.println("BbsController getUpperBbsListApp ");
 
         ArrayList<BbsDto> list = service.getUpperBbsListApp();
         return list;
@@ -30,7 +30,7 @@ public class AppBbsController {
 
     @RequestMapping(value = "/getLowerBbsListApp", method = {RequestMethod.GET, RequestMethod.POST})
     public ArrayList<BbsDto> getLowerBbsListApp() {
-        System.out.println("BbsController getBbsList ");
+        System.out.println("BbsController getLowerBbsListApp ");
 
         ArrayList<BbsDto> list = service.getLowerBbsListApp();
         return list;
@@ -38,7 +38,7 @@ public class AppBbsController {
 
     @RequestMapping(value = "/getBbsListApp", method =  {RequestMethod.GET, RequestMethod.POST})
     public ArrayList<BbsDto> getBbsListApp() {
-        System.out.println("BbsController getBbsList ");
+        System.out.println("BbsController getBbsListApp ");
 
         ArrayList<BbsDto> list = service.getBbsListApp();
         return list;
