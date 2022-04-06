@@ -44,7 +44,7 @@ public class AppBbsService {
 		return n>0?true:false;
 	}
 
-	public BbsDto findMyBbs(String id){
+	public List<BbsDto> findMyBbs(String id){
 		return dao.findMyBbs(id);
 	}
 }

@@ -6,6 +6,7 @@ import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Date;
+import java.util.List;
 
 
 @RestController
@@ -100,7 +101,7 @@ public class AppBbsController {
     }
 
     @RequestMapping(value="/findMyBbs",method = RequestMethod.POST)
-    public BbsDto findMyBbs(@RequestBody String id){
+    public List<BbsDto> findMyBbs(@RequestBody String id){
         System.out.println("AppBbsController findUser "+id);
         System.out.println(service.findMyBbs(id).toString());
         return service.findMyBbs(id);
