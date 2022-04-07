@@ -3,6 +3,7 @@ package com.proj.eataewon.controller;
 import com.proj.eataewon.dto.MemberBbsDto;
 import com.proj.eataewon.dto.MemberDto;
 import com.proj.eataewon.service.AppMemberService;
+
 import com.proj.eataewon.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController  // @Controller + @ResponsBody -> Restful
 public class AppMemberController {
