@@ -20,6 +20,8 @@ public interface AppBbsDao {
 
     public int checkUserScrap(ScrapDto dto);
 
+    public  List<BbsDto> findMyBbs(String id);
+
 }
 
 

@@ -172,7 +172,7 @@ public class BbsFileDto {
     }
 
     public void setLongitude(double longtitude) {
-        this.longitude = longtitude;
+        this.longitude = longitude;
     }
 
     public int getReadcnt() {

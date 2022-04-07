@@ -3,6 +3,7 @@ package com.proj.eataewon.controller;
 import com.proj.eataewon.dto.MemberBbsDto;
 import com.proj.eataewon.dto.MemberDto;
 import com.proj.eataewon.service.AppMemberService;
+
 import com.proj.eataewon.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,7 +53,6 @@ public class AppMemberController {
 		System.out.println(dto.toString());
 
 		MemberDto mem = mservice.login(dto);
-		System.out.println(mem.toString());
 		return mem;
 	}
 

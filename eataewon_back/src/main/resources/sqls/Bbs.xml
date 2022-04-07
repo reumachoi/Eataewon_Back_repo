@@ -313,6 +313,9 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!-- 사진 포함 상세페이지 보기 -->
     <select id="getBbsDetail" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsFileDto">
         SELECT *
+
+
+
         FROM eataewonbbsfile
         WHERE SEQ=#{seq}
     </select>

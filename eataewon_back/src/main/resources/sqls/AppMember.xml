@@ -61,7 +61,7 @@
         WHERE ID = #{id}
     </update>
 
-    <select id="findUserData" parameterType="com.proj.eataewon.dto.MemberDto">
+    <select id="findUserData" parameterType="com.proj.eataewon.dto.MemberDto" resultType="com.proj.eataewon.dto.MemberDto">
         SELECT *
         FROM EATAEWONMEMBER
         WHERE ID=#{id} AND NICKNAME=#{nickname}
@@ -69,7 +69,7 @@
 
     <update id="updateUserData" parameterType="com.proj.eataewon.dto.MemberDto">
         UPDATE EATAEWONMEMBER
-        SET EMAIL=#{email} AND NICKNAME=#{nickname} AND PROFILMSG=#{profilmsg}
+        SET EMAIL=#{email}, NICKNAME=#{nickname}, PROFILMSG=#{profilmsg}
         WHERE ID=#{id}
     </update>
 </mapper>
