@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="" />
+    <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppMemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppMemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppBbsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppBbsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/AppBbsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/AppBbsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/AppBbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/AppBbs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Bbs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/Member.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppBbsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppBbsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppMemberController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppMemberController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/AppBbsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/AppBbsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sqls/AppBbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/AppBbs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sqls/Member.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Member.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,6 +166,12 @@
       <workItem from="1649208160604" duration="613000" />
       <workItem from="1649209797664" duration="1617000" />
       <workItem from="1649217838818" duration="3602000" />
+      <workItem from="1649204831905" duration="120000" />
+      <workItem from="1649205043470" duration="5000" />
+      <workItem from="1649205062612" duration="1627000" />
+      <workItem from="1649304016835" duration="3776000" />
+      <workItem from="1649308190513" duration="1369000" />
+      <workItem from="1649309868174" duration="1464000" />
     </task>
     <servers />
   </component>

@@ -68,11 +68,13 @@ public class AppMemberService {
 	}
 
 	public MemberDto findUserData(MemberDto dto){
+		System.out.println("findUserData : "+dao.findUserData(dto));
 		return dao.findUserData(dto);
 	}
 
 	public boolean updateUserData(MemberDto dto){
 		int n = dao.updateUserData(dto);
+		System.out.println("유저 데이터 수정 결과: "+n);
 		return n>0?true:false;
 	}
 }

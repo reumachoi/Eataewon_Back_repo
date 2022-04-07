@@ -51,7 +51,6 @@ public class AppMemberController {
 		System.out.println(dto.toString());
 
 		MemberDto mem = mservice.login(dto);
-		System.out.println(mem.toString());
 		return mem;
 	}
 

@@ -12,14 +12,20 @@
         WHERE SEQ = #{seq}
     </select>
 
-    <insert id="writeBbsApp" parameterType="com.proj.eataewon.dto.BbsDto" useGeneratedKeys="true" keyProperty="seq">
+    <insert id="writeBbsApp" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
             (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
             ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,shopphnum,shopurl, testurl)
         VALUES
-            (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
-             #{shopname}, #{address}, #{latitude},#{longitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
+            (#{seq}, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
+             #{shopname}, #{address}, #{latitude},#{longitude}, 0, 0,#{shopphnum},#{shopurl},#{testurl})
+        <selectKey resultType="java.lang.Integer" keyProperty="seq" order="BEFORE">
+            SELECT bbsseq.nextval
+            FROM DUAL
+        </selectKey>
     </insert>
+
+
 
     <update id="readcountApp" parameterType="java.lang.Integer">
         UPDATE EATAEWONBBS

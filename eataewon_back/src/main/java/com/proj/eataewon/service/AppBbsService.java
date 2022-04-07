@@ -21,11 +21,12 @@ public class AppBbsService {
 		return dao.getBbsListApp(seq);
 	}
 
-
 	public int writeBbsApp(BbsDto dto) {
 		int n = dao.writeBbsApp(dto);
+		int seq= dto.getSeq();
+		System.out.println("seq 확인: " + seq);
 		System.out.println("글저장 후 seq값 돌려받기 "+n);
-		return n;
+		return seq;
 	}
 
 	public String readcountApp(int seq) {
@@ -43,6 +44,7 @@ public class AppBbsService {
 		int n = dao.checkUserScrap(dto);
 		return n>0?true:false;
 	}
+
 
 	public List<BbsDto> findMyBbs(String id){
 		return dao.findMyBbs(id);
