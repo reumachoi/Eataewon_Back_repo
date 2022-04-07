@@ -29,7 +29,7 @@ public class MemberBbsDto {
     private String pwd;
     private String email;
     private String nickname;
-    private int profilpic;
+    private String profilpic;
     private int likePoint;
     private String profilmsg;
 

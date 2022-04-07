@@ -29,7 +29,7 @@ public class BbsPicDto {
 	private String pwd;
 	private String email;
 	private String nickName;
-	private int profilPic;
+	private String profilPic;
 	private int likePoint;
 	private String profilMsg;
 }
