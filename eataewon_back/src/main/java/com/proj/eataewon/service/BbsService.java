@@ -337,6 +337,10 @@ public class BbsService {
 		}
 		return false;
 	}
+
+	public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param) {
+		return dao.getBbsListFileSearchPageImg(param);
+	}
 }
 
 

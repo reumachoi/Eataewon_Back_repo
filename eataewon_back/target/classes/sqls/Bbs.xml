@@ -294,6 +294,43 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         WHERE SEQ=#{seq}
     </select>
 
+    <!--글 목록+이미지보기-->
+    <select id="getBbsListFileSearchPageImg" parameterType="com.proj.eataewon.dto.BbsParam"
+            resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT	ID, SEQ, nickname, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT,FILENAME,FILEPATH
+        FROM
+        (SELECT ROW_NUMBER()OVER(ORDER BY READCNT DESC) AS RNUM,
+        ID, SEQ, nickname, TITLE, CONTENT,HASHTAG, WDATE, ADDRESS, READCNT,FILENAME,FILEPATH
+        FROM eataewonbbsfile
+        WHERE 1=1
+        <if test="choice !=null and choice !='' and search !=null and search !=''">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+        ORDER BY READCNT DESC)
+        WHERE RNUM BETWEEN ${start} AND ${end}
+    </select>
+
+
 <!--글 목록보기-->
     <select id="getBbsListFileSearchPage" parameterType="com.proj.eataewon.dto.BbsParam"
             resultType="com.proj.eataewon.dto.BbsFileDto">

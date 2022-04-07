@@ -105,6 +105,8 @@ public interface BbsDao {
     public int likepointupfile(BbsFileDto dto);
 
     public int likepointdownfile(BbsFileDto dto);
+
+    public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param);
 }
 
 

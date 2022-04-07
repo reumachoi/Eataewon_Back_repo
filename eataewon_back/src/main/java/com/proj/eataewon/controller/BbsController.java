@@ -296,10 +296,35 @@ public class BbsController {
         return service.getBbsListFileSearchPage(param);
     }
 
+
+   // getBbsListFileSearchPageImg
+    //썸네일 이미지가 포함된 목록 반환
+   @RequestMapping(value = "/getBbsListFileSearchPageImg", method = {RequestMethod.GET, RequestMethod.POST} )
+   public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param){
+       System.out.println("BbsController getBbsListFileSearchPageImg " + new Date());
+
+       // 페이지 설정
+       int sn = param.getPage();	// 0 1 2 3 ~
+       int start = sn * 10 + 1;	// 1	11
+       int end = (sn + 1) * 10;	// 10	20
+
+       param.setStart(start);
+       param.setEnd(end);
+
+       return service.getBbsListFileSearchPageImg(param);
+   }
+
+
     //파일수정
     @RequestMapping(value = "/updateBbsFile", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbsupdate(BbsFileDto dto) {
         System.out.println("BbsController updateBbsFile " + new Date());
+
+        // seq 를 통해서 DB로부터 호출
+        // original BbsFileDto
+
+        // dto.filename -> ""
+        // if empty -> dto.filename = BbsFileDto.filename
 
         boolean b = service.updateBbsFile(dto);
         System.out.println("@@@@@@@@@@dto@@@@@@@@@"+dto.toString());

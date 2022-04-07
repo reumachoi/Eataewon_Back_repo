@@ -59,6 +59,8 @@ public class UploadController {
 
         for (MultipartFile uploadFile : uploadFiles) {
 
+            System.out.println("getOriginalFilename:" + uploadFile.getOriginalFilename());
+
             // 이미지 파일만 업로드 가능
             if(uploadFile.getContentType().startsWith("image") == false){
                 // 이미지가 아닌경우 403 Forbidden 반환
