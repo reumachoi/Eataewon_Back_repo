@@ -268,11 +268,15 @@ public class BbsController {
 
     ////////////////////////////////////////파일포함 페이지 테스트 중////////////////////////////////////////////
 
-    //파일 삽입 페이지 test중
+    //글작성 (파일 삽입 가능 페이지)
     @RequestMapping(value = "/bbswriteImgup", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbswriteImgup(BbsFileDto dto) {
         System.out.println("BbsController bbswriteImgup " + new Date());
         System.out.println("BbsController bbswriteImgup" + dto.toString()  + new Date());
+
+        //호감도 증가
+        boolean a = service.likepointupfile(dto);
+
         boolean b = service.bbswriteImgup(dto);
         if(b) {
             return "YES";
@@ -313,10 +317,35 @@ public class BbsController {
         return service.getBbsListFileSearchPage(param);
     }
 
+
+   // getBbsListFileSearchPageImg
+    //썸네일 이미지가 포함된 목록 반환
+   @RequestMapping(value = "/getBbsListFileSearchPageImg", method = {RequestMethod.GET, RequestMethod.POST} )
+   public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param){
+       System.out.println("BbsController getBbsListFileSearchPageImg " + new Date());
+
+       // 페이지 설정
+       int sn = param.getPage();	// 0 1 2 3 ~
+       int start = sn * 10 + 1;	// 1	11
+       int end = (sn + 1) * 10;	// 10	20
+
+       param.setStart(start);
+       param.setEnd(end);
+
+       return service.getBbsListFileSearchPageImg(param);
+   }
+
+
     //파일수정
     @RequestMapping(value = "/updateBbsFile", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbsupdate(BbsFileDto dto) {
         System.out.println("BbsController updateBbsFile " + new Date());
+
+        // seq 를 통해서 DB로부터 호출
+        // original BbsFileDto
+
+        // dto.filename -> ""
+        // if empty -> dto.filename = BbsFileDto.filename
 
         boolean b = service.updateBbsFile(dto);
         System.out.println("@@@@@@@@@@dto@@@@@@@@@"+dto.toString());
@@ -330,10 +359,10 @@ public class BbsController {
     @RequestMapping(value = "/deleteBbsFile", method = {RequestMethod.GET, RequestMethod.POST} )
     public String deleteBbsFile(int seq, BbsFileDto dto) {
         System.out.println("BbsController deleteBbsFile " + new Date());
-        //System.out.println("BbsController likepointDown " + dto.getId() +new Date());
+        System.out.println("BbsController likepointDownfile " + dto.getId() +new Date());
 
         //글 삭제시 호감도 감소
-       // boolean a = service.likepointdown(dto);
+        boolean a = service.likepointdownfile(dto);
 
 
         boolean b = service.deleteBbsFile(seq);
@@ -434,16 +463,23 @@ public class BbsController {
 
 
     @RequestMapping(value = "/deleteScrapfile", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String deleteScarpfile(@RequestParam(value = "json[]")List<Integer> list, BbsFileDto dto) {
+    public String deleteScarpfile(@RequestParam(value = "json[]")List<String> list, ScrapDto dto, BbsFileDto fdto) {
         System.out.println("BbsController deleteScarpfile " + new Date());
-        System.out.println("deleteScarpfile " +list.toString());
 
         String answer = "";
-        for (int n : list) {
-            System.out.println(n);
-            dto.setSeq(n);
+        String id = list.get(list.size()-1);
+
+        for (int i=0 ; i<list.size()-1; i++) {
+            dto.setId(id);
+            dto.setBbs_seq(Integer.parseInt(list.get(i)));
+
+            fdto.setId(id);
+            fdto.setSeq(Integer.parseInt(list.get(i)));
+
+
             boolean b = service.deleteScrapfile(dto);
-            boolean c = service.scrpointminusfile(dto); //스크랩 취소시 호감도 -5감소
+            boolean c = service.scrpointminusfile(fdto); //스크랩 취소시 호감도 -5감소
+
             if (b) {
                 answer = "OK";
             }else

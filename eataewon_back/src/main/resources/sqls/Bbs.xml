@@ -320,6 +320,43 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         WHERE SEQ=#{seq}
     </select>
 
+    <!--글 목록+이미지보기-->
+    <select id="getBbsListFileSearchPageImg" parameterType="com.proj.eataewon.dto.BbsParam"
+            resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT	ID, SEQ, nickname, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT,FILENAME,FILEPATH
+        FROM
+        (SELECT ROW_NUMBER()OVER(ORDER BY READCNT DESC) AS RNUM,
+        ID, SEQ, nickname, TITLE, CONTENT,HASHTAG, WDATE, ADDRESS, READCNT,FILENAME,FILEPATH
+        FROM eataewonbbsfile
+        WHERE 1=1
+        <if test="choice !=null and choice !='' and search !=null and search !=''">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+        ORDER BY READCNT DESC)
+        WHERE RNUM BETWEEN ${start} AND ${end}
+    </select>
+
+
 <!--글 목록보기-->
     <select id="getBbsListFileSearchPage" parameterType="com.proj.eataewon.dto.BbsParam"
             resultType="com.proj.eataewon.dto.BbsFileDto">
@@ -447,6 +484,20 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         WHERE SEQ=#{seq}
     </update>
 
+    <!--글쓸때 likeponit 증가 -->
+    <update id="likepointupfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+50
+        WHERE id = #{id}
+    </update>
+
+    <!--글삭제시 likeponit 감소 -->
+    <update id="likepointdownfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-50
+        WHERE id = #{id}
+    </update>
+
 
     <!--좋아요-->
     <insert id="likeBbsFile" parameterType="com.proj.eataewon.dto.LikeDto">
@@ -537,10 +588,10 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!--스크랩된 게시물 취소-->
     <!--eataewonscrap에 eataewonbbs의 primarykey를 참조하는 외래키를 참조하는 조건때문에
     스크랩된 게시물은 글 삭제가 불가능했습니다. 스크랩 여부에 상관없이 글을 삭제할수 있도록 EATAESCRAP의 외래키 조건 삭제했습니다.-->
-    <update id="deleteScrapfile" parameterType="com.proj.eataewon.dto.BbsFileDto">
+    <update id="deleteScrapfile" parameterType="com.proj.eataewon.dto.ScrapDto">
         DELETE FROM EATAEWONSCRAP
         WHERE BBSSEQ=#{bbsseq}
-        and id = #{id}
+        AND ID = #{id}
     </update>
 
 
