@@ -318,20 +318,28 @@ public class BbsController {
     //파일수정
     @RequestMapping(value = "/updateBbsFile", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbsupdate(BbsFileDto dto) {
-        System.out.println("BbsController updateBbsFile " + new Date());
+        System.out.println("BbsController updateBbsFile " + dto.toString() + new Date());
 
         // seq 를 통해서 DB로부터 호출
-        // original BbsFileDto
+        String Filename = service.fileName(dto.getSeq());
+        String Filepath = service.filePath(dto.getSeq());
 
-        // dto.filename -> ""
-        // if empty -> dto.filename = BbsFileDto.filename
+        if(dto.getFilename().equals("") && dto.getFilename().equals("")){
+            dto.setFilename(Filename);
+            dto.setFilepath(Filepath);
+        }
+
+        String answer="";
 
         boolean b = service.updateBbsFile(dto);
+
         System.out.println("@@@@@@@@@@dto@@@@@@@@@"+dto.toString());
         if(b) {
-            return "OK";
-        }
-        return "NO";
+            answer = "OK";
+        }else{
+        answer = "NO";}
+
+        return answer;
     }
 
     //글삭제
