@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +28,23 @@ public class BbsController {
 
     @Autowired
     MemberService mservice;
+
+    /*@RequestMapping(value="/searchMapWeb", method = RequestMethod.GET)
+    public class mapServlet extends HttpServlet{
+        private static final long serialVersionUID = 1L;
+
+        protected  void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
+            request.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html; charset=UTF-8");
+
+            String command = request.getParameter("command");
+
+            if(command.equals("searchMap")){
+                response.sendRedirect("searchMap.jsp");
+            }
+        }
+    }*/
 
     @RequestMapping(value = "/getBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
     public List<BbsDto> getBbsList(){

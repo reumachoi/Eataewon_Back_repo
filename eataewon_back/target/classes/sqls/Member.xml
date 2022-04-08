@@ -17,7 +17,6 @@
 	</select>
 
 
-
 	<insert id="addmember" parameterType="com.proj.eataewon.dto.MemberDto">
 		INSERT INTO EATAEWONMEMBER(ID,NAME,PWD,EMAIL,NICKNAME, PROFILPIC, LIKEPOINT, PROFILMSG , DEL)
 		VALUES(#{id},#{name}, #{pwd}, #{email}, #{nickname}, #{profilpic}, 0, #{profilmsg}, 0)
