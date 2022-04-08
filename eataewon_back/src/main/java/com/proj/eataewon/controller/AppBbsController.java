@@ -35,6 +35,13 @@ public class AppBbsController {
         return seq;
     }
 
+    @RequestMapping(value="/bbsupdateApp", method = RequestMethod.POST)
+    public Boolean bbsupdateApp(@RequestBody BbsDto dto){
+        System.out.println("AppBbsController bbsupdateApp " + dto.toString());
+        Boolean b = bservice.updateBbs(dto);
+        System.out.println("글수정 결과: "+b);
+        return b;
+    }
 
     @RequestMapping(value = "/plustReadcntApp", method = RequestMethod.POST)
     public String plustReadcntApp(@RequestBody int seq) {
