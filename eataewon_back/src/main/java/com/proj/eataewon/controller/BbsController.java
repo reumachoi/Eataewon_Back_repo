@@ -471,7 +471,7 @@ public class BbsController {
 
         for (int i=0 ; i<list.size()-1; i++) {
             dto.setId(id);
-            dto.setBbs_seq(Integer.parseInt(list.get(i)));
+            dto.setBbsseq(Integer.parseInt(list.get(i)));
 
             fdto.setId(id);
             fdto.setSeq(Integer.parseInt(list.get(i)));
