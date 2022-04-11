@@ -22,6 +22,9 @@ public interface AppBbsDao {
 
     public  List<BbsDto> findMyBbs(String id);
 
+    public int likecntPlus(int seq);
+
+    public int likecntMinus(int seq);
 }
 
 

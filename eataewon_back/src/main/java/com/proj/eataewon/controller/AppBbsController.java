@@ -86,6 +86,20 @@ public class AppBbsController {
         return bservice.likeBbs(dto);
     }
 
+    //좋아요했을때 글의 likecnt 증가
+    @RequestMapping(value="/likecntPlus", method = RequestMethod.POST)
+    public boolean likecntPlus(@RequestBody int seq){
+        System.out.println("AppBbsController likecntPlus " + seq);
+        return service.likecntPlus(seq);
+    }
+
+    //좋아요 취소했을때 글의 likecnt 감소
+    @RequestMapping(value="/likecntMinus", method = RequestMethod.POST)
+    public boolean likecntMinus(@RequestBody int seq){
+        System.out.println("AppBbsController likecntMinus " + seq);
+        return service.likecntMinus(seq);
+    }
+
     //좋아요취소
     @RequestMapping(value = "/deleteBbsLikeApp", method = {RequestMethod.GET, RequestMethod.POST})
     public Boolean deleteBbsLikeApp(@RequestBody LikeDto dto) {

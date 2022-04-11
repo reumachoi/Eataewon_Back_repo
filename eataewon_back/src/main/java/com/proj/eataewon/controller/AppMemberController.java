@@ -98,7 +98,7 @@ public class AppMemberController {
 	@RequestMapping(value="/LikePWriteUp", method=RequestMethod.POST)
 	public Boolean LikePWriteUp(@RequestBody String id){
 		System.out.println("AppMemberController LikePWriteUp " + id);
-
+		System.out.println("LikePWriteUp result: "+service.LikePWriteUp(id));
 		return service.LikePWriteUp(id);
 	}
 
