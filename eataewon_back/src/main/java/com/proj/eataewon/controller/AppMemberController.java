@@ -82,6 +82,7 @@ public class AppMemberController {
 	public String getProfilPic(@RequestBody String id){
 		System.out.println("AppMemberController getProfilPic "+id);
 		String pic = mservice.getProfilPic(id);
+		System.out.println(pic);
 		return pic;
 	}
 
