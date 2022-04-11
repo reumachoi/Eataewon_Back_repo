@@ -15,10 +15,10 @@
     <insert id="writeBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
         (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
-        ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,shopphnum,shopurl, testurl)
+        ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,shopphnum,shopurl)
         VALUES
         (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
+        #{shopname}, #{address}, #{latitude},#{longitude}, 0,0,#{shopphnum},#{shopurl})
     </insert>
 
     <!--picture string인 테이블 따로 만들어 test중-->
