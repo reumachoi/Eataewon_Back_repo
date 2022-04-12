@@ -45,7 +45,6 @@ public class AppBbsController {
 
     @RequestMapping(value = "/plustReadcntApp", method = RequestMethod.POST)
     public String plustReadcntApp(@RequestBody int seq) {
-        System.out.println(seq);
         System.out.println("AppBbsController plustReadcntApp " + new Date());
         String res = service.readcountApp(seq);
         System.out.println(res);

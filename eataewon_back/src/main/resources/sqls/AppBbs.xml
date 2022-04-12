@@ -7,7 +7,7 @@
 
 
     <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        SELECT *
         FROM EATAEWONBBS
         WHERE SEQ = #{seq}
     </select>
@@ -17,7 +17,7 @@
             (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
             ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,shopphnum,shopurl)
         VALUES
-            (#{seq}, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
+            (#{seq}, #{id}, #{nickname}, #{title}, #{content},#{picture}, #{hashtag}, SYSDATE,
              #{shopname}, #{address}, #{latitude},#{longitude}, 0, 0,#{shopphnum},#{shopurl})
         <selectKey resultType="java.lang.Integer" keyProperty="seq" order="BEFORE">
             SELECT bbsseq.nextval

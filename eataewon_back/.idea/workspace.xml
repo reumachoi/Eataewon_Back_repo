@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="" />
+    <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/AppBbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/AppBbs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppBbsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppBbsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sqls/AppBbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/AppBbs.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,12 +62,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -167,6 +175,15 @@
       <workItem from="1649396005023" duration="58000" />
       <workItem from="1649396707348" duration="935000" />
       <workItem from="1649635499547" duration="5129000" />
+      <workItem from="1649643320054" duration="1616000" />
+      <workItem from="1649650649927" duration="2177000" />
+      <workItem from="1649653127938" duration="1645000" />
+      <workItem from="1649660090643" duration="1154000" />
+      <workItem from="1649721837453" duration="1364000" />
+      <workItem from="1649725924376" duration="2000" />
+      <workItem from="1649725942175" duration="1538000" />
+      <workItem from="1649730516857" duration="460000" />
+      <workItem from="1649736096932" duration="1235000" />
     </task>
     <servers />
   </component>
