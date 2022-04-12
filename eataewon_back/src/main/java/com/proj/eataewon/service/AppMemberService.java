@@ -77,6 +77,11 @@ public class AppMemberService {
 		System.out.println("유저 데이터 수정 결과: "+n);
 		return n>0?true:false;
 	}
+
+	public boolean updateUserProfilPic(MemberDto dto){
+		int n = dao.updateUserProfilPic(dto);
+		return n>0?true:false;
+	}
 }
 
 

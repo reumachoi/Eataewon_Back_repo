@@ -23,7 +23,7 @@
 
 	<select id="login" parameterType="com.proj.eataewon.dto.MemberDto"
 			resultType="com.proj.eataewon.dto.MemberDto">
-		SELECT ID,NAME,NICKNAME, LIKEPOINT
+		SELECT ID, NAME, NICKNAME, LIKEPOINT, PROFILPIC
 		FROM EATAEWONMEMBER
 		WHERE ID=#{id} AND PWD=#{pwd} AND DEL=0
 	</select>

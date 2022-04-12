@@ -33,6 +33,8 @@ public interface AppMemberDao {
 	public MemberDto findUserData(MemberDto dto);
 
 	public int updateUserData(MemberDto dto);
+
+	public int updateUserProfilPic (MemberDto dto);
 }
 
 

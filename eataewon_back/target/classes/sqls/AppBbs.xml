@@ -7,7 +7,7 @@
 
 
     <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        SELECT *
         FROM EATAEWONBBS
         WHERE SEQ = #{seq}
     </select>
@@ -15,9 +15,9 @@
     <insert id="writeBbsApp" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
             (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
-            ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,shopphnum,shopurl)
+            ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,SHOPPHNUM,SHOPURL)
         VALUES
-            (#{seq}, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
+            (#{seq}, #{id}, #{nickname}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
              #{shopname}, #{address}, #{latitude},#{longitude}, 0, 0,#{shopphnum},#{shopurl})
         <selectKey resultType="java.lang.Integer" keyProperty="seq" order="BEFORE">
             SELECT bbsseq.nextval
@@ -50,4 +50,18 @@
         FROM EATAEWONBBS
         WHERE ID=#{id}
     </select>
+
+    <!--좋아요 할때 likecnt 증가 -->
+    <update id="likecntPlus" parameterType="java.lang.Integer" >
+        update EATAEWONBBS
+        SET likecnt = likecnt+1
+        WHERE seq = #{seq}
+    </update>
+
+    <!--좋아요 할때 likecnt 증가 -->
+    <update id="likecntMinus" parameterType="java.lang.Integer" >
+        update EATAEWONBBS
+        SET likecnt = likecnt-1
+        WHERE seq = #{seq}
+    </update>
 </mapper>

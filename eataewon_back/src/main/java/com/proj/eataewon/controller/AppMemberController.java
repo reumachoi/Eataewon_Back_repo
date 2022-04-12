@@ -164,6 +164,13 @@ public class AppMemberController {
 		}
 		return "NO";
 	}
+
+	// 회원 사진 DB
+	@RequestMapping (value = "/updateUserProfilPic", method =  {RequestMethod.GET, RequestMethod.POST})
+	public  boolean updateUserProfilPic(@RequestBody MemberDto dto){
+		System.out.println("MemberController updateUserProfilPic "+dto.toString());
+		return service.updateUserProfilPic(dto);
+	}
 }
 
 

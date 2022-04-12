@@ -16,7 +16,6 @@
 		<!--탈퇴하지 않고 가입중인 아이디 중에서 중복 아이디를 찾음-->
 	</select>
 
-
 	<insert id="addmember" parameterType="com.proj.eataewon.dto.MemberDto">
 		INSERT INTO EATAEWONMEMBER(ID,NAME,PWD,EMAIL,NICKNAME, PROFILPIC, LIKEPOINT, PROFILMSG , DEL)
 		VALUES(#{id},#{name}, #{pwd}, #{email}, #{nickname}, #{profilpic}, 0, #{profilmsg}, 0)
@@ -24,7 +23,7 @@
 
 	<select id="login" parameterType="com.proj.eataewon.dto.MemberDto"
 			resultType="com.proj.eataewon.dto.MemberDto">
-		SELECT ID,NAME,NICKNAME
+		SELECT ID, NAME, NICKNAME, LIKEPOINT, PROFILPIC
 		FROM EATAEWONMEMBER
 		WHERE ID=#{id} AND PWD=#{pwd} AND DEL=0
 	</select>
