@@ -25,6 +25,8 @@ public interface MemberDao {
 	public int updateMem(MemberDto dto);
 
 	public int deleteMem(MemberDto dto);
+
+	public String profilePath(String id);
 }
 
 

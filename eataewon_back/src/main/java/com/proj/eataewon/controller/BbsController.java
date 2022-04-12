@@ -318,12 +318,14 @@ public class BbsController {
     //파일수정
     @RequestMapping(value = "/updateBbsFile", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbsupdate(BbsFileDto dto) {
+        //dto에 기존의 파일명과 파일경로가 읽히지 않는 문제 발생.
         System.out.println("BbsController updateBbsFile " + dto.toString() + new Date());
 
         // seq 를 통해서 DB로부터 호출
         String Filename = service.fileName(dto.getSeq());
         String Filepath = service.filePath(dto.getSeq());
 
+        //호출된 파일명과 파일경로를 dto에 저장. 읽히지 않은 파일명과 파일 경로를 삽입.
         if(dto.getFilename().equals("") && dto.getFilename().equals("")){
             dto.setFilename(Filename);
             dto.setFilepath(Filepath);
@@ -425,6 +427,7 @@ public class BbsController {
         System.out.println("ScrapDto bbsScrapfile " + new Date());
         boolean a = service.scrapBbsCntfile(dto);
         boolean c = service.scrpointupfile(bdto); // 스크랩시 호감도 증가
+
         if(a) {
 
             boolean b =service.bbsScrapfile(dto);

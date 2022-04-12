@@ -452,14 +452,6 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         WHERE SEQ=#{seq}
     </update>
 
-    <!--글 전체 이미지 빼고 수정 -->
-    <update id="updateBbsOutPic" parameterType="com.proj.eataewon.dto.BbsFileDto">
-        UPDATE eataewonbbsfile
-        SET TITLE=#{title}, SHOPNAME=#{shopname},CONTENT=#{content},HASHTAG=#{hashtag},
-        LATITUDE=#{latitude}, LONGTITUDE=#{longtitude},ADDRESS=#{address}, shopphnum=#{shopphnum}, shopurl=#{shopurl}
-        WHERE SEQ=#{seq}
-    </update>
-
     <!--삭제-->
     <update id="deleteBbsFile" parameterType="java.lang.Integer">
         DELETE FROM eataewonbbsfile
@@ -590,13 +582,14 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         where id = ( select id from eataewonbbsfile where seq= #{seq})
     </update>
 
-   <!--사진 파일 이름, 경로만 확인하는 기능-->
+   <!--사진 파일 이름만 확인하는 기능-->
     <select id="fileName" parameterType="java.lang.Integer" resultType="java.lang.String">
         SELECT FILENAME
         FROM eataewonbbsfile
         WHERE SEQ=#{seq}
     </select>
 
+    <!--사진 파일 경로만 확인하는 기능-->
     <select id="filePath" parameterType="java.lang.Integer" resultType="java.lang.String">
         SELECT FILEPATH
         FROM eataewonbbsfile

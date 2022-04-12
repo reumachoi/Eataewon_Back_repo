@@ -84,7 +84,7 @@ public class MemberController {
 	}
 
 	//회원가입
-	@RequestMapping(value="/addmember", method= {RequestMethod.GET, RequestMethod.POST})
+	/*@RequestMapping(value="/addmember", method= {RequestMethod.GET, RequestMethod.POST})
 	public String addmember(MemberDto dto) {
 		System.out.println("MemberController addmember");
 		System.out.println("dto:" + dto.toString());
@@ -94,7 +94,7 @@ public class MemberController {
 			return "YES";
 		}
 		return "NO";
-	}
+	}*/
 
 	//닉네임 불러오기
 	@RequestMapping(value = "/getnickname", method = {RequestMethod.GET, RequestMethod.POST} )
