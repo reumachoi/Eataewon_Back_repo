@@ -42,5 +42,5 @@ public class BbsDto {
 	private double longitude;
 	private int readcnt;
 	private int likecnt;
-	private String testurl;
+
 }

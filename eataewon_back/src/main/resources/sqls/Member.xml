@@ -12,25 +12,20 @@
 	<select id="getId" parameterType="com.proj.eataewon.dto.MemberDto" resultType="java.lang.Integer">
 		SELECT NVL(COUNT(*),0)
 		FROM EATAEWONMEMBER
-		WHERE id=#{id}
-	</select>
-
-	<select id="getIdApp" parameterType="String" resultType="java.lang.Integer">
-		SELECT NVL(COUNT(*),0)
-		FROM EATAEWONMEMBER
-		WHERE ID=#{id}
+		WHERE id=#{id} AND DEL=0
+		<!--탈퇴하지 않고 가입중인 아이디 중에서 중복 아이디를 찾음-->
 	</select>
 
 	<insert id="addmember" parameterType="com.proj.eataewon.dto.MemberDto">
-		INSERT INTO EATAEWONMEMBER(ID,NAME,PWD,EMAIL,NICKNAME, PROFILPIC, LIKEPOINT, PROFILMSG)
-		VALUES(#{id},#{name}, #{pwd}, #{email}, #{nickname}, #{profilpic}, 0, #{profilmsg})
+		INSERT INTO EATAEWONMEMBER(ID,NAME,PWD,EMAIL,NICKNAME, PROFILPIC, LIKEPOINT, PROFILMSG , DEL)
+		VALUES(#{id},#{name}, #{pwd}, #{email}, #{nickname}, #{profilpic}, 0, #{profilmsg}, 0)
 	</insert>
 
 	<select id="login" parameterType="com.proj.eataewon.dto.MemberDto"
 			resultType="com.proj.eataewon.dto.MemberDto">
-		SELECT ID,NAME,nickname
+		SELECT ID,NAME,NICKNAME, LIKEPOINT
 		FROM EATAEWONMEMBER
-		WHERE ID=#{id} AND PWD=#{pwd}
+		WHERE ID=#{id} AND PWD=#{pwd} AND DEL=0
 	</select>
 
 	<select id="bbsGetUser" parameterType="String" resultType="com.proj.eataewon.dto.MemberBbsDto">
@@ -63,7 +58,8 @@
 
 	<!--회원탈퇴-->
 	<update id="deleteMem" parameterType="com.proj.eataewon.dto.MemberDto">
-		DELETE FROM EATAEWONMEMBER
+		update EATAEWONMEMBER
+		set del =1
 		WHERE id=#{id} AND pwd=#{pwd}
 	</update>
 
@@ -71,56 +67,8 @@
 	<select id="getProfilPic" parameterType="String" resultType="String">
 		SELECT PROFILPIC
 		FROM EATAEWONMEMBER
-		WHERE ID = ${id}
+		WHERE ID = #{id}
 	</select>
 
-	<!--글쓸때 likeponit 증가 -->
-	<update id="likePWriteUp" parameterType="com.proj.eataewon.dto.BbsDto" >
-		update EATAEWONMEMBER
-		SET likepoint = likepoint+50
-		WHERE id = #{id}
-	</update>
-
-	<!--글삭제시 likeponit 감소 -->
-	<update id="likePWriteDown" parameterType="com.proj.eataewon.dto.BbsDto" >
-		update EATAEWONMEMBER
-		SET likepoint = likepoint-50
-		WHERE id = #{id}
-	</update>
-
-	<!-- 스크랩시 likeponit +5증가-->
-	<update id="likePScrapUp" parameterType="com.proj.eataewon.dto.BbsDto" >
-		update EATAEWONMEMBER
-		SET likepoint = likepoint+5
-		where id = ( select id from EATAEWONBBS where seq= #{seq})
-	</update>
-
-	<!--스크랩 취소시 likeponit -5 감소 -->
-	<update id="likePScrapDown" parameterType="com.proj.eataewon.dto.BbsDto" >
-		update EATAEWONMEMBER
-		SET likepoint = likepoint-5
-		where id = ( select id from EATAEWONBBS where seq= #{seq})
-	</update>
-
-	<!--좋아요 누를시 likeponit 증가 -->
-	<update id="likePHeartUp" parameterType="com.proj.eataewon.dto.BbsDto" >
-		update EATAEWONMEMBER
-		SET likepoint = likepoint+1
-		where id = ( select id from EATAEWONBBS where seq= #{seq})
-	</update>
-
-	<!-- 좋아요 취소시 likeponit 감소 -->
-	<update id="likePHeartDown" parameterType="com.proj.eataewon.dto.BbsDto" >
-		update EATAEWONMEMBER
-		SET likepoint = likepoint-1
-		where id = ( select id from EATAEWONBBS where seq= #{seq})
-	</update>
-
-	<!--좋아요 할때 likecnt 증가 / 중복 방지는 controller에서 -->
-	<update id="likecntUpdate" parameterType="com.proj.eataewon.dto.LikeDto" >
-		update EATAEWONBBS
-		SET likecnt = likecnt+1
-		WHERE seq = #{bbsseq}
-	</update>
 
 </mapper>

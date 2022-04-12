@@ -25,8 +25,25 @@ public class AppMemberService {
         return n>0?true:false;
     }
 
+    public String getEmailApp(String email) {
+        System.out.println("+" + email + "+");
+        String id = dao.getEmailApp(email);
+        System.out.println("이메일로찾은 아이디 "+id);
+        return id;
+    }
+
+    public Boolean resetPwd(MemberDto dto){
+        int n = dao.resetPwd(dto);
+        return n>0?true:false;
+    }
+
     public boolean LikePWriteUp(String id){
         int n = dao.LikePWriteUp(id);
+        return n>0?true:false;
+    }
+
+    public boolean LikePWriteDown(String id){
+        int n = dao.LikePWriteDown(id);
         return n>0?true:false;
     }
 
@@ -47,6 +64,17 @@ public class AppMemberService {
 
     public boolean LikePScrapDown(String id){
         int n = dao.LikePScrapDown(id);
+        return n>0?true:false;
+    }
+
+    public MemberDto findUserData(MemberDto dto){
+        System.out.println("findUserData : "+dao.findUserData(dto));
+        return dao.findUserData(dto);
+    }
+
+    public boolean updateUserData(MemberDto dto){
+        int n = dao.updateUserData(dto);
+        System.out.println("유저 데이터 수정 결과: "+n);
         return n>0?true:false;
     }
 }

@@ -18,23 +18,38 @@ public class AppBbsService {
     @Autowired
     AppBbsDao dao;
 
+    // 검색 후 recyclerview
+    public BbsDto getBbsListSearch(BbsParam param) {
+        return dao.getBbsListSearchApp(param);
+    }
+
+    public BbsDto getMarkerListApp() { return  dao.getMarkerListApp(); }
+
+    // 홈 화면 상단 뷰
     public ArrayList<BbsDto> getUpperBbsListApp(){
         return dao.getUpperBbsListApp();
     }
 
-    public ArrayList<BbsDto> getLowerBbsListApp(){
+    // 홈 화면 하단 recyclerview
+    public ArrayList<MemberBbsDto> getLowerBbsListApp(){
         return dao.getLowerBbsListApp();
     }
 
-    public ArrayList<BbsDto> getBbsListApp(){
-        return dao.getBbsListApp();
+    // 검색 화면 recyclerview
+    public ArrayList<BbsDto> getSearchListApp(){
+        return dao.getSearchListApp();
     }
 
+    public BbsDto getBbsListApp(int seq){
+        return dao.getBbsListApp(seq);
+    }
 
     public int writeBbsApp(BbsDto dto) {
         int n = dao.writeBbsApp(dto);
+        int seq= dto.getSeq();
+        System.out.println("seq 확인: " + seq);
         System.out.println("글저장 후 seq값 돌려받기 "+n);
-        return n;
+        return seq;
     }
 
     public String readcountApp(int seq) {
@@ -43,5 +58,18 @@ public class AppBbsService {
         return n>0?"Success":"Fail";
     }
 
+    public boolean checkUserLike(LikeDto dto){
+        int n = dao.checkUserLike(dto);
+        return n>0?true:false;
+    }
 
+    public boolean checkUserScrap(ScrapDto dto){
+        int n = dao.checkUserScrap(dto);
+        return n>0?true:false;
+    }
+
+
+    public List<BbsDto> findMyBbs(String id){
+        return dao.findMyBbs(id);
+    }
 }

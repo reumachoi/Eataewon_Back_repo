@@ -5,33 +5,68 @@
 
 <mapper namespace="com.proj.eataewon.dao.AppBbsDao">
 
+    <!-- 검색 조건이 틀려도 에러가 안나오도록 where 1=1-->
+    <select id="getBbsListSearchApp" parameterType="com.proj.eataewon.dto.BbsParam" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, NICKNAME, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT
+        FROM EATAEWONBBS
+        WHERE 1=1
+        <if test="choice !=null and choice !='' and search !=null and search !=''">
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+        <!--      ORDER BY READCNT DESC-->
+    </select>
+
+    <select id="getMarkerListApp" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT, SHOPURL, SHOPPHNUM, LATITUDE, LONGITUDE, NICKNAME, PICTURE
+        FROM EATAEWONBBS
+    </select>
+
     <!--메인 페이지 Upper 영역 게시물 조회수 높은순 정렬-->
     <select id="getUpperBbsListApp" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, NICKNAME, TESTURL, TITLE, READCNT, LIKECNT
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT, SHOPURL, SHOPPHNUM, LATITUDE, LONGITUDE, NICKNAME, PICTURE
         FROM EATAEWONBBS
         ORDER BY READCNT DESC
     </select>
 
     <!--메인 페이지 Lower 영역 게시물 최신순 정렬-->
-    <select id="getLowerBbsListApp" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT a.SEQ, a.SHOPNAME, a.ADDRESS, a.TESTURL, a.NICKNAME, a.CONTENT, a.HASHTAG, a.WDATE, b.PROFILPIC
+    <select id="getLowerBbsListApp" resultType="com.proj.eataewon.dto.MemberBbsDto">
+        SELECT a.SEQ, a.ID, a.TITLE, a.CONTENT, a.HASHTAG, a.WDATE, a.SHOPNAME, a.ADDRESS, a.READCNT, a.LIKECNT, a.SHOPURL, a.SHOPPHNUM, a.LATITUDE, a.LONGITUDE, a.NICKNAME, a.PICTURE, b.PROFILPIC, b.PROFILMSG
         FROM EATAEWONBBS a, EATAEWONMEMBER b
         WHERE a.ID = b.ID
         ORDER BY a.WDATE DESC
     </select>
 
-    <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, nickname, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT, TESTURL
+    <!--검색 페이지에 데이터 가져오기-->
+    <select id="getSearchListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, nickname, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT, PICTURE
         FROM EATAEWONBBS
+    </select>
+
+    <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        FROM EATAEWONBBS
+        WHERE SEQ = #{seq}
     </select>
 
     <insert id="writeBbsApp" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
         (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
-        ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,shopphnum,shopurl, testurl)
+        ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,shopphnum,shopurl)
         VALUES
-        (bbsseq.NEXTVAL, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longitude}, 0,0,#{shopphnum},#{shopurl},#{testurl})
+        (#{seq}, #{id}, #{nickname}, #{title}, #{content}, 0, #{hashtag}, SYSDATE,
+        #{shopname}, #{address}, #{latitude},#{longitude}, 0, 0,#{shopphnum},#{shopurl})
+        <selectKey resultType="java.lang.Integer" keyProperty="seq" order="BEFORE">
+            SELECT bbsseq.nextval
+            FROM DUAL
+        </selectKey>
     </insert>
 
     <update id="readcountApp" parameterType="java.lang.Integer">
@@ -39,6 +74,24 @@
         SET READCNT=READCNT+1
         WHERE SEQ=#{seq}
     </update>
+
+    <select id="checkUserLike" parameterType="com.proj.eataewon.dto.LikeDto" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM EATAEWONLIKE
+        WHERE BBSSEQ = #{bbsseq} AND ID = #{id}
+    </select>
+
+    <select id="checkUserScrap" parameterType="com.proj.eataewon.dto.ScrapDto" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM EATAEWONSCRAP
+        WHERE BBSSEQ = #{bbsseq} AND ID = #{id}
+    </select>
+
+    <select id="findMyBbs" parameterType="String" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT *
+        FROM EATAEWONBBS
+        WHERE ID=#{id}
+    </select>
 
 
 </mapper>

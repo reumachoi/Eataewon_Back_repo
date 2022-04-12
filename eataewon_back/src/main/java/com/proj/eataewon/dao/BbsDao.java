@@ -16,21 +16,11 @@ public interface BbsDao {
 
     public void readcount(int seq);
 
-    public BbsDto getBbsListApp(int seq);
-
-    public int writeBbsApp(BbsDto dto);
-
-    public int readcountApp(int seq);
-
     public BbsDto getBbs(int seq);
-
-    public BbsFileDto getBbsDetail(int seq);
 
     public List<BbsDto> getBbsListSearch(BbsParam param);
 
     public List<BbsDto> getBbsListSearchPage(BbsParam param);
-
-    public List<BbsFileDto> getBbsListFileSearchPage(BbsParam param);
 
     public int getBbsCount(BbsParam param);
 
@@ -48,7 +38,7 @@ public interface BbsDao {
 
     public List<BbsDto> likeBbsList(BbsDto dto);
 
-    public int deleteScarp(int seq);
+    public int deleteScrap(ScrapDto dto);
 
     public int scrapBbsCnt(ScrapDto dto);
 
@@ -58,6 +48,51 @@ public interface BbsDao {
 
     public int likecntDown(LikeDto dto);
 
+    public List<BbsFileDto> getBbsListFileSearchPage(BbsParam param);
+
+    public BbsFileDto getBbsDetail(int seq);
+
     public boolean bbswriteImgup(BbsFileDto dto);
 
+    public void readcountFile(int seq);
+
+    public int updateBbsFile(BbsFileDto dto);
+
+    public int deleteBbsFile(int seq);
+
+    public int likeBbsFile(LikeDto dto);
+
+    public List<BbsFileDto> likeBbsListFile(BbsFileDto dto);
+
+    public int likebbsfileCnt(LikeDto dto);
+
+    public int lpplusfilepoint(BbsFileDto fdto);
+
+    public int likecntfileUpdate(LikeDto dto);
+
+    public int likecntDownfile(LikeDto dto);
+
+    public int lpminuspointfile(BbsFileDto fdto);
+
+    public int deleteLikefile(LikeDto dto);
+
+    public int scrapBbsCntfile(ScrapDto dto);
+
+    public int scrpointupfile(BbsFileDto bdto);
+
+    public int bbsScrapfile(ScrapDto dto);
+
+    public List<BbsFileDto> scrapBbsListfile(BbsFileDto dto);
+
+    public int deleteScrapfile(ScrapDto dto);
+
+    public int scrpointminusfile(BbsFileDto dto);
+
+    public int getBbsFileCount(BbsParam param);
+
+    public int likepointupfile(BbsFileDto dto);
+
+    public int likepointdownfile(BbsFileDto dto);
+
+    public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param);
 }

@@ -26,6 +26,7 @@ public class MemberService {
 		return n>0?true:false;
 	}
 	public MemberDto login(MemberDto dto) {
+		System.out.println("login memberservice");
 		return dao.login(dto);
 	}
 

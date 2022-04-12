@@ -39,15 +39,15 @@ public class BbsPicDto {
 	private String shopname;
 	private String address;
 	private double latitude;
-	private double longtitude;
+	private double longitude;
 	private int readcnt;
 	private int likecnt;
-	
+
 	private String name;
 	private String pwd;
 	private String email;
 	private String nickName;
-	private int profilPic;
+	private String profilPic;
 	private int likePoint;
 	private String profilMsg;
 }

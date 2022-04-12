@@ -7,19 +7,76 @@ public class BbsFileDto {
     private String title;
     private String content;
     private String filename;
+    private String filepath;
+    private String nickname;
 
     private String hashtag;
     private String wdate;
     private String shopname;
     private String address;
     private double latitude;
-    private double longtitude;
+    private double longitude;
     private int readcnt;
     private int likecnt;
 
-    public BbsFileDto(String id, String title, String filename,
-                      String contents, String hashtag, String wdate, String shopname, double latitude, double longtitude,
-                      String address,int readcnt, int likecnt) {
+    private String shopphnum;
+    private String shopurl;
+
+    public BbsFileDto(){
+
+    }
+
+    public BbsFileDto(String id, int seq, String nickname, String title, String content,
+                      String filename, String filepath, String hashtag,
+                      String wdate, String shopname,
+                      String address, double latitude, double longitude,
+                      int readcnt, int likecnt, String shopphnum,String shopurl) {
+        this.id = id;
+        this.seq = seq;
+        this.nickname =nickname;
+        this.title = title;
+        this.content = content;
+        this.filename = filename;
+        this.filepath = filepath;
+        this.hashtag = hashtag;
+        this.wdate = wdate;
+        this.shopname = shopname;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.readcnt = readcnt;
+        this.likecnt = likecnt;
+        this.shopphnum = shopphnum;
+        this.shopurl = shopurl;
+    }
+
+    public BbsFileDto(String id, String title, String content) {
+        super();
+        this.id = id;
+        this.title = title;
+        this.content = content;
+    }
+
+
+
+    public BbsFileDto(String id, String title, String nickname, String content, String filename, String filepath, String hashtag, String shopname,
+                      String address, double latitude, double longitude, String shopphnum, String shopurl) {
+        super();
+        this.id = id;
+        this.title = title;
+        this.nickname = nickname;
+        this.content = content;
+        this.filename = filename;
+        this.filepath = filepath;
+        this.hashtag = hashtag;
+        this.shopname = shopname;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.shopphnum = shopphnum;
+        this.shopurl = shopurl;
+
+
     }
 
     public String getId() {
@@ -36,6 +93,14 @@ public class BbsFileDto {
 
     public void setSeq(int seq) {
         this.seq = seq;
+    }
+
+    public String getFilepath() {
+        return filepath;
+    }
+
+    public void setFilepath(String filepath) {
+        this.filepath = filepath;
     }
 
     public String getTitle() {
@@ -102,12 +167,12 @@ public class BbsFileDto {
         this.latitude = latitude;
     }
 
-    public double getLongtitude() {
-        return longtitude;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLongtitude(double longtitude) {
-        this.longtitude = longtitude;
+    public void setLongitude(double longtitude) {
+        this.longitude = longitude;
     }
 
     public int getReadcnt() {
@@ -126,6 +191,50 @@ public class BbsFileDto {
         this.likecnt = likecnt;
     }
 
+    public String getnickname() {
+        return nickname;
+    }
 
+    public void setnickname(String nickname) {
+        this.nickname = nickname;
+    }
 
+    public String getShopphnum() {
+        return shopphnum;
+    }
+
+    public void setShopphnum(String shopphnum) {
+        this.shopphnum = shopphnum;
+    }
+
+    public String getShopurl() {
+        return shopurl;
+    }
+
+    public void setShopurl(String shopurl) {
+        this.shopurl = shopurl;
+    }
+
+    @Override
+    public String toString() {
+        return "BbsFileDto{" +
+                "id='" + id + '\'' +
+                ", seq=" + seq +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", filename='" + filename + '\'' +
+                ", filepath='" + filepath + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", hashtag='" + hashtag + '\'' +
+                ", wdate='" + wdate + '\'' +
+                ", shopname='" + shopname + '\'' +
+                ", address='" + address + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", readcnt=" + readcnt +
+                ", likecnt=" + likecnt +
+                ", shopphnum='" + shopphnum + '\'' +
+                ", shopurl='" + shopurl + '\'' +
+                '}';
+    }
 }

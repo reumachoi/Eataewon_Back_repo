@@ -30,23 +30,6 @@
         #{shopname}, #{address}, #{latitude},#{longitude}, 0)
     </insert>
 
-
-    <!--picture string인 테이블 따로 만들어 test중-->
-    <insert id="bbswriteImgup" parameterType="com.proj.eataewon.dto.BbsFileDto">
-        INSERT INTO eataewonBbsfile
-        (ID,SEQ,TITLE,CONTENT,FILENAME,FILEPATH,HASHTAG,WDATE,SHOPNAME,ADDRESS,LATITUDE,LONGITUDE,READCNT,LIKECNT)
-        VALUES
-        ( #{id}, picSeq.NEXTVAL, #{title}, #{content}, #{filename}, #{filepath}, #{hashtag}, SYSDATE,
-        #{shopname}, #{address}, #{latitude},#{longitude}, 0,0)
-    </insert>
-
-    <!-- 글 상세페이지 보기 -->
-    <select id="getBbsDetail" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsFileDto">
-        SELECT SEQ, ID, TITLE, CONTENT ,FILENAME,FILEPATH, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
-        FROM eataewonBbsfile
-        WHERE SEQ=#{seq}
-    </select>
-
     <!-- 글 상세페이지 보기 -->
     <select id="getBbs" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
         SELECT SEQ, Nickname, ID, TITLE, CONTENT, PICTURE, HASHTAG ,WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT,shopphnum,shopurl
@@ -103,45 +86,6 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         (SELECT ROW_NUMBER()OVER(ORDER BY READCNT DESC) AS RNUM,
         ID, nickname, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
         FROM EATAEWONBBS
-        WHERE 1=1
-        <if test="choice !=null and choice !='' and search !=null and search !=''">
-            <if test="choice=='id'">
-                AND ID=#{search}
-            </if>
-            <if test="choice=='title'">
-                AND TITLE LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='content'">
-                AND CONTENT LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='hashtag'">
-                AND HASHTAG LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='address'">
-                AND ADDRESS LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='shopname'">
-                AND SHOPNAME LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='nickname'">
-                AND nickname LIKE '%'||#{search}||'%'
-            </if>
-        </if>
-        ORDER BY READCNT DESC)
-        WHERE RNUM BETWEEN ${start} AND ${end}
-    </select>
-
-
-    <!--ROW_NUMBER()OVER(ORDER BY REF DESC, STEP ASC)란 뜻은
-REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 ROW_NUMBER()을 통해서 순번을 차례로 매긴다.
-검색해서 나온 결과에 차례로 순번 매긴다고 생각하면 된다.  -->
-    <select id="getBbsListFileSearchPage" parameterType="com.proj.eataewon.dto.BbsParam"
-            resultType="com.proj.eataewon.dto.BbsFileDto">
-        SELECT	ID, SEQ, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
-        FROM
-        (SELECT ROW_NUMBER()OVER(ORDER BY READCNT DESC) AS RNUM,
-        ID, SEQ, TITLE, CONTENT,HASHTAG, WDATE, ADDRESS, READCNT
-        FROM EATAEWONBBSFILE
         WHERE 1=1
         <if test="choice !=null and choice !='' and search !=null and search !=''">
             <if test="choice=='id'">
@@ -240,15 +184,29 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         AND ID = #{id}
     </select>
 
-
     <!--스크랩된 게시물 취소-->
     <!--eataewonscrap에 eataewonbbs의 primarykey를 참조하는 외래키를 참조하는 조건때문에
     스크랩된 게시물은 삭제가 안됐습니다. 스크랩 여부에 상관없이 글을 삭제할수 있도록 EATAESCRAP의 외래키 조건 삭제했습니다.-->
-    <delete id="deleteScarp" parameterType="java.lang.Integer">
+    <delete id="deleteScrap" parameterType="com.proj.eataewon.dto.ScrapDto">
         DELETE FROM EATAEWONSCRAP
         WHERE BBSSEQ=#{bbsseq}
         AND ID = #{id}
     </delete>
+
+    <!-- 스크랩시 likeponit +5증가-->
+    <update id="scrpointup" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+5
+        where id = ( select id from EATAEWONBBS where seq= #{seq})
+    </update>
+
+    <!--스크랩 취소시 likeponit -5 감소 -->
+    <update id="scrpointminus" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-5
+        where id = ( select id from EATAEWONBBS where seq= #{seq})
+    </update>
+
 
     <!--게시물 좋아요하기/ 부모키 없다는 오류 때문에 자료가 삽입이 안돼서서 일단 EATAEWONLIKE의 외래키 조건 삭제했습니다.-->
     <!--참고 사이트 : https://blog.naver.com/PostView.nhn?blogId=cksgy32&logNo=221675954355&parentCategoryNo=&categoryNo=78&viewDate=&isShowPopularPosts=true&from=search-->
@@ -274,6 +232,51 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         AND ID = #{id}
     </select>
 
+    <!--글쓸때 likeponit 증가 -->
+    <update id="likepointup" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+50
+        WHERE id = #{id}
+    </update>
+
+    <!--글삭제시 likeponit 감소 -->
+    <update id="likepointdown" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-50
+        WHERE id = #{id}
+    </update>
+
+    <!-- 스크랩시 likeponit +5증가-->
+    <update id="scrpointupfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+5
+        where id = ( select id from eataewonbbsfile where seq= #{seq})
+    </update>
+
+    <!--스크랩 취소시 likeponit -5 감소 -->
+    <update id="scrpointminusfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-5
+        where id = ( select id from eataewonbbsfile where seq= #{seq})
+    </update>
+
+
+    <!--좋아요 누를시 likeponit 증가 -->
+    <update id="lppluspoint" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+1
+        where id = ( select id from EATAEWONBBS where seq= #{seq})
+    </update>
+
+    <!-- 좋아요 취소시 likeponit 감소 -->
+    <update id="lpminuspoint" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-1
+        where id = ( select id from EATAEWONBBS where seq= #{seq})
+    </update>
+
+
+    <!--좋아요 할때 likecnt 증가 / 중복 방지는 controller에서 -->
     <update id="likecntUpdate" parameterType="com.proj.eataewon.dto.LikeDto" >
         update EATAEWONBBS
         SET likecnt = likecnt+1
@@ -293,5 +296,305 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         WHERE BBSSEQ=#{bbsseq}
         AND ID = #{id}
     </delete>
+
+
+    <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@이미지 나오는 게시판 따로 만들어서 테스트 중@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+
+    <!--사진 파일 업로드 업로드-->
+    <insert id="bbswriteImgup" parameterType="com.proj.eataewon.dto.BbsFileDto">
+        INSERT INTO eataewonbbsfile
+        (ID,SEQ, nickname, TITLE,CONTENT,FILENAME,FILEPATH,HASHTAG,WDATE,SHOPNAME,
+        ADDRESS,LATITUDE,LONGITUDE,READCNT,LIKECNT,shopphnum,shopurl)
+        VALUES
+        ( #{id}, picSeq.NEXTVAL, #{nickname}, #{title}, #{content}, #{filename}, #{filepath}, #{hashtag}, SYSDATE,
+        #{shopname}, #{address}, #{latitude},#{longitude}, 0,0,#{shopphnum},#{shopurl})
+    </insert>
+
+    <!-- 사진 포함 상세페이지 보기 -->
+    <select id="getBbsDetail" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT *
+
+
+
+        FROM eataewonbbsfile
+        WHERE SEQ=#{seq}
+    </select>
+
+    <!--글 목록+이미지보기-->
+    <select id="getBbsListFileSearchPageImg" parameterType="com.proj.eataewon.dto.BbsParam"
+            resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT	ID, SEQ, nickname, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT,FILENAME,FILEPATH
+        FROM
+        (SELECT ROW_NUMBER()OVER(ORDER BY READCNT DESC) AS RNUM,
+        ID, SEQ, nickname, TITLE, CONTENT,HASHTAG, WDATE, ADDRESS, READCNT,FILENAME,FILEPATH
+        FROM eataewonbbsfile
+        WHERE 1=1
+        <if test="choice !=null and choice !='' and search !=null and search !=''">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+        ORDER BY READCNT DESC)
+        WHERE RNUM BETWEEN ${start} AND ${end}
+    </select>
+
+
+    <!--글 목록보기-->
+    <select id="getBbsListFileSearchPage" parameterType="com.proj.eataewon.dto.BbsParam"
+            resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT	ID, SEQ, nickname, TITLE, CONTENT ,HASHTAG, WDATE, ADDRESS, READCNT
+        FROM
+        (SELECT ROW_NUMBER()OVER(ORDER BY READCNT DESC) AS RNUM,
+        ID, SEQ, nickname, TITLE, CONTENT,HASHTAG, WDATE, ADDRESS, READCNT
+        FROM eataewonbbsfile
+        WHERE 1=1
+        <if test="choice !=null and choice !='' and search !=null and search !=''">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+        ORDER BY READCNT DESC)
+        WHERE RNUM BETWEEN ${start} AND ${end}
+    </select>
+
+    <!--글 목록 보기-->
+    <select id="getBbsListFile" resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT SEQ, nickname, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        FROM eataewonbbsfile
+    </select>
+
+
+    <!-- 검색 조건이 틀려도 에러가 안나오도록 where 1=1-->
+    <select id="getBbsListFileSearch" parameterType="com.proj.eataewon.dto.BbsParam" resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT SEQ, ID, nickname, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT
+        FROM eataewonbbsfile
+        WHERE 1=1
+        <if test="choice !=null and choice !='' and search !=null and search !=''">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+        <!--      ORDER BY READCNT DESC-->
+    </select>
+
+    <!-- 글의 총수 -->
+    <select id="getBbsFileCount" parameterType="com.proj.eataewon.dto.BbsParam" resultType="java.lang.Integer">
+        SELECT NVL(COUNT(*),0) AS CNT
+        FROM eataewonbbsfile
+        WHERE 1=1
+        <if test="choice != null and choice != '' and search != null and search != '' ">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+    </select>
+
+
+    <!--조회수 업데이트-->
+    <update id="readcountFile" parameterType="java.lang.Integer">
+        UPDATE eataewonbbsfile
+        SET READCNT=READCNT+1
+        WHERE SEQ=#{seq}
+    </update>
+
+
+    <!--글수정-->
+    <update id="updateBbsFile" parameterType="com.proj.eataewon.dto.BbsFileDto">
+        UPDATE eataewonbbsfile
+        SET TITLE=#{title}, SHOPNAME=#{shopname},CONTENT=#{content}, filename=#{filename}, filepath=#{filepath}, HASHTAG=#{hashtag},
+        LATITUDE=#{latitude}, LONGITUDE=#{longitude},ADDRESS=#{address}, shopphnum=#{shopphnum}, shopurl=#{shopurl}
+        WHERE SEQ=#{seq}
+    </update>
+
+    <!--삭제-->
+    <update id="deleteBbsFile" parameterType="java.lang.Integer">
+        DELETE FROM eataewonbbsfile
+        WHERE SEQ=#{seq}
+    </update>
+
+    <!--글쓸때 likeponit 증가 -->
+    <update id="likepointupfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+50
+        WHERE id = #{id}
+    </update>
+
+    <!--글삭제시 likeponit 감소 -->
+    <update id="likepointdownfile" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-50
+        WHERE id = #{id}
+    </update>
+
+
+    <!--좋아요-->
+    <insert id="likeBbsFile" parameterType="com.proj.eataewon.dto.LikeDto">
+        insert into EATAEWONLIKE
+        (id,BBSSEQ,SEQ)
+        values(#{id},#{bbsseq},likeSeq.NEXTVAL)
+    </insert>
+
+    <!--좋아요된 게시물 수 확인-->
+    <select id = "likebbsfileCnt" parameterType="com.proj.eataewon.dto.LikeDto"  resultType="java.lang.Integer">
+        SELECT COUNT(*) AS CNT
+        FROM EATAEWONLIKE
+        WHERE bbsseq = #{bbsseq}
+        AND ID = #{id}
+    </select>
+
+    <!--좋아요된 게시물 리스트 반환-->
+    <select id = "likeBbsListFile" resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT TITLE, HASHTAG, SHOPNAME, ADDRESS, b.SEQ
+        FROM EATAEWONLIKE l ,eataewonbbsfile b
+        WHERE l.bbsseq = b.seq
+        AND l.ID=#{id}
+    </select>
+
+    <!--좋아요 누를때 포인트 증가-->
+    <update id="lpplusfilepoint" parameterType="com.proj.eataewon.dto.BbsFileDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint+1
+        where id = ( select id from eataewonbbsfile where seq= #{seq})
+    </update>
+
+
+    <!--좋아요 할때 likecnt 증가 / 중복 방지는 controller에서 -->
+    <update id="likecntfileUpdate" parameterType="com.proj.eataewon.dto.LikeDto" >
+        update eataewonbbsfile
+        SET likecnt = likecnt+1
+        WHERE seq = #{bbsseq}
+    </update>
+
+    <!--좋아요된 게시물 취소-->
+    <update id="deleteLikefile" parameterType="com.proj.eataewon.dto.LikeDto">
+        DELETE FROM EATAEWONLike
+        WHERE BBSSEQ=#{bbsseq}
+        AND ID = #{id}
+    </update>
+
+    <!--좋아요 취소할때 likecnt 감소 -->
+    <update id="likecntDownfile" parameterType="com.proj.eataewon.dto.LikeDto" >
+        update eataewonbbsfile
+        SET likecnt = likecnt-1
+        WHERE seq = #{bbsseq}
+    </update>
+
+    <!-- 좋아요 취소시 likeponit 감소 -->
+    <update id="lpminuspointfile" parameterType="com.proj.eataewon.dto.BbsDto" >
+        update EATAEWONMEMBER
+        SET likepoint = likepoint-1
+        where id = ( select id from eataewonbbsfile where seq= #{seq})
+    </update>
+
+
+    <!--스크랩-->
+    <!--게시물 스크랩하기-->
+    <insert id="bbsScrapfile" parameterType="com.proj.eataewon.dto.ScrapDto">
+        Insert into EATAEWONSCRAP
+        (id,BBSSEQ,SEQ)
+        values(#{id},#{bbsseq},scrapSeq.NEXTVAL)
+    </insert>
+
+
+    <!--스크랩된 게시물 리스트 반환-->
+    <select id = "scrapBbsListfile" resultType="com.proj.eataewon.dto.BbsFileDto">
+        SELECT TITLE, HASHTAG, SHOPNAME, ADDRESS, b.SEQ
+        FROM EATAEWONSCRAP s , eataewonbbsfile b
+        WHERE s.bbsseq = b.seq
+        AND s.ID = #{id}
+    </select>
+
+
+    <select id = "scrapBbsCntfile" parameterType="com.proj.eataewon.dto.ScrapDto"  resultType="java.lang.Integer">
+        SELECT COUNT(*) AS CNT
+        FROM EATAEWONSCRAP
+        WHERE bbsseq = #{bbsseq}
+        AND ID = #{id}
+    </select>
+
+
+    <!--스크랩된 게시물 취소-->
+    <!--eataewonscrap에 eataewonbbs의 primarykey를 참조하는 외래키를 참조하는 조건때문에
+    스크랩된 게시물은 글 삭제가 불가능했습니다. 스크랩 여부에 상관없이 글을 삭제할수 있도록 EATAESCRAP의 외래키 조건 삭제했습니다.-->
+    <update id="deleteScrapfile" parameterType="com.proj.eataewon.dto.ScrapDto">
+        DELETE FROM EATAEWONSCRAP
+        WHERE BBSSEQ=#{bbsseq}
+        AND ID = #{id}
+    </update>
+
+
+
 
 </mapper>
