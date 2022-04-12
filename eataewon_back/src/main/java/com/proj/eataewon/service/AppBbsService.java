@@ -58,6 +58,10 @@ public class AppBbsService {
 	public List<BbsDto> findMyBbs(String id){
 		return dao.findMyBbs(id);
 	}
+
+	public List<BbsDto> findBookmark(String id){
+		return dao.findBookmark(id);
+	}
 }
 
 

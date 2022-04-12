@@ -84,11 +84,17 @@ public interface BbsDao {
 
     public List<BbsFileDto> scrapBbsListfile(BbsFileDto dto);
 
-    public int deleteScrapfile(BbsFileDto dto);
+    public int deleteScrapfile(ScrapDto dto);
 
     public int scrpointminusfile(BbsFileDto dto);
 
     public int getBbsFileCount(BbsParam param);
+
+    public int likepointupfile(BbsFileDto dto);
+
+    public int likepointdownfile(BbsFileDto dto);
+
+    public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param);
 }
 
 

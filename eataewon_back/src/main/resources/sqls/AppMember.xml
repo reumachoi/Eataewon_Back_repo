@@ -72,4 +72,12 @@
         SET EMAIL=#{email}, NICKNAME=#{nickname}, PROFILMSG=#{profilmsg}
         WHERE ID=#{id}
     </update>
+
+    <update id="updateUserProfilPic" parameterType="com.proj.eataewon.dto.MemberDto">
+        UPDATE EATAEWONMEMBER
+        SET PROFILPIC = #{profilpic}
+        where ID=#{id}
+    </update>
+
+
 </mapper>

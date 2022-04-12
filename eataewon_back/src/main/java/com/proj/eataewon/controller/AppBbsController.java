@@ -28,7 +28,7 @@ public class AppBbsController {
 
     @RequestMapping(value = "/bbswriteApp", method = {RequestMethod.GET, RequestMethod.POST})
     public int bbswriteApp(@RequestBody BbsDto dto) {
-        System.out.println("AppBbsController bbswrite " + new Date());
+        System.out.println("AppBbsController bbswrite " + dto.toString());
 
         int seq = service.writeBbsApp(dto);
         System.out.println("글쓰기 완료후 넘어온 seq: "+seq);
@@ -45,6 +45,7 @@ public class AppBbsController {
 
     @RequestMapping(value = "/plustReadcntApp", method = RequestMethod.POST)
     public String plustReadcntApp(@RequestBody int seq) {
+        System.out.println(seq);
         System.out.println("AppBbsController plustReadcntApp " + new Date());
         String res = service.readcountApp(seq);
         System.out.println(res);
@@ -85,20 +86,6 @@ public class AppBbsController {
         return bservice.likeBbs(dto);
     }
 
-    //좋아요했을때 글의 likecnt 증가
-    @RequestMapping(value="/likecntPlus", method = RequestMethod.POST)
-    public boolean likecntPlus(@RequestBody int seq){
-        System.out.println("AppBbsController likecntPlus " + seq);
-        return service.likecntPlus(seq);
-    }
-
-    //좋아요 취소했을때 글의 likecnt 감소
-    @RequestMapping(value="/likecntMinus", method = RequestMethod.POST)
-    public boolean likecntMinus(@RequestBody int seq){
-        System.out.println("AppBbsController likecntMinus " + seq);
-        return service.likecntMinus(seq);
-    }
-
     //좋아요취소
     @RequestMapping(value = "/deleteBbsLikeApp", method = {RequestMethod.GET, RequestMethod.POST})
     public Boolean deleteBbsLikeApp(@RequestBody LikeDto dto) {
@@ -127,5 +114,27 @@ public class AppBbsController {
         System.out.println("AppBbsController findUser " + id);
         System.out.println(service.findMyBbs(id).toString());
         return service.findMyBbs(id);
+    }
+
+
+    //좋아요했을때 글의 likecnt 증가
+    @RequestMapping(value="/likecntPlus", method = RequestMethod.POST)
+    public boolean likecntPlus(@RequestBody int seq){
+        System.out.println("AppBbsController likecntPlus " + seq);
+        return service.likecntPlus(seq);
+    }
+
+    //좋아요 취소했을때 글의 likecnt 감소
+    @RequestMapping(value="/likecntMinus", method = RequestMethod.POST)
+    public boolean likecntMinus(@RequestBody int seq){
+        System.out.println("AppBbsController likecntMinus " + seq);
+        return service.likecntMinus(seq);
+    }
+
+    @RequestMapping(value = "/findBookmark", method = RequestMethod.POST)
+    public List<BbsDto> findBookmark(@RequestBody String id){
+        System.out.println("AppBbsController findBookmark " + id);
+        System.out.println(service.findBookmark(id));
+        return service.findBookmark(id);
     }
 }

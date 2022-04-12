@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sqls/AppBbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sqls/AppBbs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppBbsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppBbsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/sqls/AppBbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/AppBbs.xml" afterDir="false" />
-    </list>
+    <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,23 +161,15 @@
       <workItem from="1649311743952" duration="40000" />
       <workItem from="1649311805275" duration="1682000" />
       <workItem from="1649313880965" duration="1116000" />
-      <workItem from="1649317825940" duration="597000" />
-      <workItem from="1649319918596" duration="854000" />
-      <workItem from="1649381763527" duration="1790000" />
-      <workItem from="1649385887984" duration="5000" />
-      <workItem from="1649390482122" duration="2732000" />
-      <workItem from="1649396005023" duration="58000" />
-      <workItem from="1649396707348" duration="935000" />
-      <workItem from="1649635499547" duration="5129000" />
-      <workItem from="1649643320054" duration="1616000" />
-      <workItem from="1649650649927" duration="2177000" />
-      <workItem from="1649653127938" duration="1645000" />
-      <workItem from="1649660090643" duration="1154000" />
-      <workItem from="1649721837453" duration="1364000" />
-      <workItem from="1649725924376" duration="2000" />
-      <workItem from="1649725942175" duration="1538000" />
-      <workItem from="1649730516857" duration="460000" />
-      <workItem from="1649736096932" duration="1235000" />
+      <workItem from="1649315309230" duration="2025000" />
+      <workItem from="1649492406199" duration="35000" />
+      <workItem from="1649739656174" duration="64000" />
+      <workItem from="1649739959649" duration="1320000" />
+      <workItem from="1649744051809" duration="945000" />
+      <workItem from="1649745407543" duration="4763000" />
+      <workItem from="1649752176197" duration="1099000" />
+      <workItem from="1649754191009" duration="2920000" />
+      <workItem from="1649761338886" duration="1194000" />
     </task>
     <servers />
   </component>

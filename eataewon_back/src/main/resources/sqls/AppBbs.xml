@@ -15,9 +15,9 @@
     <insert id="writeBbsApp" parameterType="com.proj.eataewon.dto.BbsDto">
         INSERT INTO EATAEWONBBS
             (SEQ, ID, NICKNAME, TITLE, CONTENT,PICTURE, HASHTAG, WDATE, SHOPNAME,
-            ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,shopphnum,shopurl)
+            ADDRESS, LATITUDE, LONGITUDE, READCNT,LIKECNT,SHOPPHNUM,SHOPURL)
         VALUES
-            (#{seq}, #{id}, #{nickname}, #{title}, #{content},#{picture}, #{hashtag}, SYSDATE,
+            (#{seq}, #{id}, #{nickname}, #{title}, #{content}, #{picture}, #{hashtag}, SYSDATE,
              #{shopname}, #{address}, #{latitude},#{longitude}, 0, 0,#{shopphnum},#{shopurl})
         <selectKey resultType="java.lang.Integer" keyProperty="seq" order="BEFORE">
             SELECT bbsseq.nextval
@@ -64,4 +64,13 @@
         SET likecnt = likecnt-1
         WHERE seq = #{seq}
     </update>
+
+    <select id="findBookmark" parameterType="String" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT *
+        FROM EATAEWONBBS
+        WHERE seq =
+        (SELECT bbsseq
+        FROM EATAEWONSCRAP
+        WHERE ID = #{id})
+    </select>
 </mapper>

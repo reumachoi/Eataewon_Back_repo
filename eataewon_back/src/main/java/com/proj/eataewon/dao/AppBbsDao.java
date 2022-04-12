@@ -25,6 +25,8 @@ public interface AppBbsDao {
     public int likecntPlus(int seq);
 
     public int likecntMinus(int seq);
+
+    public List<BbsDto> findBookmark(String id);
 }
 
 
