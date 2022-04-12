@@ -13,7 +13,7 @@ public interface AppBbsDao {
 
     public BbsDto getBbsListSearchApp(BbsParam param); // 검색했을 경우 recyclerview
 
-    public BbsDto getMarkerListApp();       // Search Map 데이터
+    public ArrayList<BbsDto> getMarkerListApp();       // Search Map 데이터
 
     public ArrayList<BbsDto> getUpperBbsListApp();      // 홈 화면 상단
 

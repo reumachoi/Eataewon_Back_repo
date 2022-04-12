@@ -23,7 +23,7 @@ public class AppBbsService {
         return dao.getBbsListSearchApp(param);
     }
 
-    public BbsDto getMarkerListApp() { return  dao.getMarkerListApp(); }
+    public ArrayList<BbsDto> getMarkerListApp() { return  dao.getMarkerListApp(); }
 
     // 홈 화면 상단 뷰
     public ArrayList<BbsDto> getUpperBbsListApp(){

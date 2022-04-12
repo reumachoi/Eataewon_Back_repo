@@ -36,10 +36,15 @@ public class AppBbsController {
     }
 
     @RequestMapping(value = "/getMarkerListApp", method = {RequestMethod.GET, RequestMethod.POST})
-    public BbsDto getMarkerListApp() {
+    public ArrayList<BbsDto> getMarkerListApp() {
         System.out.println("BbsController getMarkerListApp ");
 
-        BbsDto list = service.getMarkerListApp();
+        ArrayList<BbsDto> list = service.getMarkerListApp();
+
+        for (BbsDto bbs : list) {
+            System.out.println(bbs.toString());
+        }
+
         return list;
     }
 
