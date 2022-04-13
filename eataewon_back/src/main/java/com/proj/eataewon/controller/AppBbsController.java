@@ -104,11 +104,11 @@ public class AppBbsController {
     //로그인유저가 현재 상세글을 이미 스크랩했는지
     @RequestMapping(value = "/checkUserScrap", method = {RequestMethod.GET, RequestMethod.POST})
     public Boolean checkUserScrap(@RequestBody ScrapDto dto){
-        System.out.println("AppBbsController checkUserScrap " + new Date());
+        System.out.println("AppBbsController checkUserScrap " + dto.toString());
         return service.checkUserScrap(dto);
     }
 
-
+    //내가 쓴글 확인하기
     @RequestMapping(value="/findMyBbs",method = RequestMethod.POST)
     public List<BbsDto> findMyBbs(@RequestBody String id) {
         System.out.println("AppBbsController findUser " + id);
@@ -131,6 +131,7 @@ public class AppBbsController {
         return service.likecntMinus(seq);
     }
 
+    //북마크 모아보기
     @RequestMapping(value = "/findBookmark", method = RequestMethod.POST)
     public List<BbsDto> findBookmark(@RequestBody String id){
         System.out.println("AppBbsController findBookmark " + id);

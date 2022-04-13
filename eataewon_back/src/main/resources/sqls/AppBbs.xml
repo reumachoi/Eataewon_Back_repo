@@ -26,7 +26,6 @@
     </insert>
 
 
-
     <update id="readcountApp" parameterType="java.lang.Integer">
         UPDATE EATAEWONBBS
         SET READCNT=READCNT+1
