@@ -29,18 +29,16 @@ public class BbsController {
     @Autowired
     MemberService mservice;
 
-    /*@RequestMapping(value="/searchMapWeb", method = RequestMethod.GET)
-    public class mapServlet extends HttpServlet{
-        private static final long serialVersionUID = 1L;
-        protected  void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-            request.setCharacterEncoding("UTF-8");
-            response.setContentType("text/html; charset=UTF-8");
-            String command = request.getParameter("command");
-            if(command.equals("searchMap")){
-                response.sendRedirect("searchMap.jsp");
-            }
+    @RequestMapping(value="/bbsChoicePlace", method = RequestMethod.GET)
+    public String bbsChoicePlace(MapResultDto dto){
+        System.out.println("BbsChoicePlace@@@@@@");
+        System.out.println(dto.toString());
+        if(dto != null){
+            return "YES";
+        }else {
+            return "NO";
         }
-    }*/
+    }
 
     @RequestMapping(value = "/getBbsList", method = {RequestMethod.GET, RequestMethod.POST} )
     public List<BbsDto> getBbsList(){

@@ -39,7 +39,7 @@
     </select>
 
     <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
+        SELECT *
         FROM EATAEWONBBS
         WHERE SEQ = #{seq}
     </select>
@@ -56,7 +56,6 @@
             FROM DUAL
         </selectKey>
     </insert>
-
 
 
     <update id="readcountApp" parameterType="java.lang.Integer">
@@ -96,4 +95,13 @@
         SET likecnt = likecnt-1
         WHERE seq = #{seq}
     </update>
+
+    <select id="findBookmark" parameterType="String" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT *
+        FROM EATAEWONBBS
+        WHERE seq in
+        (SELECT bbsseq
+        FROM EATAEWONSCRAP
+        WHERE ID = #{id})
+    </select>
 </mapper>

@@ -247,35 +247,30 @@ public class BbsService {
 		return false;
 	}
 
-	public boolean bbsScrapfile(ScrapDto dto) {
-		System.out.println("ScrapDto " + dto + new Date());
-		int n = dao.bbsScrapfile(dto);
-		return n > 0 ? true : false;
+	public int getBbsFileCount(BbsParam param) {
+		return dao.getBbsFileCount(param);
 	}
 
-	public List<BbsFileDto> scrapBbsListfile(BbsFileDto dto) {
-		System.out.println("scrapBbsListfile " + dto + new Date());
-		return dao.scrapBbsListfile(dto);
-	}
-
-	public boolean deleteScrapfile(ScrapDto dto) {
-		int n = dao.deleteScrapfile(dto);
-		if(n == 0) return false;
-
-		return true;
-	}
-
-	public boolean scrpointminusfile(BbsFileDto dto) {
-		int n = dao.scrpointminusfile(dto);
+	public boolean likepointupfile(BbsFileDto dto) {
+		int n = dao.likepointupfile(dto);
 		if(n > 0) {
 			return true;
 		}
 		return false;
 	}
 
-	public int getBbsFileCount(BbsParam param) {
-		return dao.getBbsFileCount(param);
+	public boolean likepointdownfile(BbsFileDto dto) {
+		int n = dao.likepointdownfile(dto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
 	}
+
+	public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param) {
+		return dao.getBbsListFileSearchPageImg(param);
+	}
+}
 
 	public boolean likepointupfile(BbsFileDto dto) {
 		int n = dao.likepointupfile(dto);

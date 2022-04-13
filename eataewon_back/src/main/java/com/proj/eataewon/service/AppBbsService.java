@@ -79,7 +79,21 @@ public class AppBbsService {
 		return n>0?true:false;
 	}
 
-    public List<BbsDto> findMyBbs(String id){
-        return dao.findMyBbs(id);
-    }
+	public boolean likecntPlus(int seq){
+		int n = dao.likecntPlus(seq);
+		return n>0?true:false;
+	}
+
+	public boolean likecntMinus(int seq){
+		int n = dao.likecntMinus(seq);
+		return n>0?true:false;
+	}
+
+	public List<BbsDto> findMyBbs(String id){
+		return dao.findMyBbs(id);
+	}
+
+	public List<BbsDto> findBookmark(String id){
+		return dao.findBookmark(id);
+	}
 }
