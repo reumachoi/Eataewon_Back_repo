@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface AppBbsDao {
 
-    public BbsDto getBbsListSearchApp(BbsParam param); // 검색했을 경우 recyclerview
+    public ArrayList<BbsDto> getBbsListSearchApp(String search); // 검색했을 경우 recyclerview
 
     public ArrayList<BbsDto> getMarkerListApp();       // Search Map 데이터
 

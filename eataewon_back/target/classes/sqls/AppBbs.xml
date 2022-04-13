@@ -6,22 +6,10 @@
 <mapper namespace="com.proj.eataewon.dao.AppBbsDao">
 
     <!-- 검색 조건이 틀려도 에러가 안나오도록 where 1=1-->
-    <select id="getBbsListSearchApp" parameterType="com.proj.eataewon.dto.BbsParam" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT SEQ, ID, NICKNAME, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT
+    <select id="getBbsListSearchApp" parameterType="String" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, NICKNAME, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, PICTURE
         FROM EATAEWONBBS
-        WHERE 1=1
-        <if test="choice !=null and choice !='' and search !=null and search !=''">
-            <if test="choice=='shopname'">
-                AND SHOPNAME LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='address'">
-                AND ADDRESS LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='hashtag'">
-                AND HASHTAG LIKE '%'||#{search}||'%'
-            </if>
-        </if>
-        <!--      ORDER BY READCNT DESC-->
+        WHERE (SHOPNAME LIKE '%'||#{search}||'%') OR ADDRESS LIKE '%'||#{search}||'%' OR HASHTAG LIKE '%'||#{search}||'%'
     </select>
 
     <select id="getMarkerListApp" resultType="com.proj.eataewon.dto.BbsDto">

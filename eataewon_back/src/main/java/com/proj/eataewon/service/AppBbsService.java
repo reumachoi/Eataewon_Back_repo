@@ -19,8 +19,8 @@ public class AppBbsService {
     AppBbsDao dao;
 
     // 검색 후 recyclerview
-    public BbsDto getBbsListSearch(BbsParam param) {
-        return dao.getBbsListSearchApp(param);
+    public ArrayList<BbsDto> getBbsListSearch(String search) {
+        return dao.getBbsListSearchApp(search);
     }
 
     public ArrayList<BbsDto> getMarkerListApp() { return  dao.getMarkerListApp(); }

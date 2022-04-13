@@ -29,10 +29,11 @@ public class AppBbsController {
     }
 
     @RequestMapping(value = "/getBbsListSearchApp", method = {RequestMethod.GET, RequestMethod.POST} )
-    public BbsDto getBbsListSearchApp(@RequestBody BbsParam param){
+    public ArrayList<BbsDto> getBbsListSearchApp(@RequestBody String search){
         System.out.println("BbsController getBbsListSearchApp ");
+        System.out.println(service.getBbsListSearch(search));
 
-        return service.getBbsListSearch(param);
+        return service.getBbsListSearch(search);
     }
 
     @RequestMapping(value = "/getMarkerListApp", method = {RequestMethod.GET, RequestMethod.POST})
@@ -69,6 +70,11 @@ public class AppBbsController {
         System.out.println("BbsController getSearchListApp ");
 
         ArrayList<BbsDto> list = service.getSearchListApp();
+
+        for (BbsDto bbs : list) {
+            System.out.println(bbs.toString());
+        }
+
         return list;
     }
 
