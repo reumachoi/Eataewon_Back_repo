@@ -86,6 +86,11 @@ public class AppBbsService {
 	public List<BbsDto> findBookmark(String id){
 		return dao.findBookmark(id);
 	}
+
+	public boolean scrapDelete(ScrapDto dto){
+		int n = dao.scrapDelete(dto);
+		return n>0?true:false;
+	}
 }
 
 

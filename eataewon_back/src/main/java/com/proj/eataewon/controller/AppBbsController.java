@@ -197,4 +197,18 @@ public class AppBbsController {
         System.out.println(service.findBookmark(id));
         return service.findBookmark(id);
     }
+
+    @RequestMapping(value="/scrapDelete", method = RequestMethod.POST)
+    public boolean scrapDelete(@RequestBody ArrayList<ScrapDto> dto){
+        System.out.println("AppBbsController scrapDelete " + dto);
+        for(int i=0; i < dto.size(); i++){
+            boolean b = service.scrapDelete(dto.get(i));
+            if(b){
+                System.out.println(i+"번째 dto 결과: true");
+            }else{
+                System.out.println(i+"번째 dto 결과: false");
+            }
+        }
+        return true;
+    }
 }

@@ -104,4 +104,10 @@
         FROM EATAEWONSCRAP
         WHERE ID = #{id})
     </select>
+
+    <delete id="scrapDelete" parameterType="com.proj.eataewon.dto.ScrapDto">
+        delete from eataewonscrap
+        where bbsseq=#{bbsseq} AND id=#{id}
+    </delete>
+
 </mapper>
