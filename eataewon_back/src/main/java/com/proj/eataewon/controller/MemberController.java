@@ -1,11 +1,8 @@
 package com.proj.eataewon.controller;
 
-import com.proj.eataewon.dto.MemberBbsDto;
-import com.proj.eataewon.dto.BbsDto;
 import com.proj.eataewon.dto.MemberDto;
 import com.proj.eataewon.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,7 +46,7 @@ public class MemberController {
 		System.out.println("HelloController getMember()");
 		return null;
 	}
-
+	
 	@RequestMapping(value = "/getMemberList")
 	public List<MemberDto> getMemberList(){
 		System.out.println("HelloController getMemberList()");
@@ -87,7 +84,7 @@ public class MemberController {
 
 		return service.detailMem(id);
 	}
-
+	
 	//회원정보 수정하기
 	@RequestMapping(value = "/updateMem", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String updateMem(MemberDto dto) {
@@ -117,3 +114,13 @@ public class MemberController {
 
 
 }
+
+
+
+
+
+
+
+
+
+

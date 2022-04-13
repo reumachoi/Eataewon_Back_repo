@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @Transactional
 public class BbsService {
-
+	
 	@Autowired
 	BbsDao dao;
 
@@ -272,23 +272,5 @@ public class BbsService {
 	}
 }
 
-	public boolean likepointupfile(BbsFileDto dto) {
-		int n = dao.likepointupfile(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-	}
 
-	public boolean likepointdownfile(BbsFileDto dto) {
-		int n = dao.likepointdownfile(dto);
-		if(n > 0) {
-			return true;
-		}
-		return false;
-	}
 
-	public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param) {
-		return dao.getBbsListFileSearchPageImg(param);
-	}
-}

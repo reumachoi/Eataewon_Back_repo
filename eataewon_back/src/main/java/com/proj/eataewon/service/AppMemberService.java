@@ -1,15 +1,10 @@
 package com.proj.eataewon.service;
 
 import com.proj.eataewon.dao.AppMemberDao;
-import com.proj.eataewon.dao.MemberDao;
-import com.proj.eataewon.dto.BbsDto;
-import com.proj.eataewon.dto.MemberBbsDto;
 import com.proj.eataewon.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional

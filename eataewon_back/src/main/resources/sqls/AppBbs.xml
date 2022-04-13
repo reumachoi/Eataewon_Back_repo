@@ -5,6 +5,7 @@
 
 <mapper namespace="com.proj.eataewon.dao.AppBbsDao">
 
+
     <!-- 검색 조건이 틀려도 에러가 안나오도록 where 1=1-->
     <select id="getBbsListSearchApp" parameterType="String" resultType="com.proj.eataewon.dto.BbsDto">
         SELECT SEQ, ID, NICKNAME, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, PICTURE

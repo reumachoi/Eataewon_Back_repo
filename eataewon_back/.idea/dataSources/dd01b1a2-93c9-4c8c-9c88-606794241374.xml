@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@localhost">
   <database-model serializer="dbm" dbms="ORACLE" family-id="ORACLE" format-version="4.32">
-    <root id="1"/>
+    <root id="1">
+      <IntrospectionLevel>3</IntrospectionLevel>
+      <ServerVersion>11.2.0.2.0</ServerVersion>
+      <TablespacesHash>22649189124</TablespacesHash>
+    </root>
     <schema id="2" parent="1" name="HR">
       <CommentsHash>1809107099907</CommentsHash>
       <CreatedTimestamp>2011-08-29.07:21:55</CreatedTimestamp>

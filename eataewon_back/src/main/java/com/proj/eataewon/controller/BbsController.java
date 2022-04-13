@@ -7,13 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -256,6 +251,7 @@ public class BbsController {
                 answer = "NO";
         }
         return answer;
+
     }
     */
 
@@ -285,42 +281,6 @@ public class BbsController {
         service.readcountFile(seq); //조회수 업데이트가 안된다.
         return service.getBbsDetail(seq);
     }
-    */
-
-    ////////////////////////////////////////파일포함 페이지 테스트 중////////////////////////////////////////////
-
-    //글작성 (파일 삽입 가능 페이지)
-    @RequestMapping(value = "/bbswriteImgup", method = {RequestMethod.GET, RequestMethod.POST} )
-    public String bbswriteImgup(BbsFileDto dto) {
-        System.out.println("BbsController bbswriteImgup " + new Date());
-        System.out.println("BbsController bbswriteImgup" + dto.toString()  + new Date());
-
-        //호감도 증가
-        boolean a = service.likepointupfile(dto);
-
-        boolean b = service.bbswriteImgup(dto);
-        if(b) {
-            return "YES";
-        }
-        return "NO";
-    }
-
-    //파일 포함 상세페이지
-    @RequestMapping(value = "/bbsFileDetail", method = {RequestMethod.GET, RequestMethod.POST} )
-    public BbsFileDto bbsFileDetail(int seq) {
-        System.out.println("BbsController BbsFileDto " + new Date());
-
-        service.readcountFile(seq); //조회수 업데이트가 안된다.
-        return service.getBbsDetail(seq);
-    }
-
-    //글의 총 개수
-    @RequestMapping(value = "/getBbsFileCount", method = {RequestMethod.GET, RequestMethod.POST} )
-    public int getBbsFileCount(BbsParam param) {
-        System.out.println("BbsController getBbsFileCount " + new Date());
-        return service.getBbsFileCount(param);
-    }
-
 
     //글의 총 개수
     @RequestMapping(value = "/getBbsFileCount", method = {RequestMethod.GET, RequestMethod.POST} )
@@ -347,22 +307,22 @@ public class BbsController {
     }
 
 
-    // getBbsListFileSearchPageImg
+   // getBbsListFileSearchPageImg
     //썸네일 이미지가 포함된 목록 반환
-    @RequestMapping(value = "/getBbsListFileSearchPageImg", method = {RequestMethod.GET, RequestMethod.POST} )
-    public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param){
-        System.out.println("BbsController getBbsListFileSearchPageImg " + new Date());
+   @RequestMapping(value = "/getBbsListFileSearchPageImg", method = {RequestMethod.GET, RequestMethod.POST} )
+   public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param){
+       System.out.println("BbsController getBbsListFileSearchPageImg " + new Date());
 
-        // 페이지 설정
-        int sn = param.getPage();	// 0 1 2 3 ~
-        int start = sn * 10 + 1;	// 1	11
-        int end = (sn + 1) * 10;	// 10	20
+       // 페이지 설정
+       int sn = param.getPage();	// 0 1 2 3 ~
+       int start = sn * 10 + 1;	// 1	11
+       int end = (sn + 1) * 10;	// 10	20
 
-        param.setStart(start);
-        param.setEnd(end);
+       param.setStart(start);
+       param.setEnd(end);
 
-        return service.getBbsListFileSearchPageImg(param);
-    }
+       return service.getBbsListFileSearchPageImg(param);
+   }
 
 
     //파일수정

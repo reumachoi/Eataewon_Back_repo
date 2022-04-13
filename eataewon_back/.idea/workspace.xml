@@ -5,9 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="040b0cb3-e2d0-41d5-88f8-cd20788a0cfd" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dd01b1a2-93c9-4c8c-9c88-606794241374.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dd01b1a2-93c9-4c8c-9c88-606794241374.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppBbsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppMemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/AppMemberController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/BbsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/BbsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppBbsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppBbsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppMemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/AppMemberDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/BbsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/BbsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/MemberDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao/MemberDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/AppBbsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/AppBbsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/AppMemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/AppMemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/BbsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppBbsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/AppMemberController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/BbsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/controller/MemberController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/AppBbsDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/AppMemberDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/BbsDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dao/MemberDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsFileDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/BbsPicDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/MapResultDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/MemberBbsDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/dto/MemberDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/AppBbsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/AppMemberService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/BbsService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/proj/eataewon/service/MemberService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sqls/AppBbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/AppBbs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sqls/Bbs.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +92,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -75,6 +106,9 @@
       <recent name="com.proj.eataewon.controller" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/proj/eataewon/service" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dao" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller" />
       <recent name="C:\eataewon_back\eataewon_back\src\main\resources\sqls" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -177,6 +211,9 @@
       <workItem from="1649809722992" duration="1011000" />
       <workItem from="1649811089452" duration="4340000" />
       <workItem from="1649822495698" duration="3212000" />
+      <workItem from="1649831068501" duration="370000" />
+      <workItem from="1649831467284" duration="456000" />
+      <workItem from="1649831941254" duration="106000" />
     </task>
     <servers />
   </component>

@@ -594,23 +594,6 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         AND ID = #{id}
     </update>
 
-    <select id = "scrapBbsCntfile" parameterType="com.proj.eataewon.dto.ScrapDto"  resultType="java.lang.Integer">
-        SELECT COUNT(*) AS CNT
-        FROM EATAEWONSCRAP
-        WHERE bbsseq = #{bbsseq}
-        AND ID = #{id}
-    </select>
-
-
-    <!--스크랩된 게시물 취소-->
-    <!--eataewonscrap에 eataewonbbs의 primarykey를 참조하는 외래키를 참조하는 조건때문에
-    스크랩된 게시물은 글 삭제가 불가능했습니다. 스크랩 여부에 상관없이 글을 삭제할수 있도록 EATAESCRAP의 외래키 조건 삭제했습니다.-->
-    <update id="deleteScrapfile" parameterType="com.proj.eataewon.dto.ScrapDto">
-        DELETE FROM EATAEWONSCRAP
-        WHERE BBSSEQ=#{bbsseq}
-        AND ID = #{id}
-    </update>
-
 
 
 

@@ -13,15 +13,15 @@ import java.util.List;
 @Service
 @Transactional
 public class MemberService {
-
+	
 	@Autowired
-	MemberDao dao;
+    MemberDao dao;
 
 	public List<MemberDto> allMember() {
 		return dao.allMember();
 	}
 
-	public boolean getId(MemberDto dto) {
+    public boolean getId(MemberDto dto) {
 		int n = dao.getId(dto);
 		return n>0?true:false;
     }
@@ -33,11 +33,7 @@ public class MemberService {
     public boolean addmember(MemberDto dto) {
 		int n = dao.addmember(dto);
 		return n>0?true:false;
-	}
-	public MemberDto login(MemberDto dto) {
-		System.out.println("login memberservice");
-		return dao.login(dto);
-	}
+    }
 
 	public MemberBbsDto bbsGetUser(String id) {
 		return dao.bbsGetUser(id);
@@ -97,41 +93,11 @@ public class MemberService {
 		return n>0?true:false;
 
 	}
-
-	public String getProfilPic(String id){
-		return dao.getProfilPic(id);
-	}
-
-	public boolean likePWriteUp(BbsDto dto) {
-		int n = dao.likePWriteUp(dto);
-		return n>0?true:false;
-	}
-
-	public boolean likePWriteDown(BbsDto dto) {
-		int n = dao.likePWriteDown(dto);
-		return n>0?true:false;
-	}
-
-	public boolean likePHeartUp(BbsDto bdto) {
-		int n = dao.likePHeartUp(bdto);
-		return n>0?true:false;
-	}
-
-
-	public boolean likePHeartDown(BbsDto bdto) {
-		int n = dao.likePHeartDown(bdto);
-		return n>0?true:false;
-	}
-
-	public boolean likePScrapUp(BbsDto bdto) {
-		int n = dao.likePScrapUp(bdto);
-		return n>0?true:false;
-
-	}
-
-	public boolean likePScrapDown(BbsDto dto) {
-		int n = dao.likePScrapDown(dto);
-		return n>0?true:false;
-
-	}
 }
+
+
+
+
+
+
+

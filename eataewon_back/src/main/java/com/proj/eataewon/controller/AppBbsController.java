@@ -1,10 +1,16 @@
 package com.proj.eataewon.controller;
 
-import com.proj.eataewon.dto.*;
+import com.proj.eataewon.dto.BbsDto;
+import com.proj.eataewon.dto.LikeDto;
+import com.proj.eataewon.dto.MemberBbsDto;
+import com.proj.eataewon.dto.ScrapDto;
 import com.proj.eataewon.service.AppBbsService;
 import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +33,7 @@ public class AppBbsController {
 
         return service.getBbsListApp(seq);
     }
+
 
     @RequestMapping(value = "/getBbsListSearchApp", method = {RequestMethod.GET, RequestMethod.POST} )
     public ArrayList<BbsDto> getBbsListSearchApp(@RequestBody String search){
