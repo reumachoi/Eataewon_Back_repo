@@ -5,9 +5,41 @@
 
 <mapper namespace="com.proj.eataewon.dao.AppBbsDao">
 
+    <!-- 검색 조건이 틀려도 에러가 안나오도록 where 1=1-->
+    <select id="getBbsListSearchApp" parameterType="String" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, NICKNAME, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, PICTURE
+        FROM EATAEWONBBS
+        WHERE (SHOPNAME LIKE '%'||#{search}||'%') OR ADDRESS LIKE '%'||#{search}||'%' OR HASHTAG LIKE '%'||#{search}||'%'
+    </select>
+
+    <select id="getMarkerListApp" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT, SHOPURL, SHOPPHNUM, LATITUDE, LONGITUDE, NICKNAME, PICTURE
+        FROM EATAEWONBBS
+    </select>
+
+    <!--메인 페이지 Upper 영역 게시물 조회수 높은순 정렬-->
+    <select id="getUpperBbsListApp" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT, SHOPURL, SHOPPHNUM, LATITUDE, LONGITUDE, NICKNAME, PICTURE
+        FROM EATAEWONBBS
+        ORDER BY READCNT DESC
+    </select>
+
+    <!--메인 페이지 Lower 영역 게시물 최신순 정렬-->
+    <select id="getLowerBbsListApp" resultType="com.proj.eataewon.dto.MemberBbsDto">
+        SELECT a.SEQ, a.ID, a.TITLE, a.CONTENT, a.HASHTAG, a.WDATE, a.SHOPNAME, a.ADDRESS, a.READCNT, a.LIKECNT, a.SHOPURL, a.SHOPPHNUM, a.LATITUDE, a.LONGITUDE, a.NICKNAME, a.PICTURE, b.PROFILPIC, b.PROFILMSG
+        FROM EATAEWONBBS a, EATAEWONMEMBER b
+        WHERE a.ID = b.ID
+        ORDER BY a.WDATE DESC
+    </select>
+
+    <!--검색 페이지에 데이터 가져오기-->
+    <select id="getSearchListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
+        SELECT SEQ, nickname, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT, PICTURE
+        FROM EATAEWONBBS
+    </select>
 
     <select id="getBbsListApp" parameterType="java.lang.Integer" resultType="com.proj.eataewon.dto.BbsDto">
-        SELECT *
+        SELECT SEQ, ID, TITLE, CONTENT, HASHTAG, WDATE, SHOPNAME, ADDRESS, READCNT, LIKECNT
         FROM EATAEWONBBS
         WHERE SEQ = #{seq}
     </select>
@@ -24,8 +56,6 @@
             FROM DUAL
         </selectKey>
     </insert>
-
-
 
     <update id="readcountApp" parameterType="java.lang.Integer">
         UPDATE EATAEWONBBS

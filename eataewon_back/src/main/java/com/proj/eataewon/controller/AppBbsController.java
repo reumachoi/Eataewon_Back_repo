@@ -5,6 +5,8 @@ import com.proj.eataewon.service.AppBbsService;
 import com.proj.eataewon.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,9 +28,59 @@ public class AppBbsController {
         return service.getBbsListApp(seq);
     }
 
+    @RequestMapping(value = "/getBbsListSearchApp", method = {RequestMethod.GET, RequestMethod.POST} )
+    public ArrayList<BbsDto> getBbsListSearchApp(@RequestBody String search){
+        System.out.println("BbsController getBbsListSearchApp ");
+        System.out.println(service.getBbsListSearch(search));
+
+        return service.getBbsListSearch(search);
+    }
+
+    @RequestMapping(value = "/getMarkerListApp", method = {RequestMethod.GET, RequestMethod.POST})
+    public ArrayList<BbsDto> getMarkerListApp() {
+        System.out.println("BbsController getMarkerListApp ");
+
+        ArrayList<BbsDto> list = service.getMarkerListApp();
+
+        for (BbsDto bbs : list) {
+            System.out.println(bbs.toString());
+        }
+
+        return list;
+    }
+
+    @RequestMapping(value = "/getUpperBbsListApp", method = {RequestMethod.GET, RequestMethod.POST})
+    public ArrayList<BbsDto> getUpperBbsListApp() {
+        System.out.println("BbsController getUpperBbsListApp ");
+
+        ArrayList<BbsDto> list = service.getUpperBbsListApp();
+        return list;
+    }
+
+    @RequestMapping(value = "/getLowerBbsListApp", method = {RequestMethod.GET, RequestMethod.POST})
+    public ArrayList<MemberBbsDto> getLowerBbsListApp() {
+        System.out.println("BbsController getLowerBbsListApp ");
+
+        ArrayList<MemberBbsDto> list = service.getLowerBbsListApp();
+        return list;
+    }
+
+    @RequestMapping(value = "/getSearchListApp", method =  {RequestMethod.GET, RequestMethod.POST})
+    public ArrayList<BbsDto> getSearchListApp() {
+        System.out.println("BbsController getSearchListApp ");
+
+        ArrayList<BbsDto> list = service.getSearchListApp();
+
+        for (BbsDto bbs : list) {
+            System.out.println(bbs.toString());
+        }
+
+        return list;
+    }
+
     @RequestMapping(value = "/bbswriteApp", method = {RequestMethod.GET, RequestMethod.POST})
     public int bbswriteApp(@RequestBody BbsDto dto) {
-        System.out.println("AppBbsController bbswrite " + dto.toString());
+        System.out.println("AppBbsController bbswrite " + new Date());
 
         int seq = service.writeBbsApp(dto);
         System.out.println("글쓰기 완료후 넘어온 seq: "+seq);

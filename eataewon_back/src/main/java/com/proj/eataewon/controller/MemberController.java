@@ -49,7 +49,7 @@ public class MemberController {
 		System.out.println("HelloController getMember()");
 		return null;
 	}
-	
+
 	@RequestMapping(value = "/getMemberList")
 	public List<MemberDto> getMemberList(){
 		System.out.println("HelloController getMemberList()");
@@ -87,7 +87,7 @@ public class MemberController {
 
 		return service.detailMem(id);
 	}
-	
+
 	//회원정보 수정하기
 	@RequestMapping(value = "/updateMem", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String updateMem(MemberDto dto) {
@@ -117,13 +117,3 @@ public class MemberController {
 
 
 }
-
-
-
-
-
-
-
-
-
-

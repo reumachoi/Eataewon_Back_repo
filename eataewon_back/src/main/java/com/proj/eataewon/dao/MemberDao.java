@@ -46,6 +46,26 @@ public interface MemberDao {
 
 }
 
+	public MemberDto getnickname(String id);
 
+	public MemberDto detailMem(String id);
 
+	public int updateMem(MemberDto dto);
 
+	public int deleteMem(MemberDto dto);
+
+	public String getProfilPic(String id);
+
+	public int likePWriteUp(BbsDto dto);
+
+	public int likePWriteDown(BbsDto dto);
+
+	public int likePHeartUp(BbsDto dto);
+
+	public int likePHeartDown(BbsDto bdto);
+
+	public int likePScrapUp(BbsDto bdto);
+
+	public int likePScrapDown(BbsDto dto);
+
+}

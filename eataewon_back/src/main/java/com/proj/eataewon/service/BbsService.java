@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @Transactional
 public class BbsService {
-	
+
 	@Autowired
 	BbsDao dao;
 
@@ -247,6 +247,32 @@ public class BbsService {
 		return false;
 	}
 
+	public boolean bbsScrapfile(ScrapDto dto) {
+		System.out.println("ScrapDto " + dto + new Date());
+		int n = dao.bbsScrapfile(dto);
+		return n > 0 ? true : false;
+	}
+
+	public List<BbsFileDto> scrapBbsListfile(BbsFileDto dto) {
+		System.out.println("scrapBbsListfile " + dto + new Date());
+		return dao.scrapBbsListfile(dto);
+	}
+
+	public boolean deleteScrapfile(ScrapDto dto) {
+		int n = dao.deleteScrapfile(dto);
+		if(n == 0) return false;
+
+		return true;
+	}
+
+	public boolean scrpointminusfile(BbsFileDto dto) {
+		int n = dao.scrpointminusfile(dto);
+		if(n > 0) {
+			return true;
+		}
+		return false;
+	}
+
 	public int getBbsFileCount(BbsParam param) {
 		return dao.getBbsFileCount(param);
 	}
@@ -271,6 +297,3 @@ public class BbsService {
 		return dao.getBbsListFileSearchPageImg(param);
 	}
 }
-
-
-

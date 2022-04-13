@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class MemberBbsDto {
 
-//  bbs
+    //  bbs
     private String id;
     private int seq;
     private String title;
@@ -24,7 +24,7 @@ public class MemberBbsDto {
     private int readcnt;
     private int likecnt;
 
-//  Member
+    //  Member
     private String name;
     private String pwd;
     private String email;

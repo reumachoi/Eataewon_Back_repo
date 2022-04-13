@@ -24,7 +24,7 @@ public class BbsPicDto {
 	private double longitude;
 	private int readcnt;
 	private int likecnt;
-	
+
 	private String name;
 	private String pwd;
 	private String email;

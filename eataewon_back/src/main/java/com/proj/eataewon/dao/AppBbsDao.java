@@ -4,11 +4,22 @@ import com.proj.eataewon.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mapper
 @Repository
 public interface AppBbsDao {
+
+    public ArrayList<BbsDto> getBbsListSearchApp(String search); // 검색했을 경우 recyclerview
+
+    public ArrayList<BbsDto> getMarkerListApp();       // Search Map 데이터
+
+    public ArrayList<BbsDto> getUpperBbsListApp();      // 홈 화면 상단
+
+    public ArrayList<MemberBbsDto> getLowerBbsListApp();        // 홈 화면 하단 recyclerview
+
+    public ArrayList<BbsDto> getSearchListApp();        // 검색 전 화면 recyclerview
 
     public BbsDto getBbsListApp(int seq);
 
@@ -22,11 +33,6 @@ public interface AppBbsDao {
 
     public  List<BbsDto> findMyBbs(String id);
 
-    public int likecntPlus(int seq);
 
-    public int likecntMinus(int seq);
+
 }
-
-
-
-
