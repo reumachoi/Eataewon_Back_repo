@@ -68,7 +68,7 @@
     <select id="findBookmark" parameterType="String" resultType="com.proj.eataewon.dto.BbsDto">
         SELECT *
         FROM EATAEWONBBS
-        WHERE seq =
+        WHERE seq in
         (SELECT bbsseq
         FROM EATAEWONSCRAP
         WHERE ID = #{id})
