@@ -15,3 +15,4 @@ public class MapResultDto {
     private Double longitude;
     private Double latitude;
 }
+

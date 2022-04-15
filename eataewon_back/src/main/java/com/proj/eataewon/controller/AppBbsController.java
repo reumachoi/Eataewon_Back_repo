@@ -28,8 +28,8 @@ public class AppBbsController {
 
     @RequestMapping(value = "/getBbsListApp", method =  RequestMethod.POST)
     public BbsDto getBbsListApp(@RequestBody int seq) {
-        System.out.println("AppBbsController getBbsList " + seq);
-        System.out.println(service.getBbsListApp(seq).toString());
+        System.out.println("AppBbsController getBbsListApp " + seq);
+        System.out.println(service.getBbsListApp(seq));
 
         return service.getBbsListApp(seq);
     }
