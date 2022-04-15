@@ -103,11 +103,12 @@ public class UploadController {
     }
 
 
-    @PostMapping("/uploadAjaxRegi")
+    @PostMapping("/uploadAjaxRegi")                                     //여러개 받을때는 MultipartFile uploadFileRegis[]
     public String uploadFileRegi(MemberDto dto, @RequestParam("uploadFiles")MultipartFile uploadFileRegis, HttpServletRequest req) {
         System.out.println("uploadFileRegis!!!");
         System.out.println(dto.toString());
 
+        //여러개 받을때는 MultipartFile uploadFileRegis[] 해서 uploadFileRegis.length 만큼 for문 돌려서 업로드할 파일들 이름 변경
         String filename = uploadFileRegis.getOriginalFilename();
 
         String path = "C:/eataewon_Front/eataewon_Front/WebContent/image/upload";
@@ -137,41 +138,51 @@ public class UploadController {
 
 
     @PostMapping("/updateAjaxMem")
-    public String updateAjaxMem(MemberDto dto, @RequestParam("uploadFiles")MultipartFile uploadFileRegis, HttpServletRequest req) {
+    public String updateAjaxMem(MemberDto dto, @RequestParam("uploadFilesMem")MultipartFile updateAjaxMem, HttpServletRequest req) {
         System.out.println("updateAjaxMem!!!");
         System.out.println(dto.toString());
 
-        //id 통해서 DB로부터 기존 파일 경로 호출
-       String existProfile = service.profilePath(dto.getId());
+        String filePath = "";
+
+        String filename = updateAjaxMem.getOriginalFilename();
 
         //호출된 파일경로를 dto에 저장. 읽히지 않은 파일 명과 파일 경로 삽입.
-        if(dto.getProfilpic().equals("")){
-            dto.setProfilpic(existProfile);
+        if(filename == null || filename.equals("")){
+            System.out.println("dto.getProfilpic() == null");
+            //id 통해서 DB로부터 기존 파일 경로 호출
+            filePath = service.profilePath(dto.getId());
+            System.out.println("현재 파일 경로: "+filePath);
+        }
+        else {
+            System.out.println("dto.getProfilpic() != null");
+
+            String path = "C:/eataewon_Front/eataewon_Front/WebContent/image/upload";
+
+            //UUID
+            String uuid = UUID.randomUUID().toString();
+            filePath = path + "/" + uuid + ".jpg";
+
+            System.out.println("filePath:" + filePath);
+            // existFile이 있음에도 불구하고 존재하지 않는 filepath가 생성되어 기존 이미지 경로에 덮어 씌어지고 오류난다.
+
+            try {
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+                bos.write(updateAjaxMem.getBytes());
+                bos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "file upload fail";
+            }
+
+            System.out.println("MemberDto dto updateMem " + new Date());
+
+            //사진 부분을 변경하지 않는 다면 existFile이 들어와야 하고 변경할때만 filepath가 들어와야 한다.
+            //해당 부분에서   dto.setProfilpic(existProfile);를 할지 dto.setProfilpic(filePath); 를 할지 구분 필요
         }
 
-
-        String filename = uploadFileRegis.getOriginalFilename();
-
-        String path = "C:/eataewon_Front/eataewon_Front/WebContent/image/upload";
-
-        //UUID
-        String uuid = UUID.randomUUID().toString();
-        String filePath = path + "/" + uuid;
-
-        System.out.println("filePath:" + filePath);
-
-        try {
-            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
-            bos.write(uploadFileRegis.getBytes());
-            bos.close();
-        }catch (Exception e){
-            e.printStackTrace();
-            return "file upload fail";
-        }
-
-        System.out.println("MemberDto dto updateMem " + new Date());
 
         dto.setProfilpic(filePath);
+
         boolean b = service.updateMem(dto);
         System.out.println("@@@@@@@@@@dto@@@@@@@@@"+dto.toString());
         if(b) {

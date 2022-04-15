@@ -112,6 +112,8 @@ public interface BbsDao {
 
     public String filePath(int seq);
 
+    public String idForProfile(int seq);
+
 }
 
 

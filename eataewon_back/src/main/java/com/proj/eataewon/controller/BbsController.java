@@ -479,6 +479,28 @@ public class BbsController {
 
     }
 
+    //지도 정보 > 프론트 엔드에서 모두 입력받는 방향으로 바꿔서 따로 사용할 필요가 없어졌습니다.
+/*
+   @RequestMapping(value="/bbsChoicePlace", method = RequestMethod.GET)
+    public String bbsChoicePlace(BbsFileDto dto){
+        System.out.println("BbsChoicePlace@@@@@@");
+        System.out.println(dto.toString());
+        if(dto != null){
+            return "YES";
+        }else {
+            return "NO";
+        }
+    }
+*/
+
+    //프로필 사진 조회 위한 id 불러오기
+    @RequestMapping(value = "/idForProfile", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String idForProfile(int seq) {
+        System.out.println("idForProfile " + seq + new Date());
+
+        return service.idForProfile(seq);
+    }
+
 
 
 

@@ -107,35 +107,6 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     </select>
 
 
-    <!-- 글의 총수 -->
-    <select id="getBbsCount" parameterType="com.proj.eataewon.dto.BbsParam" resultType="java.lang.Integer">
-        SELECT NVL(COUNT(*),0) AS CNT
-        FROM EATAEWONBBS
-        WHERE 1=1
-        <if test="choice != null and choice != '' and search != null and search != '' ">
-            <if test="choice=='id'">
-                AND ID=#{search}
-            </if>
-            <if test="choice=='title'">
-                AND TITLE LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='content'">
-                AND CONTENT LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='hashtag'">
-                AND HASHTAG LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='address'">
-                AND ADDRESS LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='shopname'">
-                AND SHOPNAME LIKE '%'||#{search}||'%'
-            </if>
-            <if test="choice=='nickname'">
-                AND nickname LIKE '%'||#{search}||'%'
-            </if>
-        </if>
-    </select>
 
     <!-- 글 수정 -->
     <update id="updateBbs" parameterType="com.proj.eataewon.dto.BbsDto">
@@ -329,6 +300,38 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
         ORDER BY READCNT DESC)
         WHERE RNUM BETWEEN ${start} AND ${end}
     </select>
+
+    <!-- 글의 총수 -->
+    <select id="getBbsCount" parameterType="com.proj.eataewon.dto.BbsParam" resultType="java.lang.Integer">
+        SELECT NVL(COUNT(*),0) AS CNT
+        FROM eataewonbbsfile
+        WHERE 1=1
+        <if test="choice != null and choice != '' and search != null and search != '' ">
+            <if test="choice=='id'">
+                AND ID=#{search}
+            </if>
+            <if test="choice=='title'">
+                AND TITLE LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='content'">
+                AND CONTENT LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='hashtag'">
+                AND HASHTAG LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='address'">
+                AND ADDRESS LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='shopname'">
+                AND SHOPNAME LIKE '%'||#{search}||'%'
+            </if>
+            <if test="choice=='nickname'">
+                AND nickname LIKE '%'||#{search}||'%'
+            </if>
+        </if>
+    </select>
+
+
 
 
 <!--글 목록보기-->
@@ -592,6 +595,13 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!--사진 파일 경로만 확인하는 기능-->
     <select id="filePath" parameterType="java.lang.Integer" resultType="java.lang.String">
         SELECT FILEPATH
+        FROM eataewonbbsfile
+        WHERE SEQ=#{seq}
+    </select>
+
+    <!--seq통해서 id 확인 하는 기능-->
+    <select id="idForProfile" parameterType="java.lang.Integer" resultType="java.lang.String">
+       SELECT id
         FROM eataewonbbsfile
         WHERE SEQ=#{seq}
     </select>

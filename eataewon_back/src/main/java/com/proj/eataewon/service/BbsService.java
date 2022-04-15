@@ -352,6 +352,11 @@ public class BbsService {
 		return Filepath;
 	}
 
+	public String idForProfile(int seq){
+		String idForProfile = dao.idForProfile(seq);
+		return idForProfile;
+	}
+
 }
 
 

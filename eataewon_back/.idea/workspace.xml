@@ -9,6 +9,7 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/controller/UploadController.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/BbsFileDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/LikeDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/MapResultDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/ScrapDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/UploadRegitDto.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/proj/eataewon/dto/UploadResultDto.java" afterDir="false" />
