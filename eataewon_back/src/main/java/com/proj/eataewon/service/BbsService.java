@@ -270,6 +270,22 @@ public class BbsService {
 	public List<BbsFileDto> getBbsListFileSearchPageImg(BbsParam param) {
 		return dao.getBbsListFileSearchPageImg(param);
 	}
+
+	public String fileName(int seq) {
+		String Filename  =dao.fileName(seq);
+		return Filename;
+	}
+
+	public String filePath(int seq) {
+		String Filepath  =dao.filePath(seq);
+		return Filepath;
+	}
+
+	public String idForProfile(int seq){
+		String idForProfile = dao.idForProfile(seq);
+		return idForProfile;
+	}
+
 }
 
 

@@ -44,6 +44,7 @@ public interface MemberDao {
 
 	public int likePScrapDown(BbsDto dto);
 
+	public String profilePath(String id);
 }
 
 

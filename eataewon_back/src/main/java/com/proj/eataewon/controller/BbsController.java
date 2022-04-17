@@ -328,20 +328,30 @@ public class BbsController {
     //파일수정
     @RequestMapping(value = "/updateBbsFile", method = {RequestMethod.GET, RequestMethod.POST} )
     public String bbsupdate(BbsFileDto dto) {
-        System.out.println("BbsController updateBbsFile " + new Date());
+        //dto에 기존의 파일명과 파일경로가 읽히지 않는 문제 발생.
+        System.out.println("BbsController updateBbsFile " + dto.toString() + new Date());
 
         // seq 를 통해서 DB로부터 호출
-        // original BbsFileDto
+        String Filename = service.fileName(dto.getSeq());
+        String Filepath = service.filePath(dto.getSeq());
 
-        // dto.filename -> ""
-        // if empty -> dto.filename = BbsFileDto.filename
+        //호출된 파일명과 파일경로를 dto에 저장. 읽히지 않은 파일명과 파일 경로를 삽입.
+        if(dto.getFilename().equals("") && dto.getFilename().equals("")){
+            dto.setFilename(Filename);
+            dto.setFilepath(Filepath);
+        }
+
+        String answer="";
 
         boolean b = service.updateBbsFile(dto);
+
         System.out.println("@@@@@@@@@@dto@@@@@@@@@"+dto.toString());
         if(b) {
-            return "OK";
-        }
-        return "NO";
+            answer = "OK";
+        }else{
+        answer = "NO";}
+
+        return answer;
     }
 
     //글삭제
@@ -427,6 +437,7 @@ public class BbsController {
         System.out.println("ScrapDto bbsScrapfile " + new Date());
         boolean a = service.scrapBbsCntfile(dto);
         boolean c = service.scrpointupfile(bdto); // 스크랩시 호감도 증가
+
         if(a) {
 
             boolean b =service.bbsScrapfile(dto);
@@ -476,6 +487,28 @@ public class BbsController {
         }
         return answer;
 
+    }
+
+    //지도 정보 > 프론트 엔드에서 모두 입력받는 방향으로 바꿔서 따로 사용할 필요가 없어졌습니다.
+/*
+   @RequestMapping(value="/bbsChoicePlace", method = RequestMethod.GET)
+    public String bbsChoicePlace(BbsFileDto dto){
+        System.out.println("BbsChoicePlace@@@@@@");
+        System.out.println(dto.toString());
+        if(dto != null){
+            return "YES";
+        }else {
+            return "NO";
+        }
+    }
+*/
+
+    //프로필 사진 조회 위한 id 불러오기
+    @RequestMapping(value = "/idForProfile", method = {RequestMethod.GET, RequestMethod.POST} )
+    public String idForProfile(int seq) {
+        System.out.println("idForProfile " + seq + new Date());
+
+        return service.idForProfile(seq);
     }
 
 

@@ -57,7 +57,7 @@ public class MemberController {
 	}
 
 	//회원가입
-	@RequestMapping(value="/addmember", method= {RequestMethod.GET, RequestMethod.POST})
+	/*@RequestMapping(value="/addmember", method= {RequestMethod.GET, RequestMethod.POST})
 	public String addmember(MemberDto dto) {
 		System.out.println("MemberController addmember");
 		System.out.println("dto:" + dto.toString());
@@ -67,7 +67,7 @@ public class MemberController {
 			return "YES";
 		}
 		return "NO";
-	}
+	}*/
 
 	//닉네임 불러오기
 	@RequestMapping(value = "/getnickname", method = {RequestMethod.GET, RequestMethod.POST} )
@@ -86,6 +86,7 @@ public class MemberController {
 	}
 	
 	//회원정보 수정하기
+/*
 	@RequestMapping(value = "/updateMem", method = {RequestMethod.GET, RequestMethod.POST} )
 	public String updateMem(MemberDto dto) {
 		System.out.println("MemberDto dto updateMem " + new Date());
@@ -97,6 +98,7 @@ public class MemberController {
 		}
 		return "NO";
 	}
+*/
 
 	//회원 탈퇴하기
 	@RequestMapping(value = "/deleteMem", method = {RequestMethod.GET, RequestMethod.POST} )

@@ -70,5 +70,13 @@
 		WHERE ID = #{id}
 	</select>
 
+	<!--프로필 사진 경로만 확인하는 기능-->
+	<select id="profilePath" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT profilpic
+		FROM EATAEWONMEMBER
+		WHERE id=#{id}
+	</select>
+
+
 
 </mapper>

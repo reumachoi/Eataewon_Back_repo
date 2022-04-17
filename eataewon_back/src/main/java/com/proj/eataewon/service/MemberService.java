@@ -93,6 +93,11 @@ public class MemberService {
 		return n>0?true:false;
 
 	}
+
+	public String profilePath(String id) {
+		String profilePath  =dao.profilePath(id);
+		return profilePath;
+	}
 }
 
 
