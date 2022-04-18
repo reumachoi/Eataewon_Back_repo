@@ -119,7 +119,7 @@ REF를 내림차순 STEP을 오름차순으로 정렬 한다는 말 그 뒤에 R
     <!-- 글 수정 -->
     <update id="updateBbs" parameterType="com.proj.eataewon.dto.BbsDto">
         UPDATE EATAEWONBBS
-        SET TITLE=#{title}, SHOPNAME=#{shopname},CONTENT=#{content}, PICTURE=#{picture}, HASHTAG=#{hashtag},
+        SET TITLE=#{title}, SHOPNAME=#{shopname}, CONTENT=#{content}, PICTURE=#{picture}, HASHTAG=#{hashtag},
         LATITUDE=#{latitude}, LONGITUDE=#{longitude},ADDRESS=#{address}, shopphnum=#{shopphnum}, shopurl=#{shopurl}
         WHERE SEQ=#{seq}
     </update>
