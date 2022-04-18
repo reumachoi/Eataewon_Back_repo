@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.proj.eataewon.dao.MemberDao">
+
+	<select id="allMember" resultType="com.proj.eataewon.dto.MemberDto">
+		SELECT * FROM EATAEWONMEMBER
+	</select>
+
+	<select id="getId" parameterType="com.proj.eataewon.dto.MemberDto" resultType="java.lang.Integer">
+		SELECT NVL(COUNT(*),0)
+		FROM EATAEWONMEMBER
+		WHERE id=#{id}
+	</select>
+
+	<insert id="addmember" parameterType="com.proj.eataewon.dto.MemberDto">
+		INSERT INTO EATAEWONMEMBER(NAME, ID, PWD, EMAIL, NICKNAME, PROFILCPIC, LIKEPOINT, PROFILMSG)
+		VALUES(#{name}, #{id}, #{pwd}, #{email}, #{nickName}, #{profilPic}, 0, #{profilMsg})
+	</insert>
+
+	<select id="login" parameterType="com.proj.eataewon.dto.MemberDto"
+			resultType="com.proj.eataewon.dto.MemberDto">
+		SELECT ID,NAME,EMAIL
+		FROM EATAEWONMEMBER
+		WHERE ID=#{id} AND PWD=#{pwd}
+	</select>
+
+
+</mapper>

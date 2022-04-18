@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.eataewon.dao.AppMemberDao">
+
+    <select id="getIdApp" parameterType="String" resultType="java.lang.Integer">
+        SELECT NVL(COUNT(*),0)
+        FROM EATAEWONMEMBER
+        WHERE ID=#{id}
+    </select>
+
+    <select id="getEmailApp" parameterType="String" resultType="String">
+        SELECT ID
+        FROM EATAEWONMEMBER
+        WHERE EMAIL=#{email}
+    </select>
+
+    <update id="resetPwd" parameterType="com.proj.eataewon.dto.BbsDto">
+        UPDATE EATAEWONMEMBER
+        SET PWD = #{pwd}
+        WHERE ID = #{id}
+    </update>
+
+    <update id="LikePWriteUp" parameterType="String">
+        UPDATE EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT+50
+        WHERE ID = #{id}
+    </update>
+
+
+    <update id="LikePWriteDown" parameterType="String">
+        UPDATE EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT-50
+        WHERE ID = #{id}
+    </update>
+
+
+    <update id="LikePHeartUp" parameterType="String">
+        UPDATE EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT+1
+        WHERE ID = #{id}
+    </update>
+
+    <update id="LikePHeartDown" parameterType="String">
+        UPDATE EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT-1
+        WHERE ID = #{id}
+    </update>
+
+    <update id="LikePScrapUp" parameterType="String">
+        UPDATE EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT+5
+        WHERE ID = #{id}
+    </update>
+
+    <update id="LikePScrapDown" parameterType="String">
+        UPDATE EATAEWONMEMBER
+        SET LIKEPOINT = LIKEPOINT-5
+        WHERE ID = #{id}
+    </update>
+
+    <select id="findUserData" parameterType="com.proj.eataewon.dto.MemberDto" resultType="com.proj.eataewon.dto.MemberDto">
+        SELECT *
+        FROM EATAEWONMEMBER
+        WHERE ID=#{id} AND NICKNAME=#{nickname}
+    </select>
+
+    <update id="updateUserData" parameterType="com.proj.eataewon.dto.MemberDto">
+        UPDATE EATAEWONMEMBER
+        SET EMAIL=#{email}, NICKNAME=#{nickname}, PROFILMSG=#{profilmsg}
+        WHERE ID=#{id}
+    </update>
+
+    <update id="updateUserProfilPic" parameterType="com.proj.eataewon.dto.MemberDto">
+        UPDATE EATAEWONMEMBER
+        SET PROFILPIC = #{profilpic}
+        where ID=#{id}
+    </update>
+</mapper>
